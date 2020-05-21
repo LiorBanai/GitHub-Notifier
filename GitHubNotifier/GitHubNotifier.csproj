@@ -3,7 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <AssemblyTitle>GitHubNotifier</AssemblyTitle>
+	 <UseWindowsForms>true</UseWindowsForms>
+	 <AssemblyTitle>GitHubNotifier</AssemblyTitle>
     <Product>GitHubNotifier</Product>
     <Copyright>Copyright ©  2020</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
