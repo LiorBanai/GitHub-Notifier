@@ -7,7 +7,7 @@ namespace GitHubNotifier.Utils
 {
     public static class GitHubUtils
     {
-        public static async Task<GitHubRateLimit> GetRateLimit(string token = null)
+        public static async Task<GitHubRateLimit> GetRateLimit(string token)
         {
             string uri = "https://api.github.com/rate_limit";
             using (HttpClient client = new HttpClient())
@@ -26,7 +26,7 @@ namespace GitHubNotifier.Utils
             }
         }
 
-        public static async Task<T> GetAsync<T>(string uri, string token = null)
+        public static async Task<T> GetAsync<T>(string uri, string token)
         {
             using (HttpClient client = new HttpClient())
             {

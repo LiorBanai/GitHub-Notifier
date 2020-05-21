@@ -15,7 +15,7 @@ namespace GitHubNotifier.Managers
         public static UserSettingsManager Instance { get; set; } = _instance.Value;
 
         public List<RepositorySettings> Repositories { get; set; }
-
+        public string GitHubToken { get; } = Environment.GetEnvironmentVariable("GitHubNotifier_Token");
         private UserSettingsManager()
         {
             Load();
@@ -35,16 +35,16 @@ namespace GitHubNotifier.Managers
             {
                 Repositories = new List<RepositorySettings>
                 {
-                    new RepositorySettings("Analogy Log Viewer","Analogy-LogViewer/Analogy.LogViewer"),
-                    new RepositorySettings("Analogy Serilog", "Analogy-LogViewer/Analogy.LogViewer.Serilog")
+                    new RepositorySettings("Analogy Log Viewer","Analogy-LogViewer/Analogy.LogViewer",15),
+                    new RepositorySettings("Analogy Serilog", "Analogy-LogViewer/Analogy.LogViewer.Serilog",15)
                 };
             }
 
         }
 
-        internal void AddNewRepository(string displayName, string id)
+        internal void AddNewRepository(string displayName, string id, int updateInterval)
         {
-            Repositories.Add(new RepositorySettings(displayName, id));
+            Repositories.Add(new RepositorySettings(displayName, id,updateInterval));
         }
         internal void RemoveRepository(RepositorySettings repo) => Repositories.Remove(repo);
         public void Save()

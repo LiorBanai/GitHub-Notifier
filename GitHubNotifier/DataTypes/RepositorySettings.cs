@@ -22,11 +22,11 @@ namespace GitHubNotifier.DataTypes
         {
             Enabled = true;
         }
-        public RepositorySettings(string displayName, string repoName):this()
+        public RepositorySettings(string displayName, string repoName,int updateMinutes):this()
         {
             DisplayName = displayName;
             RepoName = repoName;
-            UpdateMinutes = 30;
+            UpdateMinutes = updateMinutes;
         }
 
         public override string ToString()

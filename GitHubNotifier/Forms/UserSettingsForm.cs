@@ -26,7 +26,7 @@ namespace GitHubNotifier.Forms
         {
             if (!string.IsNullOrEmpty(txtbRepoDisplayName.Text) && !string.IsNullOrEmpty(txtbRepoName.Text))
             {
-                UserSettingsManager.Instance.AddNewRepository(txtbRepoDisplayName.Text, txtbRepoName.Text);
+                UserSettingsManager.Instance.AddNewRepository(txtbRepoDisplayName.Text, txtbRepoName.Text,(int)nudMinutes.Value);
                 RefreshList();
             } 
         }

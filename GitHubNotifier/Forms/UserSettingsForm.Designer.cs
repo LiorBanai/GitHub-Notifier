@@ -35,6 +35,9 @@
             this.txtbRepoDisplayName = new System.Windows.Forms.TextBox();
             this.txtbRepoName = new System.Windows.Forms.TextBox();
             this.btnAddRepo = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nudMinutes = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             this.SuspendLayout();
             // 
             // chklstRepo
@@ -43,9 +46,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chklstRepo.FormattingEnabled = true;
-            this.chklstRepo.Location = new System.Drawing.Point(2, 94);
+            this.chklstRepo.Location = new System.Drawing.Point(2, 128);
             this.chklstRepo.Name = "chklstRepo";
-            this.chklstRepo.Size = new System.Drawing.Size(642, 344);
+            this.chklstRepo.Size = new System.Drawing.Size(642, 310);
             this.chklstRepo.TabIndex = 0;
             this.chklstRepo.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chklstRepo_ItemCheck);
             // 
@@ -107,11 +110,45 @@
             this.btnAddRepo.UseVisualStyleBackColor = true;
             this.btnAddRepo.Click += new System.EventHandler(this.btnAddRepo_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(162, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Interval check (minutes):";
+            // 
+            // nudMinutes
+            // 
+            this.nudMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudMinutes.Location = new System.Drawing.Point(513, 88);
+            this.nudMinutes.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nudMinutes.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudMinutes.Name = "nudMinutes";
+            this.nudMinutes.Size = new System.Drawing.Size(131, 22);
+            this.nudMinutes.TabIndex = 9;
+            this.nudMinutes.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
             // UserSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 450);
+            this.Controls.Add(this.nudMinutes);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAddRepo);
             this.Controls.Add(this.txtbRepoName);
             this.Controls.Add(this.txtbRepoDisplayName);
@@ -122,6 +159,7 @@
             this.Name = "UserSettingsForm";
             this.Text = "User settings form";
             this.Load += new System.EventHandler(this.UserSettingsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +174,8 @@
         private System.Windows.Forms.TextBox txtbRepoDisplayName;
         private System.Windows.Forms.TextBox txtbRepoName;
         private System.Windows.Forms.Button btnAddRepo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown nudMinutes;
     }
 }
 

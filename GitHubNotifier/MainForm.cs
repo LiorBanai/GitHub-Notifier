@@ -27,7 +27,7 @@ namespace GitHubNotifier
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            var result = await GitHubUtils.GetRateLimit(Environment.GetEnvironmentVariable("GitHubNotifier_Token"));
+            var result = await GitHubUtils.GetRateLimit(UserSettingsManager.Instance.GitHubToken);
             tsslblAPILimit.Text = "Api Limits:" + result.Rate;
             foreach (RepositorySettings repo in UserSettingsManager.Instance.Repositories)
             {

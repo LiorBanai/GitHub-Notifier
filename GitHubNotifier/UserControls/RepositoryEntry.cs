@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GitHubNotifier.Managers;
 
 namespace GitHubNotifier
 {
@@ -20,6 +21,7 @@ namespace GitHubNotifier
         {
             Repo = repo;
             lnkLabel.Text = repo.RepoUrl;
+            timerUpdate.Interval = repo.UpdateMinutes * 60 * 1000;
         }
 
         private async void RepositoryEntry_Load(object sender, EventArgs e)
@@ -33,13 +35,14 @@ namespace GitHubNotifier
         }
         public async Task CheckDownloads()
         {
-            var entries = (await GitHubUtils.GetAsync<GithubReleaseEntry[]>(Repo.RepoApiReleasesUrl)).OrderByDescending(r => r.Published).ToList();
+            
+            var entries = (await GitHubUtils.GetAsync<GithubReleaseEntry[]>(Repo.RepoApiReleasesUrl, UserSettingsManager.Instance.GitHubToken)).OrderByDescending(r => r.Published).ToList();
             var downloads = entries.SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
             if (Repo.LastTotalDownloads != downloads)
             {
                 PopupMessage msg = new PopupMessage
                 {
-                    Caption = Name,
+                    Caption = Repo.DisplayName,
                     Text = lblDownloads.Text,
                     Image = Properties.Resources.Download_32x32
                 };
@@ -58,12 +61,12 @@ namespace GitHubNotifier
         }
         public async Task CheckStars()
         {
-            var repoInfo = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl);
+            var repoInfo = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl, UserSettingsManager.Instance.GitHubToken);
             if (Repo.LastTotalStars != repoInfo.Stargazers)
             {
                 PopupMessage msg = new PopupMessage
                 {
-                    Caption = Name,
+                    Caption = Repo.DisplayName,
                     Text = "Likes: " + repoInfo.Stargazers,
                     Image = Properties.Resources.Feature_32x32
                 };
