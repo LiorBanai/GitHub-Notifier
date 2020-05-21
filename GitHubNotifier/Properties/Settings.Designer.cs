@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace GitHubNotifier.Properties
 {
 
@@ -53,6 +55,20 @@ namespace GitHubNotifier.Properties
             set
             {
                 this["Repositories"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public DateTime LastReadUserNotification
+        {
+            get
+            {
+                return ((DateTime)(this["LastReadUserNotification"]));
+            }
+            set
+            {
+                this["LastReadUserNotification"] = value;
             }
         }
 

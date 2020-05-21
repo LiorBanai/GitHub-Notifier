@@ -1,9 +1,12 @@
-﻿using GitHubNotifier.DataTypes;
+﻿using GitHubNotifier.Core.DataTypes;
+using GitHubNotifier.DataTypes;
 using GitHubNotifier.Forms;
 using GitHubNotifier.Managers;
 using GitHubNotifier.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GitHubNotifier
@@ -29,6 +32,7 @@ namespace GitHubNotifier
         {
             var result = await GitHubUtils.GetRateLimit(UserSettingsManager.Instance.GitHubToken);
             tsslblAPILimit.Text = "Api Limits:" + result.Rate;
+            await CheckNotifications();
             foreach (RepositorySettings repo in UserSettingsManager.Instance.Repositories)
             {
                 AddRepo(repo);
@@ -82,6 +86,23 @@ namespace GitHubNotifier
         {
             UserSettingsForm form = new UserSettingsForm();
             form.Show(this);
+        }
+
+        private async void timerNotifications_Tick(object sender, EventArgs e)
+        {
+            await CheckNotifications();
+        }
+
+        private async Task CheckNotifications()
+        {
+            var (newData, notifications) = await GitHubUtils.GetAsync<GitHubUserNotification[]>("https://api.github.com/notifications", UserSettingsManager.Instance.GitHubToken, UserSettingsManager.Instance.LastReadUserNotification);
+            if (newData && notifications.Any(n => n.Unread))
+            {
+                UserSettingsManager.Instance.LastReadUserNotification = DateTime.Now;
+                ; lstNotifications.Items.Clear();
+                lstNotifications.Items.AddRange(notifications.Where(n => n.Unread).Select(n => n.Subject.Title).ToArray());
+            }
+
         }
     }
 }

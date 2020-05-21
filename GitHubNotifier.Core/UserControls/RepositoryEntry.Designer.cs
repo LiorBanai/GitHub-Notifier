@@ -39,30 +39,32 @@
             // lblDownloads
             // 
             this.lblDownloads.AutoSize = true;
-            this.lblDownloads.Location = new System.Drawing.Point(3, 40);
+            this.lblDownloads.Location = new System.Drawing.Point(3, 50);
             this.lblDownloads.Name = "lblDownloads";
-            this.lblDownloads.Size = new System.Drawing.Size(81, 17);
+            this.lblDownloads.Size = new System.Drawing.Size(87, 20);
             this.lblDownloads.TabIndex = 0;
             this.lblDownloads.Text = "Downloads:";
             // 
             // lblLikes
             // 
             this.lblLikes.AutoSize = true;
-            this.lblLikes.Location = new System.Drawing.Point(3, 63);
+            this.lblLikes.Location = new System.Drawing.Point(3, 79);
             this.lblLikes.Name = "lblLikes";
-            this.lblLikes.Size = new System.Drawing.Size(45, 17);
+            this.lblLikes.Size = new System.Drawing.Size(44, 20);
             this.lblLikes.TabIndex = 1;
             this.lblLikes.Text = "Likes:";
             // 
             // btnCheckNow
             // 
             this.btnCheckNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheckNow.Location = new System.Drawing.Point(579, 4);
+            this.btnCheckNow.Location = new System.Drawing.Point(579, 5);
+            this.btnCheckNow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCheckNow.Name = "btnCheckNow";
-            this.btnCheckNow.Size = new System.Drawing.Size(140, 26);
+            this.btnCheckNow.Size = new System.Drawing.Size(140, 32);
             this.btnCheckNow.TabIndex = 2;
             this.btnCheckNow.Text = "Check Now";
             this.btnCheckNow.UseVisualStyleBackColor = true;
+            this.btnCheckNow.Click += new System.EventHandler(this.btnCheckNow_Click);
             // 
             // lnkLabel
             // 
@@ -70,7 +72,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkLabel.Location = new System.Drawing.Point(6, 0);
             this.lnkLabel.Name = "lnkLabel";
-            this.lnkLabel.Size = new System.Drawing.Size(567, 30);
+            this.lnkLabel.Size = new System.Drawing.Size(567, 38);
             this.lnkLabel.TabIndex = 3;
             this.lnkLabel.TabStop = true;
             this.lnkLabel.Text = "N/A";
@@ -83,14 +85,15 @@
             // 
             // RepositoryEntry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lnkLabel);
             this.Controls.Add(this.btnCheckNow);
             this.Controls.Add(this.lblLikes);
             this.Controls.Add(this.lblDownloads);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RepositoryEntry";
-            this.Size = new System.Drawing.Size(722, 95);
+            this.Size = new System.Drawing.Size(722, 119);
             this.Load += new System.EventHandler(this.RepositoryEntry_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
