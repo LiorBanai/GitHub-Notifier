@@ -1,5 +1,4 @@
 ﻿using GitHubNotifier.DataTypes;
-using GitHubNotifier.Properties;
 using GitHubNotifier.Utils;
 using System;
 using System.Linq;
@@ -10,21 +9,17 @@ namespace GitHubNotifier
 {
     public partial class RepositoryEntry : UserControl
     {
-        private string Name { get; set; }
-        private string uri { get; set; }
-        private int TotalDownloads { get; set; } = 0;
-        private int Stars { get; set; } = 0;
+        private RepositorySettings Repo;
 
         public RepositoryEntry()
         {
             InitializeComponent();
         }
 
-        public RepositoryEntry(string name, string apiUri, string repoUri) : this()
+        public RepositoryEntry(RepositorySettings repo) : this()
         {
-            this.uri = apiUri;
-            Name = name;
-            lnkLabel.Text = repoUri;
+            Repo = repo;
+            lnkLabel.Text = repo.RepoUrl;
         }
 
         private async void RepositoryEntry_Load(object sender, EventArgs e)
@@ -38,17 +33,15 @@ namespace GitHubNotifier
         }
         public async Task CheckDownloads()
         {
-            var entries = (await GitHubUtils.GetAsync<GithubReleaseEntry[]>(uri + "/releases")).OrderByDescending(r => r.Published).ToList();
+            var entries = (await GitHubUtils.GetAsync<GithubReleaseEntry[]>(Repo.RepoApiReleasesUrl)).OrderByDescending(r => r.Published).ToList();
             var downloads = entries.SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
-            if (TotalDownloads >= 0 && downloads > TotalDownloads)
+            if (Repo.LastTotalDownloads != downloads)
             {
-                TotalDownloads = entries.SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
-                lblDownloads.Text = "Downloads: " + TotalDownloads;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Name,
                     Text = lblDownloads.Text,
-                    Image = Resources.Download_32x32
+                    Image = Properties.Resources.Download_32x32
                 };
                 var popupNotifier = new Tulpep.NotificationWindow.PopupNotifier
                 {
@@ -58,26 +51,21 @@ namespace GitHubNotifier
                     Image = msg.Image
                 };
                 popupNotifier.Popup();
-
-
             }
-            else
-            {
-                TotalDownloads = entries.SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
-                lblDownloads.Text = "Downloads: " + TotalDownloads;
-            }
+
+            lblDownloads.Text = "Downloads: " + downloads;
+            Repo.LastTotalDownloads = downloads;
         }
         public async Task CheckStars()
         {
-            var repoInfo = await GitHubUtils.GetAsync<GithubRepo>(uri);
-            if (Stars >= 0 && repoInfo.Stargazers > Stars)
+            var repoInfo = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl);
+            if (Repo.LastTotalStars != repoInfo.Stargazers)
             {
-                lblLikes.Text = "Likes: " + repoInfo.Stargazers;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Name,
-                    Text = lblLikes.Text,
-                    Image = Resources.Feature_32x32
+                    Text = "Likes: " + repoInfo.Stargazers,
+                    Image = Properties.Resources.Feature_32x32
                 };
                 var popupNotifier = new Tulpep.NotificationWindow.PopupNotifier
                 {
@@ -88,12 +76,8 @@ namespace GitHubNotifier
                 };
                 popupNotifier.Popup();
             }
-            else
-            {
-                lblLikes.Text = "Likes: " + repoInfo.Stargazers;
-            }
-
-            Stars = repoInfo.Stargazers;
+            Repo.LastTotalStars = repoInfo.Stargazers;
+            lblLikes.Text = "Likes: " + repoInfo.Stargazers;
         }
 
         private async void timerUpdate_Tick(object sender, EventArgs e)

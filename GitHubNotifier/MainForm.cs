@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GitHubNotifier.DataTypes;
+using GitHubNotifier.Managers;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -23,18 +25,20 @@ namespace GitHubNotifier
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            //  var result = await GitHubUtils.GetRateLimit(Environment.GetEnvironmentVariable("GitHub_notifications"));
-            //AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp");
-            // AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp");
-            AddRepo("vscode", "https://api.github.com/repos/microsoft/vscode", "");
-            AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp", "");
-            AddRepo("Analogy RegexParser", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.RegexParser", "");
-            AddRepo("Analogy Serilog", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.Serilog", "");
-            AddRepo("Analogy Log viewer", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer", "");
+            foreach (RepositorySettings repo in UserSettingsManager.Instance.Repositories)
+            {
+                AddRepo(repo);
+                //  var result = await GitHubUtils.GetRateLimit(Environment.GetEnvironmentVariable("GitHub_notifications"));
+                //AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp");
+                // AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp");
+                //AddRepo("vscode", "https://api.github.com/repos/microsoft/vscode", "");
+                // AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp", "");
+                // AddRepo("Analogy RegexParser", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.RegexParser", "");
+            }
         }
-        private void AddRepo(string name, string apiUri, string htmlUrl)
+        private void AddRepo(RepositorySettings repo)
         {
-            RepositoryEntry ar1 = new RepositoryEntry(name, apiUri, htmlUrl);
+            RepositoryEntry ar1 = new RepositoryEntry(repo);
             repos.Add(ar1);
             panel1.Controls.Add(ar1);
             ar1.Dock = DockStyle.Top;
