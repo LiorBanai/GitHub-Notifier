@@ -46,7 +46,7 @@ namespace GitHubNotifier
                     Text = lblDownloads.Text,
                     Image = Properties.Resources.Download_32x32
                 };
-                var popupNotifier = new Tulpep.NotificationWindow.PopupNotifier
+                var popupNotifier = new NotificationWindow.PopupNotifier
                 {
                     TitleText = msg.Caption,
                     ContentText = msg.Text,
@@ -70,7 +70,7 @@ namespace GitHubNotifier
                     Text = "Likes: " + repoInfo.Stargazers,
                     Image = Properties.Resources.Feature_32x32
                 };
-                var popupNotifier = new Tulpep.NotificationWindow.PopupNotifier
+                var popupNotifier = new NotificationWindow.PopupNotifier
                 {
                     TitleText = msg.Caption,
                     ContentText = msg.Text,

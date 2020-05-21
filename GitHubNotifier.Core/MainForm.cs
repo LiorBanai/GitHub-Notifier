@@ -46,7 +46,7 @@ namespace GitHubNotifier
             {
                 e.Cancel = true;
                 Hide();
-                var popupNotifier = new Tulpep.NotificationWindow.PopupNotifier
+                var popupNotifier = new NotificationWindow.PopupNotifier
                 {
                     TitleText = "GitHun Notifier",
                     ContentText = "Still here. Right click and exit to close",

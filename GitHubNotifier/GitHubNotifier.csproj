@@ -70,8 +70,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LiorBanaI.NotificationWindow" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Tulpep.NotificationWindow" Version="1.1.31" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Download_32x32.png" />
