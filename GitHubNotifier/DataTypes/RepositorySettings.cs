@@ -16,12 +16,13 @@ namespace GitHubNotifier.DataTypes
 
         public int LastTotalDownloads { get; set; }
         public int LastTotalStars { get; set; }
+        public bool Enabled { get; set; }
 
         public RepositorySettings()
         {
-
+            Enabled = true;
         }
-        public RepositorySettings(string displayName, string repoName)
+        public RepositorySettings(string displayName, string repoName):this()
         {
             DisplayName = displayName;
             RepoName = repoName;

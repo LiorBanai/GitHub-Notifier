@@ -42,6 +42,11 @@ namespace GitHubNotifier.Managers
 
         }
 
+        internal void AddNewRepository(string displayName, string id)
+        {
+            Repositories.Add(new RepositorySettings(displayName, id));
+        }
+        internal void RemoveRepository(RepositorySettings repo) => Repositories.Remove(repo);
         public void Save()
         {
             Settings.Default.Repositories = JsonConvert.SerializeObject(Repositories);

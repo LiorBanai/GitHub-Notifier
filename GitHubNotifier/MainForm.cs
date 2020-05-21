@@ -1,4 +1,5 @@
 ﻿using GitHubNotifier.DataTypes;
+using GitHubNotifier.Forms;
 using GitHubNotifier.Managers;
 using GitHubNotifier.Utils;
 using System;
@@ -26,7 +27,8 @@ namespace GitHubNotifier
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            var result = await GitHubUtils.GetRateLimit(Environment.GetEnvironmentVariable("GitHub_notifications"));
+            var result = await GitHubUtils.GetRateLimit(Environment.GetEnvironmentVariable("GitHubNotifier_Token"));
+            tsslblAPILimit.Text = "Api Limits:" + result.Rate;
             foreach (RepositorySettings repo in UserSettingsManager.Instance.Repositories)
             {
                 AddRepo(repo);
@@ -44,6 +46,14 @@ namespace GitHubNotifier
             {
                 e.Cancel = true;
                 Hide();
+                var popupNotifier = new Tulpep.NotificationWindow.PopupNotifier
+                {
+                    TitleText = "GitHun Notifier",
+                    ContentText = "Still here. Right click and exit to close",
+                    IsRightToLeft = false,
+                    Image = Properties.Resources.Feature_32x32
+                };
+                popupNotifier.Popup();
             }
         }
 
@@ -68,6 +78,10 @@ namespace GitHubNotifier
             Application.Exit();
         }
 
-
+        private void tsmiSettings_Click(object sender, EventArgs e)
+        {
+            UserSettingsForm form = new UserSettingsForm();
+            form.Show(this);
+        }
     }
 }
