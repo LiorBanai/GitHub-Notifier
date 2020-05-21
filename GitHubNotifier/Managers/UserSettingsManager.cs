@@ -18,7 +18,7 @@ namespace GitHubNotifier.Managers
 
         private UserSettingsManager()
         {
-
+            Load();
         }
 
         private void Load()
@@ -42,6 +42,11 @@ namespace GitHubNotifier.Managers
 
         }
 
+        public void Save()
+        {
+            Settings.Default.Repositories = JsonConvert.SerializeObject(Repositories);
+            Settings.Default.Save();
+        }
         private T ParseSettings<T>(string data) where T : new()
         {
             try
@@ -58,5 +63,7 @@ namespace GitHubNotifier.Managers
 
 
         }
+
+
     }
 }

@@ -10,7 +10,7 @@ namespace GitHubNotifier.DataTypes
         public string RepoName { get; set; }
         public string RepoUrl => $"https://github.com/{RepoName}";
         public string RepoApiUrl => $"https://api.github.com/repos/{RepoName}";
-        public string RepoApiReleasesUrl => $"https://api.github.com/repos/{RepoName}/Releases";
+        public string RepoApiReleasesUrl => $"https://api.github.com/repos/{RepoName}/releases";
 
         public int UpdateMinutes { get; set; }
 

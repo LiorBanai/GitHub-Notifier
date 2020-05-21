@@ -40,7 +40,7 @@ namespace GitHubNotifier
         {
             RepositoryEntry ar1 = new RepositoryEntry(repo);
             repos.Add(ar1);
-            panel1.Controls.Add(ar1);
+            tpRepo.Controls.Add(ar1);
             ar1.Dock = DockStyle.Top;
         }
 
@@ -58,6 +58,11 @@ namespace GitHubNotifier
                 e.Cancel = true;
                 Hide();
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UserSettingsManager.Instance.Save();
         }
     }
 }
