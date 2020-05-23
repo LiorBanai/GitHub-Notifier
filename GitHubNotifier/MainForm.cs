@@ -1,7 +1,7 @@
-﻿using GitHubNotifier.Core.DataTypes;
-using GitHubNotifier.DataTypes;
+﻿using GitHubNotifier.DataTypes;
 using GitHubNotifier.Forms;
 using GitHubNotifier.Managers;
+using GitHubNotifier.UserControls;
 using GitHubNotifier.Utils;
 using System;
 using System.Collections.Generic;

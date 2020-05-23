@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace GitHubNotifier.Core
+namespace GitHubNotifier
 {
     static class Program
     {

@@ -89,7 +89,7 @@
             // 
             this.txtbRepoDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbRepoDisplayName.Location = new System.Drawing.Point(306, 63);
+            this.txtbRepoDisplayName.Location = new System.Drawing.Point(306, 94);
             this.txtbRepoDisplayName.Name = "txtbRepoDisplayName";
             this.txtbRepoDisplayName.Size = new System.Drawing.Size(337, 22);
             this.txtbRepoDisplayName.TabIndex = 5;
@@ -98,7 +98,7 @@
             // 
             this.txtbRepoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbRepoName.Location = new System.Drawing.Point(306, 94);
+            this.txtbRepoName.Location = new System.Drawing.Point(306, 66);
             this.txtbRepoName.Name = "txtbRepoName";
             this.txtbRepoName.Size = new System.Drawing.Size(337, 22);
             this.txtbRepoName.TabIndex = 6;

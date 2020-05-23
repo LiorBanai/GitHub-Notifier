@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 
-namespace GitHubNotifier.Core.DataTypes
+namespace GitHubNotifier.DataTypes
 {
     [Serializable]
     [JsonObject]

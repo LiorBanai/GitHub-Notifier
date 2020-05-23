@@ -1,12 +1,12 @@
-﻿using GitHubNotifier.DataTypes;
-using GitHubNotifier.Managers;
-using GitHubNotifier.Utils;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GitHubNotifier.DataTypes;
+using GitHubNotifier.Managers;
+using GitHubNotifier.Utils;
 
-namespace GitHubNotifier
+namespace GitHubNotifier.UserControls
 {
     public partial class RepositoryEntry : UserControl
     {

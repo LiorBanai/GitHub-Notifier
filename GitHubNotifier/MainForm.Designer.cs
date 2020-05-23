@@ -38,6 +38,7 @@
             this.lstNotifications = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExitForm = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -46,7 +47,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslblAPILimit = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
-            this.tsmiExitForm = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpNotifications.SuspendLayout();
@@ -61,9 +61,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Location = new System.Drawing.Point(12, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(788, 347);
+            this.panel1.Size = new System.Drawing.Size(907, 503);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -75,15 +75,15 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 2;
-            this.tabControl1.Size = new System.Drawing.Size(788, 347);
+            this.tabControl1.Size = new System.Drawing.Size(907, 503);
             this.tabControl1.TabIndex = 0;
             // 
             // tpRepo
             // 
             this.tpRepo.Location = new System.Drawing.Point(4, 25);
             this.tpRepo.Name = "tpRepo";
-            this.tpRepo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tpRepo.Size = new System.Drawing.Size(780, 318);
+            this.tpRepo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpRepo.Size = new System.Drawing.Size(899, 474);
             this.tpRepo.TabIndex = 0;
             this.tpRepo.Text = "Repositories";
             this.tpRepo.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             // 
             this.tpUser.Location = new System.Drawing.Point(4, 25);
             this.tpUser.Name = "tpUser";
-            this.tpUser.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpUser.Padding = new System.Windows.Forms.Padding(3);
             this.tpUser.Size = new System.Drawing.Size(780, 318);
             this.tpUser.TabIndex = 1;
             this.tpUser.Text = "User";
@@ -128,7 +128,7 @@
             this.tsmiSettings});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(907, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -137,21 +137,28 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiExitForm});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // tsmiExitForm
+            // 
+            this.tsmiExitForm.Name = "tsmiExitForm";
+            this.tsmiExitForm.Size = new System.Drawing.Size(116, 26);
+            this.tsmiExitForm.Text = "Exit";
+            this.tsmiExitForm.Click += new System.EventHandler(this.tsmiExitForm_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // tsmiSettings
             // 
             this.tsmiSettings.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(76, 26);
+            this.tsmiSettings.Size = new System.Drawing.Size(76, 24);
             this.tsmiSettings.Text = "Settings";
             this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
@@ -183,9 +190,9 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslblAPILimit});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 424);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 537);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(907, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -200,18 +207,11 @@
             this.timerNotifications.Interval = 900000;
             this.timerNotifications.Tick += new System.EventHandler(this.timerNotifications_Tick);
             // 
-            // tsmiExitForm
-            // 
-            this.tsmiExitForm.Name = "tsmiExitForm";
-            this.tsmiExitForm.Size = new System.Drawing.Size(224, 26);
-            this.tsmiExitForm.Text = "Exit";
-            this.tsmiExitForm.Click += new System.EventHandler(this.tsmiExitForm_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(907, 563);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);

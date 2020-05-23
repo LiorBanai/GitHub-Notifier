@@ -1,4 +1,4 @@
-﻿namespace GitHubNotifier
+﻿namespace GitHubNotifier.UserControls
 {
     partial class RepositoryEntry
     {
