@@ -13,6 +13,7 @@ namespace GitHubNotifier.DataTypes
         public string RepoApiReleasesUrl => $"https://api.github.com/repos/{RepoName}/releases";
 
         public int UpdateMinutes { get; set; }
+        public DateTime LastChecked { get; set; }
 
         public int LastTotalDownloads { get; set; }
         public int LastTotalStars { get; set; }
@@ -22,7 +23,7 @@ namespace GitHubNotifier.DataTypes
         {
             Enabled = true;
         }
-        public RepositorySettings(string displayName, string repoName,int updateMinutes):this()
+        public RepositorySettings(string displayName, string repoName, int updateMinutes) : this()
         {
             DisplayName = displayName;
             RepoName = repoName;

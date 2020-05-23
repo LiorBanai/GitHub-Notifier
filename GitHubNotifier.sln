@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30105.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubNotifier", "GitHubNotifier\GitHubNotifier.csproj", "{099B18EA-A563-47A8-9648-F3A8E4362A54}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubNotifier.Core", "GitHubNotifier.Core\GitHubNotifier.Core.csproj", "{6C98EE33-7B4B-40B7-824D-43A47B3EAED3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubNotifier", "GitHubNotifier\GitHubNotifier.csproj", "{3B8F38C3-6AD5-4151-AF97-95C258F23E3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{099B18EA-A563-47A8-9648-F3A8E4362A54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{099B18EA-A563-47A8-9648-F3A8E4362A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{099B18EA-A563-47A8-9648-F3A8E4362A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{099B18EA-A563-47A8-9648-F3A8E4362A54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C98EE33-7B4B-40B7-824D-43A47B3EAED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C98EE33-7B4B-40B7-824D-43A47B3EAED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C98EE33-7B4B-40B7-824D-43A47B3EAED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C98EE33-7B4B-40B7-824D-43A47B3EAED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B8F38C3-6AD5-4151-AF97-95C258F23E3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B8F38C3-6AD5-4151-AF97-95C258F23E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B8F38C3-6AD5-4151-AF97-95C258F23E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B8F38C3-6AD5-4151-AF97-95C258F23E3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

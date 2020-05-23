@@ -1,5 +1,5 @@
-﻿using GitHubNotifier.DataTypes;
-using GitHubNotifier.Properties;
+﻿using GitHubNotifier.Core.Properties;
+using GitHubNotifier.DataTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace GitHubNotifier.Managers
         public static UserSettingsManager Instance { get; set; } = _instance.Value;
 
         public List<RepositorySettings> Repositories { get; set; }
+        public DateTime LastReadUserNotification { get; set; }
         public string GitHubToken { get; } = Environment.GetEnvironmentVariable("GitHubNotifier_Token");
         private UserSettingsManager()
         {
@@ -30,6 +31,7 @@ namespace GitHubNotifier.Managers
                 Settings.Default.Save();
             }
 
+            LastReadUserNotification = Settings.Default.LastReadUserNotification;
             Repositories = ParseSettings<List<RepositorySettings>>(Settings.Default.Repositories);
             if (Repositories == null || !Repositories.Any())
             {
@@ -44,12 +46,13 @@ namespace GitHubNotifier.Managers
 
         internal void AddNewRepository(string displayName, string id, int updateInterval)
         {
-            Repositories.Add(new RepositorySettings(displayName, id,updateInterval));
+            Repositories.Add(new RepositorySettings(displayName, id, updateInterval));
         }
         internal void RemoveRepository(RepositorySettings repo) => Repositories.Remove(repo);
         public void Save()
         {
             Settings.Default.Repositories = JsonConvert.SerializeObject(Repositories);
+            Settings.Default.LastReadUserNotification = LastReadUserNotification;
             Settings.Default.Save();
         }
         private T ParseSettings<T>(string data) where T : new()
