@@ -39,6 +39,7 @@
             this.nudMinutes = new System.Windows.Forms.NumericUpDown();
             this.nudNotifications = new System.Windows.Forms.NumericUpDown();
             this.lblNotifications = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
             this.SuspendLayout();
@@ -49,9 +50,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chklstRepo.FormattingEnabled = true;
-            this.chklstRepo.Location = new System.Drawing.Point(2, 128);
+            this.chklstRepo.Location = new System.Drawing.Point(2, 162);
             this.chklstRepo.Name = "chklstRepo";
-            this.chklstRepo.Size = new System.Drawing.Size(641, 276);
+            this.chklstRepo.Size = new System.Drawing.Size(641, 242);
             this.chklstRepo.TabIndex = 0;
             this.chklstRepo.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chklstRepo_ItemCheck);
             // 
@@ -69,7 +70,7 @@
             // lblRepo
             // 
             this.lblRepo.AutoSize = true;
-            this.lblRepo.Location = new System.Drawing.Point(12, 21);
+            this.lblRepo.Location = new System.Drawing.Point(12, 63);
             this.lblRepo.Name = "lblRepo";
             this.lblRepo.Size = new System.Drawing.Size(231, 17);
             this.lblRepo.TabIndex = 2;
@@ -78,7 +79,7 @@
             // lblRepoDisplayName
             // 
             this.lblRepoDisplayName.AutoSize = true;
-            this.lblRepoDisplayName.Location = new System.Drawing.Point(12, 52);
+            this.lblRepoDisplayName.Location = new System.Drawing.Point(12, 94);
             this.lblRepoDisplayName.Name = "lblRepoDisplayName";
             this.lblRepoDisplayName.Size = new System.Drawing.Size(99, 17);
             this.lblRepoDisplayName.TabIndex = 4;
@@ -88,7 +89,7 @@
             // 
             this.txtbRepoDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbRepoDisplayName.Location = new System.Drawing.Point(306, 21);
+            this.txtbRepoDisplayName.Location = new System.Drawing.Point(306, 63);
             this.txtbRepoDisplayName.Name = "txtbRepoDisplayName";
             this.txtbRepoDisplayName.Size = new System.Drawing.Size(337, 22);
             this.txtbRepoDisplayName.TabIndex = 5;
@@ -97,7 +98,7 @@
             // 
             this.txtbRepoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbRepoName.Location = new System.Drawing.Point(306, 52);
+            this.txtbRepoName.Location = new System.Drawing.Point(306, 94);
             this.txtbRepoName.Name = "txtbRepoName";
             this.txtbRepoName.Size = new System.Drawing.Size(337, 22);
             this.txtbRepoName.TabIndex = 6;
@@ -105,7 +106,7 @@
             // btnAddRepo
             // 
             this.btnAddRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRepo.Location = new System.Drawing.Point(663, 27);
+            this.btnAddRepo.Location = new System.Drawing.Point(663, 69);
             this.btnAddRepo.Name = "btnAddRepo";
             this.btnAddRepo.Size = new System.Drawing.Size(158, 34);
             this.btnAddRepo.TabIndex = 7;
@@ -116,7 +117,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 88);
+            this.label1.Location = new System.Drawing.Point(12, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 17);
             this.label1.TabIndex = 8;
@@ -125,7 +126,7 @@
             // nudMinutes
             // 
             this.nudMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudMinutes.Location = new System.Drawing.Point(512, 88);
+            this.nudMinutes.Location = new System.Drawing.Point(512, 130);
             this.nudMinutes.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -178,6 +179,18 @@
             this.lblNotifications.TabIndex = 10;
             this.lblNotifications.Text = "Notifications Interval (minutes):";
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(801, 51);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "GitHub limits number of API call to 60 per hour. Add Environment Variable with ke" +
+    "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour";
+            // 
             // UserSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -191,6 +204,7 @@
             this.Controls.Add(this.txtbRepoName);
             this.Controls.Add(this.txtbRepoDisplayName);
             this.Controls.Add(this.lblRepoDisplayName);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblRepo);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.chklstRepo);
@@ -218,6 +232,7 @@
         private System.Windows.Forms.NumericUpDown nudMinutes;
         private System.Windows.Forms.NumericUpDown nudNotifications;
         private System.Windows.Forms.Label lblNotifications;
+        private System.Windows.Forms.Label label2;
     }
 }
 
