@@ -60,7 +60,7 @@ namespace GitHubNotifier
                     TitleText = "GitHub Notifier",
                     ContentText = "Still here. Right click and exit to close",
                     IsRightToLeft = false,
-                    Image = Core.Properties.Resources.Feature_32x32
+                    Image = Properties.Resources.Feature_32x32
                 };
                 popupNotifier.Popup();
             }

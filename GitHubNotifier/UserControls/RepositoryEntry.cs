@@ -54,7 +54,7 @@ namespace GitHubNotifier
                 {
                     Caption = Repo.DisplayName,
                     Text = lblDownloads.Text,
-                    Image = Core.Properties.Resources.Download_32x32
+                    Image = Properties.Resources.Download_32x32
                 };
                 var popupNotifier = new NotificationWindow.PopupNotifier
                 {
@@ -81,7 +81,7 @@ namespace GitHubNotifier
                 {
                     Caption = Repo.DisplayName,
                     Text = "Likes: " + repoInfo.Stargazers,
-                    Image = Core.Properties.Resources.Feature_32x32
+                    Image = Properties.Resources.Feature_32x32
                 };
                 var popupNotifier = new NotificationWindow.PopupNotifier
                 {

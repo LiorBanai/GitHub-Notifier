@@ -1,5 +1,5 @@
-﻿using GitHubNotifier.Core.Properties;
-using GitHubNotifier.DataTypes;
+﻿using GitHubNotifier.DataTypes;
+using GitHubNotifier.Properties;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

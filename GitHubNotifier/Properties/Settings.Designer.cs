@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GitHubNotifier.Core.Properties
+namespace GitHubNotifier.Properties
 {
 
 
