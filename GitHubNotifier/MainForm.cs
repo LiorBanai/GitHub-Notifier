@@ -30,8 +30,7 @@ namespace GitHubNotifier
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            var result = await GitHubUtils.GetRateLimit(UserSettingsManager.Instance.GitHubToken);
-            tsslblAPILimit.Text = "Api Limits:" + result.Rate;
+            await CheckAPILimits();
             await CheckNotifications();
             foreach (RepositorySettings repo in UserSettingsManager.Instance.Repositories)
             {
@@ -44,6 +43,12 @@ namespace GitHubNotifier
                 // AddRepo("Analogy RegexParser", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.RegexParser", "");
             }
         }
+
+        private async Task CheckAPILimits()
+        {
+            var result = await GitHubUtils.GetRateLimit(UserSettingsManager.Instance.GitHubToken);
+            tsslblAPILimit.Text = "API Limits:" + result.Rate;
+        }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (preventExit)
@@ -52,7 +57,7 @@ namespace GitHubNotifier
                 Hide();
                 var popupNotifier = new NotificationWindow.PopupNotifier
                 {
-                    TitleText = "GitHun Notifier",
+                    TitleText = "GitHub Notifier",
                     ContentText = "Still here. Right click and exit to close",
                     IsRightToLeft = false,
                     Image = Core.Properties.Resources.Feature_32x32

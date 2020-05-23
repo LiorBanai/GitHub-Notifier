@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GitHubNotifier.Core
@@ -14,7 +11,9 @@ namespace GitHubNotifier.Core
         [STAThread]
         static void Main()
         {
+#if !NET472
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+#endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
