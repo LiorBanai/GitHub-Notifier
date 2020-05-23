@@ -42,6 +42,8 @@ namespace GitHubNotifier
                 // AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp", "");
                 // AddRepo("Analogy RegexParser", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.RegexParser", "");
             }
+
+            tabControl1.SelectedIndex = 0;
         }
 
         private async Task CheckAPILimits()
@@ -82,6 +84,11 @@ namespace GitHubNotifier
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
+            ExitAndClose();
+        }
+
+        private void ExitAndClose()
+        {
             preventExit = false;
             Close();
             Application.Exit();
@@ -108,6 +115,11 @@ namespace GitHubNotifier
                 lstNotifications.Items.AddRange(notifications.Where(n => n.Unread).Select(n => n.Subject.Title).ToArray());
             }
 
+        }
+
+        private void tsmiExitForm_Click(object sender, EventArgs e)
+        {
+            ExitAndClose();
         }
     }
 }
