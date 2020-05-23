@@ -14,6 +14,7 @@ namespace GitHubNotifier
     public partial class MainForm : Form
     {
         List<RepositoryEntry> repos = new List<RepositoryEntry>();
+        private UserSettingsManager Settings => UserSettingsManager.Instance;
         private bool preventExit = true;
         public MainForm()
         {
@@ -32,23 +33,18 @@ namespace GitHubNotifier
         {
             await CheckAPILimits();
             await CheckNotifications();
-            foreach (RepositorySettings repo in UserSettingsManager.Instance.Repositories)
+            foreach (RepositorySettings repo in Settings.Repositories)
             {
                 AddRepo(repo);
-
-                //AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp");
-                // AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp");
-                //AddRepo("vscode", "https://api.github.com/repos/microsoft/vscode", "");
-                // AddRepo("messagePack", "https://api.github.com/repos/neuecc/MessagePack-CSharp", "");
-                // AddRepo("Analogy RegexParser", "https://api.github.com/repos/Analogy-LogViewer/Analogy.LogViewer.RegexParser", "");
             }
 
             tabControl1.SelectedIndex = 0;
+            timerNotifications.Interval = Settings.NotificationsIntervalCheck * 60 * 1000;
         }
 
         private async Task CheckAPILimits()
         {
-            var result = await GitHubUtils.GetRateLimit(UserSettingsManager.Instance.GitHubToken);
+            var result = await GitHubUtils.GetRateLimit(Settings.GitHubToken);
             tsslblAPILimit.Text = "API Limits:" + result.Rate;
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -107,11 +103,13 @@ namespace GitHubNotifier
 
         private async Task CheckNotifications()
         {
+            if (DateTime.Now < Settings.LastReadUserNotification.AddMinutes(Settings.NotificationsIntervalCheck))
+                return;
             var (newData, notifications) = await GitHubUtils.GetAsync<GitHubUserNotification[]>("https://api.github.com/notifications", UserSettingsManager.Instance.GitHubToken, UserSettingsManager.Instance.LastReadUserNotification);
             if (newData && notifications.Any(n => n.Unread))
             {
                 UserSettingsManager.Instance.LastReadUserNotification = DateTime.Now;
-                ; lstNotifications.Items.Clear();
+                lstNotifications.Items.Clear();
                 lstNotifications.Items.AddRange(notifications.Where(n => n.Unread).Select(n => n.Subject.Title).ToArray());
             }
 

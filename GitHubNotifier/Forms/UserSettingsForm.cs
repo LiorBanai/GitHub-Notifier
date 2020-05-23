@@ -1,6 +1,5 @@
 ﻿using GitHubNotifier.DataTypes;
 using GitHubNotifier.Managers;
-using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
 
 namespace GitHubNotifier.Forms
@@ -20,15 +19,16 @@ namespace GitHubNotifier.Forms
         public void LoadSettings()
         {
             RefreshList();
+            nudNotifications.Value = UserSettingsManager.Instance.NotificationsIntervalCheck;
         }
 
         private void btnAddRepo_Click(object sender, System.EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtbRepoDisplayName.Text) && !string.IsNullOrEmpty(txtbRepoName.Text))
             {
-                UserSettingsManager.Instance.AddNewRepository(txtbRepoDisplayName.Text, txtbRepoName.Text,(int)nudMinutes.Value);
+                UserSettingsManager.Instance.AddNewRepository(txtbRepoDisplayName.Text, txtbRepoName.Text, (int)nudMinutes.Value);
                 RefreshList();
-            } 
+            }
         }
 
         private void RefreshList()
@@ -58,6 +58,11 @@ namespace GitHubNotifier.Forms
                 RefreshList();
 
             }
+        }
+
+        private void UserSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UserSettingsManager.Instance.NotificationsIntervalCheck = (int)nudNotifications.Value;
         }
     }
 

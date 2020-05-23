@@ -37,7 +37,10 @@
             this.btnAddRepo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.nudMinutes = new System.Windows.Forms.NumericUpDown();
+            this.nudNotifications = new System.Windows.Forms.NumericUpDown();
+            this.lblNotifications = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
             this.SuspendLayout();
             // 
             // chklstRepo
@@ -48,14 +51,14 @@
             this.chklstRepo.FormattingEnabled = true;
             this.chklstRepo.Location = new System.Drawing.Point(2, 128);
             this.chklstRepo.Name = "chklstRepo";
-            this.chklstRepo.Size = new System.Drawing.Size(642, 310);
+            this.chklstRepo.Size = new System.Drawing.Size(641, 276);
             this.chklstRepo.TabIndex = 0;
             this.chklstRepo.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chklstRepo_ItemCheck);
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(664, 291);
+            this.btnDelete.Location = new System.Drawing.Point(663, 291);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(158, 34);
             this.btnDelete.TabIndex = 1;
@@ -87,7 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbRepoDisplayName.Location = new System.Drawing.Point(306, 21);
             this.txtbRepoDisplayName.Name = "txtbRepoDisplayName";
-            this.txtbRepoDisplayName.Size = new System.Drawing.Size(338, 22);
+            this.txtbRepoDisplayName.Size = new System.Drawing.Size(337, 22);
             this.txtbRepoDisplayName.TabIndex = 5;
             // 
             // txtbRepoName
@@ -96,13 +99,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbRepoName.Location = new System.Drawing.Point(306, 52);
             this.txtbRepoName.Name = "txtbRepoName";
-            this.txtbRepoName.Size = new System.Drawing.Size(338, 22);
+            this.txtbRepoName.Size = new System.Drawing.Size(337, 22);
             this.txtbRepoName.TabIndex = 6;
             // 
             // btnAddRepo
             // 
             this.btnAddRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRepo.Location = new System.Drawing.Point(664, 27);
+            this.btnAddRepo.Location = new System.Drawing.Point(663, 27);
             this.btnAddRepo.Name = "btnAddRepo";
             this.btnAddRepo.Size = new System.Drawing.Size(158, 34);
             this.btnAddRepo.TabIndex = 7;
@@ -122,7 +125,7 @@
             // nudMinutes
             // 
             this.nudMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudMinutes.Location = new System.Drawing.Point(513, 88);
+            this.nudMinutes.Location = new System.Drawing.Point(512, 88);
             this.nudMinutes.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -142,11 +145,46 @@
             0,
             0});
             // 
+            // nudNotifications
+            // 
+            this.nudNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudNotifications.Location = new System.Drawing.Point(512, 424);
+            this.nudNotifications.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nudNotifications.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudNotifications.Name = "nudNotifications";
+            this.nudNotifications.Size = new System.Drawing.Size(131, 22);
+            this.nudNotifications.TabIndex = 11;
+            this.nudNotifications.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // lblNotifications
+            // 
+            this.lblNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblNotifications.AutoSize = true;
+            this.lblNotifications.Location = new System.Drawing.Point(12, 424);
+            this.lblNotifications.Name = "lblNotifications";
+            this.lblNotifications.Size = new System.Drawing.Size(202, 17);
+            this.lblNotifications.TabIndex = 10;
+            this.lblNotifications.Text = "Notifications Interval (minutes):";
+            // 
             // UserSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 450);
+            this.ClientSize = new System.Drawing.Size(825, 450);
+            this.Controls.Add(this.nudNotifications);
+            this.Controls.Add(this.lblNotifications);
             this.Controls.Add(this.nudMinutes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAddRepo);
@@ -158,8 +196,10 @@
             this.Controls.Add(this.chklstRepo);
             this.Name = "UserSettingsForm";
             this.Text = "User settings form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserSettingsForm_FormClosing);
             this.Load += new System.EventHandler(this.UserSettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +216,8 @@
         private System.Windows.Forms.Button btnAddRepo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudMinutes;
+        private System.Windows.Forms.NumericUpDown nudNotifications;
+        private System.Windows.Forms.Label lblNotifications;
     }
 }
 

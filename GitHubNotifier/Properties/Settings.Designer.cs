@@ -71,5 +71,19 @@ namespace GitHubNotifier.Properties
                 this["LastReadUserNotification"] = value;
             }
         }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int NotificationsIntervalCheck
+        {
+            get
+            {
+                return ((int)(this["NotificationsIntervalCheck"]));
+            }
+            set
+            {
+                this["NotificationsIntervalCheck"] = value;
+            }
+        }
     }
 }
