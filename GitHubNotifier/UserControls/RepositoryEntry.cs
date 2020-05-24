@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GitHubNotifier.DataTypes;
+using GitHubNotifier.Managers;
+using GitHubNotifier.Utils;
+using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GitHubNotifier.DataTypes;
-using GitHubNotifier.Managers;
-using GitHubNotifier.Utils;
 
 namespace GitHubNotifier.UserControls
 {
@@ -28,22 +29,21 @@ namespace GitHubNotifier.UserControls
         {
             lblDownloads.Text = "Downloads: " + Repo.LastTotalDownloads;
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
-            await Check();
+            await Check(true);
         }
-        public async Task Check()
+        public async Task Check(bool forceCheck)
         {
-            await CheckDownloads();
-            await CheckStars();
+            await CheckDownloads(forceCheck);
+            await CheckStars(forceCheck);
             Repo.LastChecked = DateTime.Now;
 
         }
 
-        private async Task CheckDownloads()
+        private async Task CheckDownloads(bool forceCheck)
         {
-
-            var (newData, entries) = (await GitHubUtils.GetAsync<GithubReleaseEntry[]>(Repo.RepoApiReleasesUrl,
-                UserSettingsManager.Instance.GitHubToken, Repo.LastChecked));
-            Repo.LastChecked = DateTime.Now;
+            var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
+            var (newData, entries) = await GitHubUtils.GetAsync<GithubReleaseEntry[]>(Repo.RepoApiReleasesUrl,
+                UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
                 return;
 
@@ -70,9 +70,10 @@ namespace GitHubNotifier.UserControls
             Repo.LastTotalDownloads = downloads;
         }
 
-        private async Task CheckStars()
+        private async Task CheckStars(bool forceCheck)
         {
-            var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl, UserSettingsManager.Instance.GitHubToken, Repo.LastChecked);
+            var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
+            var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl, UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
                 return;
             if (Repo.LastTotalStars != repoInfo.Stargazers)
@@ -98,12 +99,25 @@ namespace GitHubNotifier.UserControls
 
         private async void timerUpdate_Tick(object sender, EventArgs e)
         {
-            await Check();
+            await Check(false);
         }
 
         private async void btnCheckNow_Click(object sender, EventArgs e)
         {
-            await Check();
+            await Check(true);
+        }
+
+        private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(lnkLabel.Text);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+              
+            }
         }
     }
 }
