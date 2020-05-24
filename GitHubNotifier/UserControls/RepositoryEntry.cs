@@ -23,6 +23,7 @@ namespace GitHubNotifier.UserControls
             Repo = repo;
             lnkLabel.Text = repo.RepoUrl;
             timerUpdate.Interval = repo.UpdateMinutes * 60 * 1000;
+            lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(repo.UpdateMinutes * 60 * 1000);
         }
 
         private async void RepositoryEntry_Load(object sender, EventArgs e)
@@ -100,6 +101,7 @@ namespace GitHubNotifier.UserControls
         private async void timerUpdate_Tick(object sender, EventArgs e)
         {
             await Check(false);
+            lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(timerUpdate.Interval);
         }
 
         private async void btnCheckNow_Click(object sender, EventArgs e)
@@ -116,7 +118,7 @@ namespace GitHubNotifier.UserControls
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-              
+
             }
         }
     }

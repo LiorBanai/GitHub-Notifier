@@ -34,6 +34,7 @@
             this.btnCheckNow = new System.Windows.Forms.Button();
             this.lnkLabel = new System.Windows.Forms.LinkLabel();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
+            this.lblNext = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDownloads
@@ -87,10 +88,22 @@
             this.timerUpdate.Interval = 900000;
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
+            // lblNext
+            // 
+            this.lblNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNext.Location = new System.Drawing.Point(345, 51);
+            this.lblNext.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNext.Name = "lblNext";
+            this.lblNext.Size = new System.Drawing.Size(194, 24);
+            this.lblNext.TabIndex = 4;
+            this.lblNext.Text = "Next Check:";
+            this.lblNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // RepositoryEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblNext);
             this.Controls.Add(this.lnkLabel);
             this.Controls.Add(this.btnCheckNow);
             this.Controls.Add(this.lblLikes);
@@ -111,5 +124,6 @@
         private System.Windows.Forms.Button btnCheckNow;
         private System.Windows.Forms.LinkLabel lnkLabel;
         private System.Windows.Forms.Timer timerUpdate;
+        private System.Windows.Forms.Label lblNext;
     }
 }
