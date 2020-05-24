@@ -45,7 +45,7 @@ namespace GitHubNotifier
         private async Task CheckAPILimits()
         {
             var result = await GitHubUtils.GetRateLimit(Settings.GitHubToken);
-            tsslblAPILimit.Text = "API Limits:" + result.Rate;
+            tsslblAPILimit.Text = "API Limits:" + result?.Rate;
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
