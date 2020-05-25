@@ -49,8 +49,9 @@ namespace GitHubNotifier
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (preventExit)
+            if (preventExit && e.CloseReason == CloseReason.UserClosing)
             {
+
                 e.Cancel = true;
                 Hide();
                 var popupNotifier = new NotificationWindow.PopupNotifier
