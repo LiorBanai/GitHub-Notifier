@@ -35,27 +35,32 @@
             this.lnkLabel = new System.Windows.Forms.LinkLabel();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.lblNext = new System.Windows.Forms.Label();
+            this.lblOpenIssues = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDownloads
             // 
-            this.lblDownloads.AutoSize = true;
-            this.lblDownloads.Location = new System.Drawing.Point(2, 32);
+            this.lblDownloads.Image = global::GitHubNotifier.Properties.Resources.Download_32x32;
+            this.lblDownloads.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDownloads.Location = new System.Drawing.Point(134, 42);
             this.lblDownloads.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDownloads.Name = "lblDownloads";
-            this.lblDownloads.Size = new System.Drawing.Size(63, 13);
+            this.lblDownloads.Size = new System.Drawing.Size(134, 36);
             this.lblDownloads.TabIndex = 0;
             this.lblDownloads.Text = "Downloads:";
+            this.lblDownloads.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblLikes
             // 
-            this.lblLikes.AutoSize = true;
-            this.lblLikes.Location = new System.Drawing.Point(2, 51);
+            this.lblLikes.Image = global::GitHubNotifier.Properties.Resources.Feature_32x32;
+            this.lblLikes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLikes.Location = new System.Drawing.Point(4, 42);
             this.lblLikes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLikes.Name = "lblLikes";
-            this.lblLikes.Size = new System.Drawing.Size(35, 13);
+            this.lblLikes.Size = new System.Drawing.Size(126, 34);
             this.lblLikes.TabIndex = 1;
             this.lblLikes.Text = "Likes:";
+            this.lblLikes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCheckNow
             // 
@@ -99,10 +104,23 @@
             this.lblNext.Text = "Next Check:";
             this.lblNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblOpenIssues
+            // 
+            this.lblOpenIssues.Image = global::GitHubNotifier.Properties.Resources.Issue_32x32;
+            this.lblOpenIssues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOpenIssues.Location = new System.Drawing.Point(272, 40);
+            this.lblOpenIssues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOpenIssues.Name = "lblOpenIssues";
+            this.lblOpenIssues.Size = new System.Drawing.Size(134, 36);
+            this.lblOpenIssues.TabIndex = 5;
+            this.lblOpenIssues.Text = "Open Issues:";
+            this.lblOpenIssues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // RepositoryEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblOpenIssues);
             this.Controls.Add(this.lblNext);
             this.Controls.Add(this.lnkLabel);
             this.Controls.Add(this.btnCheckNow);
@@ -113,7 +131,6 @@
             this.Size = new System.Drawing.Size(542, 77);
             this.Load += new System.EventHandler(this.RepositoryEntry_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -125,5 +142,6 @@
         private System.Windows.Forms.LinkLabel lnkLabel;
         private System.Windows.Forms.Timer timerUpdate;
         private System.Windows.Forms.Label lblNext;
+        private System.Windows.Forms.Label lblOpenIssues;
     }
 }

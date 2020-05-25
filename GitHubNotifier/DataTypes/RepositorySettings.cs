@@ -17,6 +17,7 @@ namespace GitHubNotifier.DataTypes
 
         public int LastTotalDownloads { get; set; }
         public int LastTotalStars { get; set; }
+        public int OpenIssues { get; set; }
         public bool Enabled { get; set; }
 
         public RepositorySettings()

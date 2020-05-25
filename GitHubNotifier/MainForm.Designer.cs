@@ -33,7 +33,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpRepo = new System.Windows.Forms.TabPage();
-            this.tpUser = new System.Windows.Forms.TabPage();
             this.tpNotifications = new System.Windows.Forms.TabPage();
             this.lstNotifications = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -61,49 +60,42 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(907, 503);
+            this.panel1.Size = new System.Drawing.Size(680, 409);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tpRepo);
-            this.tabControl1.Controls.Add(this.tpUser);
             this.tabControl1.Controls.Add(this.tpNotifications);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 2;
-            this.tabControl1.Size = new System.Drawing.Size(907, 503);
+            this.tabControl1.Size = new System.Drawing.Size(680, 409);
             this.tabControl1.TabIndex = 0;
             // 
             // tpRepo
             // 
-            this.tpRepo.Location = new System.Drawing.Point(4, 25);
+            this.tpRepo.Location = new System.Drawing.Point(4, 22);
+            this.tpRepo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tpRepo.Name = "tpRepo";
-            this.tpRepo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRepo.Size = new System.Drawing.Size(899, 474);
+            this.tpRepo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpRepo.Size = new System.Drawing.Size(672, 383);
             this.tpRepo.TabIndex = 0;
             this.tpRepo.Text = "Repositories";
             this.tpRepo.UseVisualStyleBackColor = true;
             // 
-            // tpUser
-            // 
-            this.tpUser.Location = new System.Drawing.Point(4, 25);
-            this.tpUser.Name = "tpUser";
-            this.tpUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUser.Size = new System.Drawing.Size(780, 318);
-            this.tpUser.TabIndex = 1;
-            this.tpUser.Text = "User";
-            this.tpUser.UseVisualStyleBackColor = true;
-            // 
             // tpNotifications
             // 
             this.tpNotifications.Controls.Add(this.lstNotifications);
-            this.tpNotifications.Location = new System.Drawing.Point(4, 25);
+            this.tpNotifications.Location = new System.Drawing.Point(4, 22);
+            this.tpNotifications.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tpNotifications.Name = "tpNotifications";
-            this.tpNotifications.Size = new System.Drawing.Size(780, 318);
+            this.tpNotifications.Size = new System.Drawing.Size(672, 383);
             this.tpNotifications.TabIndex = 2;
             this.tpNotifications.Text = "Notifications";
             this.tpNotifications.UseVisualStyleBackColor = true;
@@ -112,11 +104,10 @@
             // 
             this.lstNotifications.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstNotifications.FormattingEnabled = true;
-            this.lstNotifications.ItemHeight = 16;
             this.lstNotifications.Location = new System.Drawing.Point(0, 0);
-            this.lstNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lstNotifications.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstNotifications.Name = "lstNotifications";
-            this.lstNotifications.Size = new System.Drawing.Size(780, 318);
+            this.lstNotifications.Size = new System.Drawing.Size(672, 383);
             this.lstNotifications.TabIndex = 0;
             // 
             // menuStrip1
@@ -128,7 +119,8 @@
             this.tsmiSettings});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(907, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(680, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -137,13 +129,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiExitForm});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // tsmiExitForm
             // 
             this.tsmiExitForm.Name = "tsmiExitForm";
-            this.tsmiExitForm.Size = new System.Drawing.Size(116, 26);
+            this.tsmiExitForm.Size = new System.Drawing.Size(93, 22);
             this.tsmiExitForm.Text = "Exit";
             this.tsmiExitForm.Click += new System.EventHandler(this.tsmiExitForm_Click);
             // 
@@ -151,14 +143,14 @@
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // tsmiSettings
             // 
             this.tsmiSettings.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(76, 24);
+            this.tsmiSettings.Size = new System.Drawing.Size(61, 20);
             this.tsmiSettings.Text = "Settings";
             this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
@@ -176,12 +168,12 @@
             this.contextMenuStripNotifyBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiExit});
             this.contextMenuStripNotifyBar.Name = "contextMenuStripNotifyBar";
-            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(103, 28);
+            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(94, 26);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(102, 24);
+            this.tsmiExit.Size = new System.Drawing.Size(93, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -190,16 +182,17 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslblAPILimit});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 537);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 435);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(907, 26);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(680, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tsslblAPILimit
             // 
             this.tsslblAPILimit.Name = "tsslblAPILimit";
-            this.tsslblAPILimit.Size = new System.Drawing.Size(77, 20);
+            this.tsslblAPILimit.Size = new System.Drawing.Size(63, 17);
             this.tsslblAPILimit.Text = "API Limits:";
             // 
             // timerNotifications
@@ -209,13 +202,14 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 563);
+            this.ClientSize = new System.Drawing.Size(680, 457);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "GitHub Notifier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -239,7 +233,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tpRepo;
-        private System.Windows.Forms.TabPage tpUser;
         private System.Windows.Forms.TabPage tpNotifications;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;

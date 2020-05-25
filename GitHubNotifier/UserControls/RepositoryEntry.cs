@@ -30,12 +30,13 @@ namespace GitHubNotifier.UserControls
         {
             lblDownloads.Text = "Downloads: " + Repo.LastTotalDownloads;
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
+            lblOpenIssues.Text = "Open Issues: " + Repo.OpenIssues;
             await Check(true);
         }
         public async Task Check(bool forceCheck)
         {
             await CheckDownloads(forceCheck);
-            await CheckStars(forceCheck);
+            await CheckStarsAndIssues(forceCheck);
             Repo.LastChecked = DateTime.Now;
 
         }
@@ -71,7 +72,7 @@ namespace GitHubNotifier.UserControls
             Repo.LastTotalDownloads = downloads;
         }
 
-        private async Task CheckStars(bool forceCheck)
+        private async Task CheckStarsAndIssues(bool forceCheck)
         {
             var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
             var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl, UserSettingsManager.Instance.GitHubToken, lastCheck);
@@ -94,8 +95,30 @@ namespace GitHubNotifier.UserControls
                 };
                 popupNotifier.Popup();
             }
+
             Repo.LastTotalStars = repoInfo.Stargazers;
             lblLikes.Text = "Likes: " + repoInfo.Stargazers;
+
+            if (Repo.OpenIssues != repoInfo.OpenIssues)
+            {
+                PopupMessage msg = new PopupMessage
+                {
+                    Caption = Repo.DisplayName,
+                    Text = "Open Issues: " + repoInfo.OpenIssues,
+                    Image = Properties.Resources.Feature_32x32
+                };
+                var popupNotifier = new NotificationWindow.PopupNotifier
+                {
+                    TitleText = msg.Caption,
+                    ContentText = msg.Text,
+                    IsRightToLeft = false,
+                    Image = msg.Image
+                };
+                popupNotifier.Popup();
+            }
+            Repo.OpenIssues = repoInfo.OpenIssues;
+            lblOpenIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
+
         }
 
         private async void timerUpdate_Tick(object sender, EventArgs e)
