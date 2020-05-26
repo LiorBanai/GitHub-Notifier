@@ -119,6 +119,7 @@ namespace GitHubNotifier
                 var (newData, notifications) = await GitHubUtils.GetAsync<GitHubUserNotification[]>(
                     "https://api.github.com/notifications", UserSettingsManager.Instance.GitHubToken,
                     UserSettingsManager.Instance.LastReadUserNotification);
+                Settings.LastReadUserNotification = DateTime.Now;
                 if (newData)
                 {
                     Settings.LastReadUserNotification = DateTime.Now;
