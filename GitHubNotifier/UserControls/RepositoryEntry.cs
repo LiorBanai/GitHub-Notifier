@@ -21,7 +21,7 @@ namespace GitHubNotifier.UserControls
         public RepositoryEntry(RepositorySettings repo) : this()
         {
             Repo = repo;
-            lnkLabel.Text = repo.RepoUrl;
+            lnkLabel.Text = repo.DisplayName;
             timerUpdate.Interval = repo.UpdateMinutes * 60 * 1000;
             lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(repo.UpdateMinutes * 60 * 1000);
         }
@@ -141,7 +141,7 @@ namespace GitHubNotifier.UserControls
 
         private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            OpenLink(lnkLabel.Text);
+            OpenLink(Repo.RepoUrl);
         }
 
         private void lnklblIssues_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -153,7 +153,7 @@ namespace GitHubNotifier.UserControls
         {
             try
             {
-                Process.Start(new ProcessStartInfo(url) {UseShellExecute = true});
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             }
             catch (Exception exception)
             {

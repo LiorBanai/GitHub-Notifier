@@ -47,8 +47,8 @@
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslblAPILimit = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.tsslblNotifications = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -68,7 +68,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(692, 545);
+            this.panel1.Size = new System.Drawing.Size(1035, 455);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -80,7 +80,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 2;
-            this.tabControl1.Size = new System.Drawing.Size(692, 545);
+            this.tabControl1.Size = new System.Drawing.Size(1035, 455);
             this.tabControl1.TabIndex = 0;
             // 
             // tpRepo
@@ -90,7 +90,7 @@
             this.tpRepo.Margin = new System.Windows.Forms.Padding(2);
             this.tpRepo.Name = "tpRepo";
             this.tpRepo.Padding = new System.Windows.Forms.Padding(2);
-            this.tpRepo.Size = new System.Drawing.Size(672, 383);
+            this.tpRepo.Size = new System.Drawing.Size(1027, 429);
             this.tpRepo.TabIndex = 0;
             this.tpRepo.Text = "Repositories";
             this.tpRepo.UseVisualStyleBackColor = true;
@@ -146,7 +146,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(692, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1035, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -209,10 +209,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslblAPILimit,
             this.tsslblNotifications});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 571);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 481);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(692, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1035, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -222,16 +222,16 @@
             this.tsslblAPILimit.Size = new System.Drawing.Size(63, 17);
             this.tsslblAPILimit.Text = "API Limits:";
             // 
-            // timerNotifications
-            // 
-            this.timerNotifications.Interval = 900000;
-            this.timerNotifications.Tick += new System.EventHandler(this.timerNotifications_Tick);
-            // 
             // tsslblNotifications
             // 
             this.tsslblNotifications.Name = "tsslblNotifications";
             this.tsslblNotifications.Size = new System.Drawing.Size(78, 17);
             this.tsslblNotifications.Text = "Notifications:";
+            // 
+            // timerNotifications
+            // 
+            this.timerNotifications.Interval = 900000;
+            this.timerNotifications.Tick += new System.EventHandler(this.timerNotifications_Tick);
             // 
             // timerAPIRateCheck
             // 
@@ -242,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 593);
+            this.ClientSize = new System.Drawing.Size(1035, 503);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);

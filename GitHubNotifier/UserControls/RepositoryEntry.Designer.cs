@@ -40,9 +40,10 @@
             // 
             // lblDownloads
             // 
+            this.lblDownloads.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDownloads.Image = global::GitHubNotifier.Properties.Resources.Download_32x32;
             this.lblDownloads.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblDownloads.Location = new System.Drawing.Point(134, 42);
+            this.lblDownloads.Location = new System.Drawing.Point(366, 1);
             this.lblDownloads.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDownloads.Name = "lblDownloads";
             this.lblDownloads.Size = new System.Drawing.Size(134, 36);
@@ -52,12 +53,13 @@
             // 
             // lblLikes
             // 
+            this.lblLikes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLikes.Image = global::GitHubNotifier.Properties.Resources.Feature_32x32;
             this.lblLikes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLikes.Location = new System.Drawing.Point(4, 42);
+            this.lblLikes.Location = new System.Drawing.Point(236, 1);
             this.lblLikes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLikes.Name = "lblLikes";
-            this.lblLikes.Size = new System.Drawing.Size(126, 34);
+            this.lblLikes.Size = new System.Drawing.Size(126, 36);
             this.lblLikes.TabIndex = 1;
             this.lblLikes.Text = "Likes:";
             this.lblLikes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,10 +67,10 @@
             // btnCheckNow
             // 
             this.btnCheckNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheckNow.Location = new System.Drawing.Point(434, 3);
+            this.btnCheckNow.Location = new System.Drawing.Point(852, 9);
             this.btnCheckNow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCheckNow.Name = "btnCheckNow";
-            this.btnCheckNow.Size = new System.Drawing.Size(105, 21);
+            this.btnCheckNow.Size = new System.Drawing.Size(93, 21);
             this.btnCheckNow.TabIndex = 2;
             this.btnCheckNow.Text = "Check Now";
             this.btnCheckNow.UseVisualStyleBackColor = true;
@@ -78,13 +80,14 @@
             // 
             this.lnkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnkLabel.Location = new System.Drawing.Point(4, 0);
+            this.lnkLabel.Location = new System.Drawing.Point(4, 1);
             this.lnkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnkLabel.Name = "lnkLabel";
-            this.lnkLabel.Size = new System.Drawing.Size(425, 25);
+            this.lnkLabel.Size = new System.Drawing.Size(228, 36);
             this.lnkLabel.TabIndex = 3;
             this.lnkLabel.TabStop = true;
             this.lnkLabel.Text = "N/A";
+            this.lnkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lnkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLabel_LinkClicked);
             // 
             // timerUpdate
@@ -95,20 +98,21 @@
             // 
             // lblNext
             // 
-            this.lblNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNext.Location = new System.Drawing.Point(345, 51);
+            this.lblNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNext.Location = new System.Drawing.Point(642, 1);
             this.lblNext.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNext.Name = "lblNext";
-            this.lblNext.Size = new System.Drawing.Size(194, 24);
+            this.lblNext.Size = new System.Drawing.Size(191, 36);
             this.lblNext.TabIndex = 4;
             this.lblNext.Text = "Next Check:";
             this.lblNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lnklblIssues
             // 
+            this.lnklblIssues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnklblIssues.Image = global::GitHubNotifier.Properties.Resources.Issue_32x32;
             this.lnklblIssues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lnklblIssues.Location = new System.Drawing.Point(272, 42);
+            this.lnklblIssues.Location = new System.Drawing.Point(504, 1);
             this.lnklblIssues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lnklblIssues.Name = "lnklblIssues";
             this.lnklblIssues.Size = new System.Drawing.Size(134, 36);
@@ -130,7 +134,7 @@
             this.Controls.Add(this.lblDownloads);
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "RepositoryEntry";
-            this.Size = new System.Drawing.Size(542, 77);
+            this.Size = new System.Drawing.Size(947, 39);
             this.Load += new System.EventHandler(this.RepositoryEntry_Load);
             this.ResumeLayout(false);
 
