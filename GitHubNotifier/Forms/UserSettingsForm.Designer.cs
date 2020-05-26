@@ -156,7 +156,7 @@
             // nudNotifications
             // 
             this.nudNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudNotifications.Location = new System.Drawing.Point(512, 423);
+            this.nudNotifications.Location = new System.Drawing.Point(512, 408);
             this.nudNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nudNotifications.Maximum = new decimal(new int[] {
             99999,
@@ -181,7 +181,7 @@
             // 
             this.lblNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNotifications.AutoSize = true;
-            this.lblNotifications.Location = new System.Drawing.Point(12, 423);
+            this.lblNotifications.Location = new System.Drawing.Point(12, 408);
             this.lblNotifications.Name = "lblNotifications";
             this.lblNotifications.Size = new System.Drawing.Size(202, 17);
             this.lblNotifications.TabIndex = 10;

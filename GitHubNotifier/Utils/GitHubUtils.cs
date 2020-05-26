@@ -47,6 +47,10 @@ namespace GitHubNotifier.Utils
             {
                 return (false, default);
             }
+            catch (WebException e) when (((HttpWebResponse)e.Response).StatusCode == HttpStatusCode.Forbidden)
+            {
+                return (false, default);
+            }
         }
 
 
