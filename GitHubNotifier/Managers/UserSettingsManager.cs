@@ -16,11 +16,13 @@ namespace GitHubNotifier.Managers
 
         public List<RepositorySettings> Repositories { get; set; }
         public DateTime LastReadUserNotification { get; set; }
+        public List<GitHubUserNotification> LastUnReadUserNotifications { get; set; }
         public int NotificationsIntervalCheck { get; set; }
         public string GitHubToken { get; } = Environment.GetEnvironmentVariable("GitHubNotifier_Token");
         private UserSettingsManager()
         {
             NotificationsIntervalCheck = 15;
+            LastUnReadUserNotifications = new List<GitHubUserNotification>();
             Load();
         }
 
@@ -32,7 +34,7 @@ namespace GitHubNotifier.Managers
                 Settings.Default.UpgradeRequired = false;
                 Settings.Default.Save();
             }
-
+            LastUnReadUserNotifications = ParseSettings<List<GitHubUserNotification>>(Settings.Default.LastUnReadUserNotifications);
             LastReadUserNotification = Settings.Default.LastReadUserNotification;
             NotificationsIntervalCheck = Settings.Default.NotificationsIntervalCheck;
             Repositories = ParseSettings<List<RepositorySettings>>(Settings.Default.Repositories);
@@ -57,6 +59,7 @@ namespace GitHubNotifier.Managers
             Settings.Default.Repositories = JsonConvert.SerializeObject(Repositories);
             Settings.Default.LastReadUserNotification = LastReadUserNotification;
             Settings.Default.NotificationsIntervalCheck = NotificationsIntervalCheck;
+            Settings.Default.LastUnReadUserNotifications = JsonConvert.SerializeObject(LastUnReadUserNotifications);
             Settings.Default.Save();
         }
         private T ParseSettings<T>(string data) where T : new()

@@ -102,23 +102,55 @@ namespace GitHubNotifier
             await CheckNotifications();
         }
 
-        private async Task CheckNotifications()
+        private async Task CheckNotifications(bool forceCheck = false)
         {
-            if (DateTime.Now < Settings.LastReadUserNotification.AddMinutes(Settings.NotificationsIntervalCheck))
+            if (!forceCheck && DateTime.Now <
+                Settings.LastReadUserNotification.AddMinutes(Settings.NotificationsIntervalCheck))
+            {
+                LoadAndDisplayNotifications(Settings.LastUnReadUserNotifications);
                 return;
+            }
             var (newData, notifications) = await GitHubUtils.GetAsync<GitHubUserNotification[]>("https://api.github.com/notifications", UserSettingsManager.Instance.GitHubToken, UserSettingsManager.Instance.LastReadUserNotification);
             if (newData && notifications.Any(n => n.Unread))
             {
-                UserSettingsManager.Instance.LastReadUserNotification = DateTime.Now;
-                lstNotifications.Items.Clear();
-                lstNotifications.Items.AddRange(notifications.Where(n => n.Unread).Select(n => n.Subject.Title).ToArray());
+                Settings.LastReadUserNotification = DateTime.Now;
+                Settings.LastUnReadUserNotifications = notifications.Where(n => n.Unread).ToList();
+                LoadAndDisplayNotifications(Settings.LastUnReadUserNotifications);
             }
 
+        }
+
+        private void LoadAndDisplayNotifications(List<GitHubUserNotification> notifications)
+        {
+            if (notifications.Any())
+            {
+                lstNotifications.Items.Clear();
+                lstNotifications.Items.AddRange(notifications.Select(n => n.Subject.Title).ToArray());
+            }
+
+            foreach (var notification in notifications)
+            {
+                using (var popupNotifier = new NotificationWindow.PopupNotifier())
+                {
+                    {
+                        popupNotifier.TitleText = notification.Repository.FullName;
+                        popupNotifier.ContentText = notification.Subject.Title;
+                        popupNotifier.IsRightToLeft = false;
+                        popupNotifier.Image = Properties.Resources.Question_32x32;
+                    }
+                    popupNotifier.Popup();
+                }
+            }
         }
 
         private void tsmiExitForm_Click(object sender, EventArgs e)
         {
             ExitAndClose();
+        }
+
+        private async void stBtnCheckNotifications_Click(object sender, EventArgs e)
+        {
+            await CheckNotifications(true);
         }
     }
 }

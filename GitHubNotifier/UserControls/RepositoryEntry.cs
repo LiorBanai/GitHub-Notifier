@@ -58,14 +58,16 @@ namespace GitHubNotifier.UserControls
                     Text = lblDownloads.Text,
                     Image = Properties.Resources.Download_32x32
                 };
-                var popupNotifier = new NotificationWindow.PopupNotifier
+                using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
-                    TitleText = msg.Caption,
-                    ContentText = msg.Text,
-                    IsRightToLeft = false,
-                    Image = msg.Image
-                };
-                popupNotifier.Popup();
+                    {
+                        popupNotifier.TitleText = msg.Caption;
+                        popupNotifier.ContentText = msg.Text;
+                        popupNotifier.IsRightToLeft = false;
+                        popupNotifier.Image = msg.Image;
+                    }
+                    popupNotifier.Popup();
+                }
             }
 
             lblDownloads.Text = "Downloads: " + downloads;
@@ -86,14 +88,16 @@ namespace GitHubNotifier.UserControls
                     Text = "Likes: " + repoInfo.Stargazers,
                     Image = Properties.Resources.Feature_32x32
                 };
-                var popupNotifier = new NotificationWindow.PopupNotifier
+                using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
-                    TitleText = msg.Caption,
-                    ContentText = msg.Text,
-                    IsRightToLeft = false,
-                    Image = msg.Image
-                };
-                popupNotifier.Popup();
+                    {
+                        popupNotifier.TitleText = msg.Caption;
+                        popupNotifier.ContentText = msg.Text;
+                        popupNotifier.IsRightToLeft = false;
+                        popupNotifier.Image = msg.Image;
+                    }
+                    popupNotifier.Popup();
+                }
             }
 
             Repo.LastTotalStars = repoInfo.Stargazers;
@@ -107,15 +111,18 @@ namespace GitHubNotifier.UserControls
                     Text = "Open Issues: " + repoInfo.OpenIssues,
                     Image = Properties.Resources.Feature_32x32
                 };
-                var popupNotifier = new NotificationWindow.PopupNotifier
+                using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
-                    TitleText = msg.Caption,
-                    ContentText = msg.Text,
-                    IsRightToLeft = false,
-                    Image = msg.Image
-                };
-                popupNotifier.Popup();
+                    {
+                        popupNotifier.TitleText = msg.Caption;
+                        popupNotifier.ContentText = msg.Text;
+                        popupNotifier.IsRightToLeft = false;
+                        popupNotifier.Image = msg.Image;
+                    }
+                    popupNotifier.Popup();
+                }
             }
+
             Repo.OpenIssues = repoInfo.OpenIssues;
             lblOpenIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
 
