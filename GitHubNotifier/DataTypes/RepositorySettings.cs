@@ -11,6 +11,7 @@ namespace GitHubNotifier.DataTypes
         public string RepoUrl => $"https://github.com/{RepoName}";
         public string RepoIssueUrl => $"https://github.com/{RepoName}/issues";
         public string RepoApiUrl => $"https://api.github.com/repos/{RepoName}";
+        public string RepoApiTrafficViewsUrl => $"https://api.github.com/repos/{RepoName}/traffic/views";
         public string RepoApiReleasesUrl => $"https://api.github.com/repos/{RepoName}/releases";
         
 
@@ -19,6 +20,8 @@ namespace GitHubNotifier.DataTypes
 
         public int LastTotalDownloads { get; set; }
         public int LastTotalStars { get; set; }
+        public int LastTotalViews { get; set; }
+        
         public int OpenIssues { get; set; }
         public bool Enabled { get; set; }
 

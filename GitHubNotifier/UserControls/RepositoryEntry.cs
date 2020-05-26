@@ -31,14 +31,47 @@ namespace GitHubNotifier.UserControls
             lblDownloads.Text = "Downloads: " + Repo.LastTotalDownloads;
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
             lnklblIssues.Text = "Open Issues: " + Repo.OpenIssues;
+            lblViews.Text = "Views: " + Repo.LastTotalViews;
             await Check(true);
         }
         public async Task Check(bool forceCheck)
         {
             await CheckDownloads(forceCheck);
             await CheckStarsAndIssues(forceCheck);
+            await CheckTraffic(forceCheck);
             Repo.LastChecked = DateTime.Now;
 
+        }
+
+        private async Task CheckTraffic(bool forceCheck)
+        {
+            var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
+            var (newData, views) = await GitHubUtils.GetAsync<GithubTraffic>(Repo.RepoApiTrafficViewsUrl,
+                UserSettingsManager.Instance.GitHubToken, lastCheck);
+            if (!newData)
+                return;
+            if (Repo.LastTotalViews != views.Total)
+            {
+                PopupMessage msg = new PopupMessage
+                {
+                    Caption = Repo.DisplayName,
+                    Text = "Views: " + views.Total,
+                    Image = Properties.Resources.Show_32x32
+                };
+                using (var popupNotifier = new NotificationWindow.PopupNotifier())
+                {
+                    {
+                        popupNotifier.TitleText = msg.Caption;
+                        popupNotifier.ContentText = msg.Text;
+                        popupNotifier.IsRightToLeft = false;
+                        popupNotifier.Image = msg.Image;
+                    }
+                    popupNotifier.Popup();
+                }
+            }
+
+            lblViews.Text = "Views: " + views.Total;
+            Repo.LastTotalViews = views.Total;
         }
 
         private async Task CheckDownloads(bool forceCheck)
@@ -55,7 +88,7 @@ namespace GitHubNotifier.UserControls
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = lblDownloads.Text,
+                    Text = "Downloads: " + downloads,
                     Image = Properties.Resources.Download_32x32
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())

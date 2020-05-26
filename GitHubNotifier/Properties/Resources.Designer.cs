@@ -123,6 +123,26 @@ namespace GitHubNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Show_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Show_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Show_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Show_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Suggestion_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Suggestion_32x32", resourceCulture);
