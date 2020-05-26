@@ -30,7 +30,7 @@ namespace GitHubNotifier.UserControls
         {
             lblDownloads.Text = "Downloads: " + Repo.LastTotalDownloads;
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
-            lblOpenIssues.Text = "Open Issues: " + Repo.OpenIssues;
+            lnklblIssues.Text = "Open Issues: " + Repo.OpenIssues;
             await Check(true);
         }
         public async Task Check(bool forceCheck)
@@ -124,7 +124,7 @@ namespace GitHubNotifier.UserControls
             }
 
             Repo.OpenIssues = repoInfo.OpenIssues;
-            lblOpenIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
+            lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
 
         }
 
@@ -141,9 +141,19 @@ namespace GitHubNotifier.UserControls
 
         private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            OpenLink(lnkLabel.Text);
+        }
+
+        private void lnklblIssues_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenLink(Repo.RepoIssueUrl);
+        }
+
+        private void OpenLink(string url)
+        {
             try
             {
-                Process.Start(lnkLabel.Text);
+                Process.Start(url);
             }
             catch (Exception exception)
             {

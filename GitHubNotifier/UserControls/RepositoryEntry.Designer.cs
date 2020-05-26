@@ -35,7 +35,7 @@
             this.lnkLabel = new System.Windows.Forms.LinkLabel();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.lblNext = new System.Windows.Forms.Label();
-            this.lblOpenIssues = new System.Windows.Forms.Label();
+            this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lblDownloads
@@ -104,23 +104,25 @@
             this.lblNext.Text = "Next Check:";
             this.lblNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblOpenIssues
+            // lnklblIssues
             // 
-            this.lblOpenIssues.Image = global::GitHubNotifier.Properties.Resources.Issue_32x32;
-            this.lblOpenIssues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblOpenIssues.Location = new System.Drawing.Point(272, 40);
-            this.lblOpenIssues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblOpenIssues.Name = "lblOpenIssues";
-            this.lblOpenIssues.Size = new System.Drawing.Size(134, 36);
-            this.lblOpenIssues.TabIndex = 5;
-            this.lblOpenIssues.Text = "Open Issues:";
-            this.lblOpenIssues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lnklblIssues.Image = global::GitHubNotifier.Properties.Resources.Issue_32x32;
+            this.lnklblIssues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lnklblIssues.Location = new System.Drawing.Point(272, 42);
+            this.lnklblIssues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblIssues.Name = "lnklblIssues";
+            this.lnklblIssues.Size = new System.Drawing.Size(134, 36);
+            this.lnklblIssues.TabIndex = 6;
+            this.lnklblIssues.TabStop = true;
+            this.lnklblIssues.Text = "Open Issues:";
+            this.lnklblIssues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lnklblIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblIssues_LinkClicked);
             // 
             // RepositoryEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblOpenIssues);
+            this.Controls.Add(this.lnklblIssues);
             this.Controls.Add(this.lblNext);
             this.Controls.Add(this.lnkLabel);
             this.Controls.Add(this.btnCheckNow);
@@ -142,6 +144,6 @@
         private System.Windows.Forms.LinkLabel lnkLabel;
         private System.Windows.Forms.Timer timerUpdate;
         private System.Windows.Forms.Label lblNext;
-        private System.Windows.Forms.Label lblOpenIssues;
+        private System.Windows.Forms.LinkLabel lnklblIssues;
     }
 }
