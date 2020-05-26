@@ -31,7 +31,7 @@ namespace GitHubNotifier.UserControls
             lblDownloads.Text = "Downloads: " + Repo.LastTotalDownloads;
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
             lnklblIssues.Text = "Open Issues: " + Repo.OpenIssues;
-            lblViews.Text = "Views: " + Repo.LastTotalViews;
+            lblViews.Text = $"Views: {Repo.LastTotalViews}. U:{Repo.LastTotalUniqueViews}";
             await Check(true);
         }
         public async Task Check(bool forceCheck)
@@ -70,8 +70,9 @@ namespace GitHubNotifier.UserControls
                 }
             }
 
-            lblViews.Text = "Views: " + views.Total;
+            lblViews.Text = $"Views: {views.Total}. U:{views.Views.Sum(v => v.Uniques)}";
             Repo.LastTotalViews = views.Total;
+            Repo.LastTotalUniqueViews = views.Views.Sum(v => v.Uniques);
         }
 
         private async Task CheckDownloads(bool forceCheck)

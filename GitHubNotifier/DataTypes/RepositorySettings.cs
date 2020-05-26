@@ -13,7 +13,7 @@ namespace GitHubNotifier.DataTypes
         public string RepoApiUrl => $"https://api.github.com/repos/{RepoName}";
         public string RepoApiTrafficViewsUrl => $"https://api.github.com/repos/{RepoName}/traffic/views";
         public string RepoApiReleasesUrl => $"https://api.github.com/repos/{RepoName}/releases";
-        
+
 
         public int UpdateMinutes { get; set; }
         public DateTime LastChecked { get; set; }
@@ -21,7 +21,8 @@ namespace GitHubNotifier.DataTypes
         public int LastTotalDownloads { get; set; }
         public int LastTotalStars { get; set; }
         public int LastTotalViews { get; set; }
-        
+        public int LastTotalUniqueViews { get; set; }
+
         public int OpenIssues { get; set; }
         public bool Enabled { get; set; }
 

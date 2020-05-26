@@ -73,9 +73,9 @@
             // lblNext
             // 
             this.lblNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNext.Location = new System.Drawing.Point(856, 1);
+            this.lblNext.Location = new System.Drawing.Point(913, 1);
             this.lblNext.Name = "lblNext";
-            this.lblNext.Size = new System.Drawing.Size(255, 44);
+            this.lblNext.Size = new System.Drawing.Size(217, 44);
             this.lblNext.TabIndex = 4;
             this.lblNext.Text = "Next Check:";
             this.lblNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -90,7 +90,7 @@
             this.lblViews.Size = new System.Drawing.Size(164, 44);
             this.lblViews.TabIndex = 7;
             this.lblViews.Text = "Views:";
-            this.lblViews.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblViews.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lnklblIssues
             // 
