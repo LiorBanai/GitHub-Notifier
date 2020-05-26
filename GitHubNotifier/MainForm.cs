@@ -44,9 +44,18 @@ namespace GitHubNotifier
 
         private async Task CheckAPILimits()
         {
-            var result = await GitHubUtils.GetRateLimit(Settings.GitHubToken);
-            tsslblAPILimit.Text = "API Limits:" + result?.Rate;
+            try
+            {
+
+                var result = await GitHubUtils.GetRateLimit(Settings.GitHubToken);
+                tsslblAPILimit.Text = "API Limits:" + result?.Rate;
+            }
+            catch (Exception e)
+            {
+                tsslblAPILimit.Text = $"API Limits: Check Error: {e.Message}";
+            }
         }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (preventExit && e.CloseReason == CloseReason.UserClosing)
@@ -104,20 +113,19 @@ namespace GitHubNotifier
 
         private async Task CheckNotifications(bool forceCheck = false)
         {
-            if (!forceCheck && DateTime.Now <
+            if (forceCheck || DateTime.Now >=
                 Settings.LastReadUserNotification.AddMinutes(Settings.NotificationsIntervalCheck))
             {
-                LoadAndDisplayNotifications(Settings.LastUnReadUserNotifications);
-                return;
+                var (newData, notifications) = await GitHubUtils.GetAsync<GitHubUserNotification[]>(
+                    "https://api.github.com/notifications", UserSettingsManager.Instance.GitHubToken,
+                    UserSettingsManager.Instance.LastReadUserNotification);
+                if (newData)
+                {
+                    Settings.LastReadUserNotification = DateTime.Now;
+                    Settings.LastUnReadUserNotifications = notifications.Where(n => n.Unread).ToList();
+                }
             }
-            var (newData, notifications) = await GitHubUtils.GetAsync<GitHubUserNotification[]>("https://api.github.com/notifications", UserSettingsManager.Instance.GitHubToken, UserSettingsManager.Instance.LastReadUserNotification);
-            if (newData && notifications.Any(n => n.Unread))
-            {
-                Settings.LastReadUserNotification = DateTime.Now;
-                Settings.LastUnReadUserNotifications = notifications.Where(n => n.Unread).ToList();
-                LoadAndDisplayNotifications(Settings.LastUnReadUserNotifications);
-            }
-
+            LoadAndDisplayNotifications(Settings.LastUnReadUserNotifications);
         }
 
         private void LoadAndDisplayNotifications(List<GitHubUserNotification> notifications)
@@ -126,7 +134,10 @@ namespace GitHubNotifier
             {
                 lstNotifications.Items.Clear();
                 lstNotifications.Items.AddRange(notifications.Select(n => n.Subject.Title).ToArray());
+
             }
+
+            tsslblNotifications.Text = $"Notification: {notifications.Count}. Last Update: {Settings.LastReadUserNotification}";
 
             foreach (var notification in notifications)
             {
@@ -151,6 +162,11 @@ namespace GitHubNotifier
         private async void stBtnCheckNotifications_Click(object sender, EventArgs e)
         {
             await CheckNotifications(true);
+        }
+
+        private async void timerAPIRateCheck_Tick(object sender, EventArgs e)
+        {
+            await CheckAPILimits();
         }
     }
 }
