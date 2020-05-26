@@ -102,7 +102,7 @@
             this.tpNotifications.Location = new System.Drawing.Point(4, 22);
             this.tpNotifications.Margin = new System.Windows.Forms.Padding(2);
             this.tpNotifications.Name = "tpNotifications";
-            this.tpNotifications.Size = new System.Drawing.Size(684, 519);
+            this.tpNotifications.Size = new System.Drawing.Size(1027, 429);
             this.tpNotifications.TabIndex = 2;
             this.tpNotifications.Text = "Notifications";
             this.tpNotifications.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             this.lstNotifications.Location = new System.Drawing.Point(0, 25);
             this.lstNotifications.Margin = new System.Windows.Forms.Padding(2);
             this.lstNotifications.Name = "lstNotifications";
-            this.lstNotifications.Size = new System.Drawing.Size(684, 494);
+            this.lstNotifications.Size = new System.Drawing.Size(1027, 404);
             this.lstNotifications.TabIndex = 0;
             // 
             // toolStrip1
@@ -123,7 +123,7 @@
             this.stBtnCheckNotifications});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(684, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1027, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -230,11 +230,13 @@
             // 
             // timerNotifications
             // 
+            this.timerNotifications.Enabled = true;
             this.timerNotifications.Interval = 900000;
             this.timerNotifications.Tick += new System.EventHandler(this.timerNotifications_Tick);
             // 
             // timerAPIRateCheck
             // 
+            this.timerAPIRateCheck.Enabled = true;
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
