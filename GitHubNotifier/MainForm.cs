@@ -160,7 +160,7 @@ namespace GitHubNotifier
             ExitAndClose();
         }
 
-        private async void stBtnCheckNotifications_Click(object sender, EventArgs e)
+        private async void tsBtnCheckNotifications_Click(object sender, EventArgs e)
         {
             await CheckNotifications(true);
         }
@@ -168,6 +168,12 @@ namespace GitHubNotifier
         private async void timerAPIRateCheck_Tick(object sender, EventArgs e)
         {
             await CheckAPILimits();
+        }
+
+        private void tsBtnClear_Click(object sender, EventArgs e)
+        {
+            Settings.LastUnReadUserNotifications.Clear();
+            lstNotifications.Items.Clear();
         }
     }
 }
