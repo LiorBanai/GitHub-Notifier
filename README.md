@@ -8,7 +8,6 @@
 <a href="https://github.com/LiorBanai/GitHub-Notifier/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/LiorBanai/GitHub-Notifier"  alt="License"/>
 </a>
-
    [![Nuget](https://img.shields.io/nuget/v/LiorBanai.GitHubNotifier)](https://www.nuget.org/packages/LiorBanai.GitHubNotifier/)
 <a href="https://github.com/LiorBanai/GitHub-Notifier/releases"> 
     <img src="https://img.shields.io/github/v/release/LiorBanai/GitHub-Notifier"  alt="Latest Release"/>
