@@ -3,6 +3,7 @@ using GitHubNotifier.Managers;
 using GitHubNotifier.Utils;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -59,6 +60,7 @@ namespace GitHubNotifier.UserControls
                 return;
             if (Repo.LastTotalViews != views.Total)
             {
+                lblViews.BackColor = views.Total > Repo.LastTotalViews ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
@@ -77,6 +79,10 @@ namespace GitHubNotifier.UserControls
                     popupNotifier.Popup();
                 }
             }
+            else
+            {
+                lblViews.BackColor = SystemColors.Control;
+            }
 
             lblViews.Text = $"Views: {views.Total}. U:{views.Views.Sum(v => v.Uniques)}";
             Repo.LastTotalViews = views.Total;
@@ -94,6 +100,7 @@ namespace GitHubNotifier.UserControls
             var downloads = entries.OrderByDescending(r => r.Published).SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
             if (Repo.LastTotalDownloads != downloads)
             {
+                lblDownloads.BackColor = downloads > Repo.LastTotalDownloads ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
@@ -110,6 +117,10 @@ namespace GitHubNotifier.UserControls
                 })
                     popupNotifier.Popup();
             }
+            else
+            {
+                lblDownloads.BackColor = SystemColors.Control;
+            }
 
 
             lblDownloads.Text = "Downloads: " + downloads;
@@ -125,6 +136,7 @@ namespace GitHubNotifier.UserControls
                 return;
             if (Repo.ShowLikes && Repo.LastTotalStars != repoInfo.Stargazers)
             {
+                lblLikes.BackColor = repoInfo.Stargazers > Repo.LastTotalStars ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
@@ -143,17 +155,23 @@ namespace GitHubNotifier.UserControls
                     popupNotifier.Popup();
                 }
             }
+            else
+            {
+                lblLikes.BackColor = SystemColors.Control;
+            }
 
             Repo.LastTotalStars = repoInfo.Stargazers;
             lblLikes.Text = "Likes: " + repoInfo.Stargazers;
 
             if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
+                lnklblIssues.BackColor = repoInfo.OpenIssues > Repo.OpenIssues ? Color.LightGreen : Color.LightPink;
+
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
                     Text = "Open Issues: " + repoInfo.OpenIssues,
-                    Image = Properties.Resources.Feature_32x32
+                    Image = Properties.Resources.Feature_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
@@ -166,6 +184,10 @@ namespace GitHubNotifier.UserControls
                     }
                     popupNotifier.Popup();
                 }
+            }
+            else
+            {
+                lnklblIssues.BackColor = SystemColors.Control;
             }
 
             Repo.OpenIssues = repoInfo.OpenIssues;
