@@ -60,11 +60,12 @@ namespace GitHubNotifier.UserControls
                 return;
             if (Repo.LastTotalViews != views.Total)
             {
-                lblViews.BackColor = views.Total > Repo.LastTotalViews ? Color.LightGreen : Color.LightPink;
+                int change = views.Total - Repo.LastTotalViews;
+                lblViews.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = "Views: " + views.Total,
+                    Text = $"Views: {views.Total} ({(change > 0 ? "+" : string.Empty)}{change})",
                     Image = Properties.Resources.Show_32x32
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
@@ -100,11 +101,12 @@ namespace GitHubNotifier.UserControls
             var downloads = entries.OrderByDescending(r => r.Published).SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
             if (Repo.LastTotalDownloads != downloads)
             {
-                lblDownloads.BackColor = downloads > Repo.LastTotalDownloads ? Color.LightGreen : Color.LightPink;
+                int change = downloads - Repo.LastTotalDownloads;
+                lblDownloads.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = "Downloads: " + downloads,
+                    Text = $"Downloads: {downloads} ({(change > 0 ? "+" : string.Empty)}{change})",
                     Image = Properties.Resources.Download_32x32
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier
@@ -136,11 +138,12 @@ namespace GitHubNotifier.UserControls
                 return;
             if (Repo.ShowLikes && Repo.LastTotalStars != repoInfo.Stargazers)
             {
-                lblLikes.BackColor = repoInfo.Stargazers > Repo.LastTotalStars ? Color.LightGreen : Color.LightPink;
+                int change = repoInfo.Stargazers - Repo.LastTotalStars;
+                lblLikes.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = "Likes: " + repoInfo.Stargazers,
+                    Text = $"Likes: {repoInfo.Stargazers} ({(change > 0 ? "+" : string.Empty)}{change})",
                     Image = Properties.Resources.Feature_32x32
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
@@ -165,12 +168,12 @@ namespace GitHubNotifier.UserControls
 
             if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
-                lnklblIssues.BackColor = repoInfo.OpenIssues > Repo.OpenIssues ? Color.LightGreen : Color.LightPink;
-
+                int change = repoInfo.OpenIssues - Repo.OpenIssues;
+                lnklblIssues.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = "Open Issues: " + repoInfo.OpenIssues,
+                    Text = $"Open Issues: {repoInfo.OpenIssues} ({(change > 0 ? "+" : string.Empty)}{change})",
                     Image = Properties.Resources.Feature_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
