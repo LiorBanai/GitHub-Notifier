@@ -41,8 +41,14 @@
             this.nudNotifications = new System.Windows.Forms.NumericUpDown();
             this.lblNotifications = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkbLikes = new System.Windows.Forms.CheckBox();
+            this.chkbDownloads = new System.Windows.Forms.CheckBox();
+            this.chkbViews = new System.Windows.Forms.CheckBox();
+            this.chkbOpenIssues = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chklstRepo
@@ -54,14 +60,15 @@
             this.chklstRepo.Location = new System.Drawing.Point(3, 162);
             this.chklstRepo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chklstRepo.Name = "chklstRepo";
-            this.chklstRepo.Size = new System.Drawing.Size(641, 225);
+            this.chklstRepo.Size = new System.Drawing.Size(733, 259);
             this.chklstRepo.TabIndex = 0;
             this.chklstRepo.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chklstRepo_ItemCheck);
+            this.chklstRepo.SelectedIndexChanged += new System.EventHandler(this.chklstRepo_SelectedIndexChanged);
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(663, 290);
+            this.btnDelete.Location = new System.Drawing.Point(755, 169);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(157, 34);
@@ -95,7 +102,7 @@
             this.txtbRepoDisplayName.Location = new System.Drawing.Point(307, 94);
             this.txtbRepoDisplayName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtbRepoDisplayName.Name = "txtbRepoDisplayName";
-            this.txtbRepoDisplayName.Size = new System.Drawing.Size(337, 22);
+            this.txtbRepoDisplayName.Size = new System.Drawing.Size(429, 22);
             this.txtbRepoDisplayName.TabIndex = 5;
             // 
             // txtbRepoName
@@ -105,13 +112,13 @@
             this.txtbRepoName.Location = new System.Drawing.Point(307, 66);
             this.txtbRepoName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtbRepoName.Name = "txtbRepoName";
-            this.txtbRepoName.Size = new System.Drawing.Size(337, 22);
+            this.txtbRepoName.Size = new System.Drawing.Size(429, 22);
             this.txtbRepoName.TabIndex = 6;
             // 
             // btnAddRepo
             // 
             this.btnAddRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRepo.Location = new System.Drawing.Point(663, 69);
+            this.btnAddRepo.Location = new System.Drawing.Point(755, 69);
             this.btnAddRepo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddRepo.Name = "btnAddRepo";
             this.btnAddRepo.Size = new System.Drawing.Size(157, 34);
@@ -132,7 +139,7 @@
             // nudMinutes
             // 
             this.nudMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudMinutes.Location = new System.Drawing.Point(512, 130);
+            this.nudMinutes.Location = new System.Drawing.Point(604, 130);
             this.nudMinutes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nudMinutes.Maximum = new decimal(new int[] {
             99999,
@@ -156,7 +163,7 @@
             // nudNotifications
             // 
             this.nudNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudNotifications.Location = new System.Drawing.Point(512, 408);
+            this.nudNotifications.Location = new System.Drawing.Point(604, 579);
             this.nudNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nudNotifications.Maximum = new decimal(new int[] {
             99999,
@@ -181,7 +188,7 @@
             // 
             this.lblNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNotifications.AutoSize = true;
-            this.lblNotifications.Location = new System.Drawing.Point(12, 408);
+            this.lblNotifications.Location = new System.Drawing.Point(12, 579);
             this.lblNotifications.Name = "lblNotifications";
             this.lblNotifications.Size = new System.Drawing.Size(202, 17);
             this.lblNotifications.TabIndex = 10;
@@ -194,16 +201,76 @@
             this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(801, 50);
+            this.label2.Size = new System.Drawing.Size(893, 50);
             this.label2.TabIndex = 2;
             this.label2.Text = "GitHub limits number of API call to 60 per hour. Add Environment Variable with ke" +
     "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour";
+            // 
+            // chkbLikes
+            // 
+            this.chkbLikes.AutoSize = true;
+            this.chkbLikes.Location = new System.Drawing.Point(9, 23);
+            this.chkbLikes.Name = "chkbLikes";
+            this.chkbLikes.Size = new System.Drawing.Size(152, 21);
+            this.chkbLikes.TabIndex = 12;
+            this.chkbLikes.Text = "Enable Likes Count";
+            this.chkbLikes.UseVisualStyleBackColor = true;
+            this.chkbLikes.CheckedChanged += new System.EventHandler(this.chkbLikes_CheckedChanged);
+            // 
+            // chkbDownloads
+            // 
+            this.chkbDownloads.AutoSize = true;
+            this.chkbDownloads.Location = new System.Drawing.Point(9, 50);
+            this.chkbDownloads.Name = "chkbDownloads";
+            this.chkbDownloads.Size = new System.Drawing.Size(181, 21);
+            this.chkbDownloads.TabIndex = 13;
+            this.chkbDownloads.Text = "Enable Download Count";
+            this.chkbDownloads.UseVisualStyleBackColor = true;
+            this.chkbDownloads.CheckedChanged += new System.EventHandler(this.chkbDownloads_CheckedChanged);
+            // 
+            // chkbViews
+            // 
+            this.chkbViews.AutoSize = true;
+            this.chkbViews.Location = new System.Drawing.Point(9, 103);
+            this.chkbViews.Name = "chkbViews";
+            this.chkbViews.Size = new System.Drawing.Size(155, 21);
+            this.chkbViews.TabIndex = 15;
+            this.chkbViews.Text = "Enable Views Count";
+            this.chkbViews.UseVisualStyleBackColor = true;
+            this.chkbViews.CheckedChanged += new System.EventHandler(this.chkbViews_CheckedChanged);
+            // 
+            // chkbOpenIssues
+            // 
+            this.chkbOpenIssues.AutoSize = true;
+            this.chkbOpenIssues.Location = new System.Drawing.Point(9, 76);
+            this.chkbOpenIssues.Name = "chkbOpenIssues";
+            this.chkbOpenIssues.Size = new System.Drawing.Size(198, 21);
+            this.chkbOpenIssues.TabIndex = 14;
+            this.chkbOpenIssues.Text = "Enable Open Issues Count";
+            this.chkbOpenIssues.UseVisualStyleBackColor = true;
+            this.chkbOpenIssues.CheckedChanged += new System.EventHandler(this.chkbOpenIssues_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkbLikes);
+            this.groupBox1.Controls.Add(this.chkbViews);
+            this.groupBox1.Controls.Add(this.chkbDownloads);
+            this.groupBox1.Controls.Add(this.chkbOpenIssues);
+            this.groupBox1.Location = new System.Drawing.Point(3, 434);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(732, 136);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selected:";
             // 
             // UserSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 450);
+            this.ClientSize = new System.Drawing.Size(917, 621);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.nudNotifications);
             this.Controls.Add(this.lblNotifications);
             this.Controls.Add(this.nudMinutes);
@@ -224,6 +291,8 @@
             this.Load += new System.EventHandler(this.UserSettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,6 +312,11 @@
         private System.Windows.Forms.NumericUpDown nudNotifications;
         private System.Windows.Forms.Label lblNotifications;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkbLikes;
+        private System.Windows.Forms.CheckBox chkbDownloads;
+        private System.Windows.Forms.CheckBox chkbViews;
+        private System.Windows.Forms.CheckBox chkbOpenIssues;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

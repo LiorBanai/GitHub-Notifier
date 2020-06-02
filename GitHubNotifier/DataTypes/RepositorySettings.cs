@@ -25,10 +25,18 @@ namespace GitHubNotifier.DataTypes
 
         public int OpenIssues { get; set; }
         public bool Enabled { get; set; }
-
+        public bool ShowLikes { get; set; }
+        public bool ShowDownloads { get; set; }
+        public bool ShowOpenIssues { get; set; }
+        public bool ShowViews { get; set; }
         public RepositorySettings()
         {
             Enabled = true;
+            ShowLikes = true;
+            ShowDownloads = true;
+            ShowOpenIssues = true;
+            ShowViews = true;
+
         }
         public RepositorySettings(string displayName, string repoName, int updateMinutes) : this()
         {

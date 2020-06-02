@@ -36,9 +36,16 @@ namespace GitHubNotifier.UserControls
         }
         public async Task Check(bool forceCheck)
         {
-            await CheckDownloads(forceCheck);
-            await CheckStarsAndIssues(forceCheck);
-            await CheckTraffic(forceCheck);
+            lblViews.Visible = Repo.ShowViews;
+            lblDownloads.Visible = Repo.ShowDownloads;
+            lblLikes.Visible = Repo.ShowLikes;
+            lnklblIssues.Visible = Repo.ShowOpenIssues;
+            if (Repo.ShowDownloads)
+                await CheckDownloads(forceCheck);
+            if (Repo.ShowLikes || Repo.ShowOpenIssues)
+                await CheckStarsAndIssues(forceCheck);
+            if (Repo.ShowViews)
+                await CheckTraffic(forceCheck);
             Repo.LastChecked = DateTime.Now;
 
         }
@@ -65,6 +72,7 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
                 }
@@ -92,17 +100,17 @@ namespace GitHubNotifier.UserControls
                     Text = "Downloads: " + downloads,
                     Image = Properties.Resources.Download_32x32
                 };
-                using (var popupNotifier = new NotificationWindow.PopupNotifier())
+                using (var popupNotifier = new NotificationWindow.PopupNotifier
                 {
-                    {
-                        popupNotifier.TitleText = msg.Caption;
-                        popupNotifier.ContentText = msg.Text;
-                        popupNotifier.IsRightToLeft = false;
-                        popupNotifier.Image = msg.Image;
-                    }
+                    TitleText = msg.Caption,
+                    ContentText = msg.Text,
+                    IsRightToLeft = false,
+                    Image = msg.Image,
+                    IgnoreWhenFullScreen = true
+                })
                     popupNotifier.Popup();
-                }
             }
+
 
             lblDownloads.Text = "Downloads: " + downloads;
             Repo.LastTotalDownloads = downloads;
@@ -110,11 +118,12 @@ namespace GitHubNotifier.UserControls
 
         private async Task CheckStarsAndIssues(bool forceCheck)
         {
+            if (!Repo.ShowOpenIssues && !Repo.ShowLikes) return;
             var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
             var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl, UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
                 return;
-            if (Repo.LastTotalStars != repoInfo.Stargazers)
+            if (Repo.ShowLikes && Repo.LastTotalStars != repoInfo.Stargazers)
             {
                 PopupMessage msg = new PopupMessage
                 {
@@ -129,6 +138,7 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
                 }
@@ -137,7 +147,7 @@ namespace GitHubNotifier.UserControls
             Repo.LastTotalStars = repoInfo.Stargazers;
             lblLikes.Text = "Likes: " + repoInfo.Stargazers;
 
-            if (Repo.OpenIssues != repoInfo.OpenIssues)
+            if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
                 PopupMessage msg = new PopupMessage
                 {
@@ -152,6 +162,7 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
                 }
@@ -195,5 +206,6 @@ namespace GitHubNotifier.UserControls
 
             }
         }
+
     }
 }

@@ -6,6 +6,7 @@ namespace GitHubNotifier.Forms
 {
     public partial class UserSettingsForm : Form
     {
+        private RepositorySettings selectedRepositorySettings;
         public UserSettingsForm()
         {
             InitializeComponent();
@@ -63,6 +64,40 @@ namespace GitHubNotifier.Forms
         private void UserSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             UserSettingsManager.Instance.NotificationsIntervalCheck = (int)nudNotifications.Value;
+        }
+
+        private void chklstRepo_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (chklstRepo.SelectedItem is RepositorySettings repo)
+            {
+                groupBox1.Text = "Repository:" + repo.DisplayName;
+                selectedRepositorySettings = repo;
+                chkbLikes.Checked = repo.ShowLikes;
+                chkbDownloads.Checked = repo.ShowDownloads;
+                chkbOpenIssues.Checked = repo.ShowOpenIssues;
+                chkbViews.Checked = repo.ShowViews;
+
+            }
+        }
+
+        private void chkbLikes_CheckedChanged(object sender, System.EventArgs e)
+        {
+            selectedRepositorySettings.ShowLikes = chkbLikes.Checked;
+        }
+
+        private void chkbDownloads_CheckedChanged(object sender, System.EventArgs e)
+        {
+            selectedRepositorySettings.ShowDownloads = chkbDownloads.Checked;
+        }
+
+        private void chkbOpenIssues_CheckedChanged(object sender, System.EventArgs e)
+        {
+            selectedRepositorySettings.ShowOpenIssues = chkbOpenIssues.Checked;
+        }
+
+        private void chkbViews_CheckedChanged(object sender, System.EventArgs e)
+        {
+            selectedRepositorySettings.ShowViews = chkbViews.Checked;
         }
     }
 
