@@ -20,5 +20,5 @@
                                                                                                                                
 a small program that sits in the tray bar and periodically check repositories for activity.
 
-![Main screen](Assets/screenshot.jpg)
+![Main screen](Assets/screenshot2.jpg)
 
