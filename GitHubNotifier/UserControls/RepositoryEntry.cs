@@ -170,6 +170,7 @@ namespace GitHubNotifier.UserControls
             {
                 int change = repoInfo.OpenIssues - Repo.OpenIssues;
                 lnklblIssues.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
+
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
@@ -186,6 +187,20 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
+                }
+
+                if (change > 0)
+                {
+                    var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
+                        UserSettingsManager.Instance.GitHubToken, lastCheck);
+                    if (issues.newData)
+                    {
+                        cmsIssues.Items.Clear();
+                        foreach (var issue in issues.result.Take(change))
+                        {
+                            cmsIssues.Items.Add(issue.Title, null, (_, __) => OpenLink(issue.html_url));
+                        }
+                    }
                 }
             }
             else
@@ -211,12 +226,14 @@ namespace GitHubNotifier.UserControls
 
         private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
             OpenLink(Repo.RepoUrl);
         }
 
         private void lnklblIssues_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            OpenLink(Repo.RepoIssueUrl);
+            if (e.Button == MouseButtons.Left)
+                OpenLink(Repo.RepoIssueUrl);
         }
 
         private void OpenLink(string url)

@@ -37,6 +37,7 @@
             this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.lblLikes = new System.Windows.Forms.Label();
             this.lblDownloads = new System.Windows.Forms.Label();
+            this.cmsIssues = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // btnCheckNow
@@ -95,6 +96,7 @@
             // lnklblIssues
             // 
             this.lnklblIssues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnklblIssues.ContextMenuStrip = this.cmsIssues;
             this.lnklblIssues.Image = global::GitHubNotifier.Properties.Resources.Issue_32x32;
             this.lnklblIssues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lnklblIssues.Location = new System.Drawing.Point(549, 1);
@@ -130,6 +132,12 @@
             this.lblDownloads.Text = "Downloads:";
             this.lblDownloads.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cmsIssues
+            // 
+            this.cmsIssues.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsIssues.Name = "cmsIssues";
+            this.cmsIssues.Size = new System.Drawing.Size(61, 4);
+            // 
             // RepositoryEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -159,5 +167,6 @@
         private System.Windows.Forms.Label lblNext;
         private System.Windows.Forms.LinkLabel lnklblIssues;
         private System.Windows.Forms.Label lblViews;
+        private System.Windows.Forms.ContextMenuStrip cmsIssues;
     }
 }
