@@ -16,8 +16,8 @@
     <PackageIcon>GitHubNotifier.png</PackageIcon>
     <Copyright>Lior Banai</Copyright>
     <PackageId>LiorBanai.GitHubNotifier</PackageId>
-    <Version>1.0.1</Version>
-    <Product>LiorBamai.GitHubNotifier</Product>
+    <Version>1.0.2</Version>
+    <Product>LiorBanai.GitHubNotifier</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
