@@ -37,10 +37,12 @@ namespace GitHubNotifier.UserControls
         }
         public async Task Check(bool forceCheck)
         {
+
             lblViews.Visible = Repo.ShowViews;
             lblDownloads.Visible = Repo.ShowDownloads;
             lblLikes.Visible = Repo.ShowLikes;
             lnklblIssues.Visible = Repo.ShowOpenIssues;
+            if (!Repo.Enabled) return;
             if (Repo.ShowDownloads)
                 await CheckDownloads(forceCheck);
             if (Repo.ShowLikes || Repo.ShowOpenIssues)
