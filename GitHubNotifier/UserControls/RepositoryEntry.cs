@@ -24,6 +24,7 @@ namespace GitHubNotifier.UserControls
             Repo = repo;
             lnkLabel.Text = repo.DisplayName;
             timerUpdate.Interval = repo.UpdateMinutes * 60 * 1000;
+            timerUpdate.Enabled = repo.Enabled;
             lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(repo.UpdateMinutes * 60 * 1000);
         }
 
