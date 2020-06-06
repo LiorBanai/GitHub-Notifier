@@ -43,21 +43,24 @@ namespace GitHubNotifier.UserControls
             lblDownloads.Visible = Repo.ShowDownloads;
             lblLikes.Visible = Repo.ShowLikes;
             lnklblIssues.Visible = Repo.ShowOpenIssues;
+            lblClones.Visible = Repo.ShowClones;
             if (!Repo.Enabled) return;
             if (Repo.ShowDownloads)
                 await CheckDownloads(forceCheck);
             if (Repo.ShowLikes || Repo.ShowOpenIssues)
                 await CheckStarsAndIssues(forceCheck);
             if (Repo.ShowViews)
-                await CheckTraffic(forceCheck);
+                await CheckTrafficViews(forceCheck);
+            if (Repo.ShowClones)
+                await CheckTrafficClone(forceCheck);
             Repo.LastChecked = DateTime.Now;
 
         }
 
-        private async Task CheckTraffic(bool forceCheck)
+        private async Task CheckTrafficViews(bool forceCheck)
         {
             var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
-            var (newData, views) = await GitHubUtils.GetAsync<GithubTraffic>(Repo.RepoApiTrafficViewsUrl,
+            var (newData, views) = await GitHubUtils.GetAsync<GithubTrafficViews>(Repo.RepoApiTrafficViewsUrl,
                 UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
                 return;
@@ -91,6 +94,44 @@ namespace GitHubNotifier.UserControls
             lblViews.Text = $"Views: {views.Total}. U:{views.Views.Sum(v => v.Uniques)}";
             Repo.LastTotalViews = views.Total;
             Repo.LastTotalUniqueViews = views.Views.Sum(v => v.Uniques);
+        }
+        private async Task CheckTrafficClone(bool forceCheck)
+        {
+            var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
+            var (newData, clones) = await GitHubUtils.GetAsync<GithubTrafficClones>(Repo.RepoApiTrafficClonesUrl,
+                UserSettingsManager.Instance.GitHubToken, lastCheck);
+            if (!newData)
+                return;
+            if (Repo.LastTotalClones != clones.Total)
+            {
+                int change = clones.Total - Repo.LastTotalClones;
+                lblClones.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
+                PopupMessage msg = new PopupMessage
+                {
+                    Caption = Repo.DisplayName,
+                    Text = $"Clones: {clones.Total} ({(change > 0 ? "+" : string.Empty)}{change})",
+                    Image = Properties.Resources.NewDataSource_32x32
+                };
+                using (var popupNotifier = new NotificationWindow.PopupNotifier())
+                {
+                    {
+                        popupNotifier.TitleText = msg.Caption;
+                        popupNotifier.ContentText = msg.Text;
+                        popupNotifier.IsRightToLeft = false;
+                        popupNotifier.Image = msg.Image;
+                        popupNotifier.IgnoreWhenFullScreen = true;
+                    }
+                    popupNotifier.Popup();
+                }
+            }
+            else
+            {
+                lblClones.BackColor = SystemColors.Control;
+            }
+
+            lblClones.Text = $"Clones: {clones.Total}. U:{clones.uniques}";
+            Repo.LastTotalClones = clones.Total;
+            Repo.LastTotalUniqueClones = clones.uniques;
         }
 
         private async Task CheckDownloads(bool forceCheck)

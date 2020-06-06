@@ -12,6 +12,7 @@ namespace GitHubNotifier.DataTypes
         public string RepoIssueUrl => $"https://github.com/{RepoName}/issues";
         public string RepoApiUrl => $"https://api.github.com/repos/{RepoName}";
         public string RepoApiTrafficViewsUrl => $"https://api.github.com/repos/{RepoName}/traffic/views";
+        public string RepoApiTrafficClonesUrl => $"https://api.github.com/repos/{RepoName}/traffic/clones";
         public string RepoApiReleasesUrl => $"https://api.github.com/repos/{RepoName}/releases";
         public string RepoApiIssuesUrl => $"https://api.github.com/repos/{RepoName}/issues";
 
@@ -21,6 +22,8 @@ namespace GitHubNotifier.DataTypes
         public int LastTotalDownloads { get; set; }
         public int LastTotalStars { get; set; }
         public int LastTotalViews { get; set; }
+        public int LastTotalClones { get; set; }
+        public int LastTotalUniqueClones { get; set; }
         public int LastTotalUniqueViews { get; set; }
 
         public int OpenIssues { get; set; }
@@ -28,7 +31,9 @@ namespace GitHubNotifier.DataTypes
         public bool ShowLikes { get; set; }
         public bool ShowDownloads { get; set; }
         public bool ShowOpenIssues { get; set; }
+
         public bool ShowViews { get; set; }
+        public bool ShowClones { get; set; }
         public RepositorySettings()
         {
             Enabled = true;
@@ -36,6 +41,7 @@ namespace GitHubNotifier.DataTypes
             ShowDownloads = true;
             ShowOpenIssues = true;
             ShowViews = true;
+            ShowClones = true;
 
         }
         public RepositorySettings(string displayName, string repoName, int updateMinutes) : this()

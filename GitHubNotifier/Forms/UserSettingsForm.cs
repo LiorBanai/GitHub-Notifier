@@ -82,22 +82,32 @@ namespace GitHubNotifier.Forms
 
         private void chkbLikes_CheckedChanged(object sender, System.EventArgs e)
         {
-            selectedRepositorySettings.ShowLikes = chkbLikes.Checked;
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.ShowLikes = chkbLikes.Checked;
         }
 
         private void chkbDownloads_CheckedChanged(object sender, System.EventArgs e)
         {
-            selectedRepositorySettings.ShowDownloads = chkbDownloads.Checked;
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.ShowDownloads = chkbDownloads.Checked;
         }
 
         private void chkbOpenIssues_CheckedChanged(object sender, System.EventArgs e)
         {
-            selectedRepositorySettings.ShowOpenIssues = chkbOpenIssues.Checked;
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.ShowOpenIssues = chkbOpenIssues.Checked;
         }
 
         private void chkbViews_CheckedChanged(object sender, System.EventArgs e)
         {
-            selectedRepositorySettings.ShowViews = chkbViews.Checked;
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.ShowViews = chkbViews.Checked;
+        }
+
+        private void chkbClones_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.ShowClones = chkbClones.Checked;
         }
     }
 

@@ -46,6 +46,7 @@
             this.chkbViews = new System.Windows.Forms.CheckBox();
             this.chkbOpenIssues = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkbClones = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -60,7 +61,7 @@
             this.chklstRepo.Location = new System.Drawing.Point(3, 162);
             this.chklstRepo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chklstRepo.Name = "chklstRepo";
-            this.chklstRepo.Size = new System.Drawing.Size(733, 259);
+            this.chklstRepo.Size = new System.Drawing.Size(733, 225);
             this.chklstRepo.TabIndex = 0;
             this.chklstRepo.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chklstRepo_ItemCheck);
             this.chklstRepo.SelectedIndexChanged += new System.EventHandler(this.chklstRepo_SelectedIndexChanged);
@@ -254,16 +255,28 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkbClones);
             this.groupBox1.Controls.Add(this.chkbLikes);
             this.groupBox1.Controls.Add(this.chkbViews);
             this.groupBox1.Controls.Add(this.chkbDownloads);
             this.groupBox1.Controls.Add(this.chkbOpenIssues);
-            this.groupBox1.Location = new System.Drawing.Point(3, 434);
+            this.groupBox1.Location = new System.Drawing.Point(3, 392);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(732, 136);
+            this.groupBox1.Size = new System.Drawing.Size(732, 161);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected:";
+            // 
+            // chkbClones
+            // 
+            this.chkbClones.AutoSize = true;
+            this.chkbClones.Location = new System.Drawing.Point(9, 130);
+            this.chkbClones.Name = "chkbClones";
+            this.chkbClones.Size = new System.Drawing.Size(162, 21);
+            this.chkbClones.TabIndex = 16;
+            this.chkbClones.Text = "Enable Clones Count";
+            this.chkbClones.UseVisualStyleBackColor = true;
+            this.chkbClones.CheckedChanged += new System.EventHandler(this.chkbClones_CheckedChanged);
             // 
             // UserSettingsForm
             // 
@@ -317,6 +330,7 @@
         private System.Windows.Forms.CheckBox chkbViews;
         private System.Windows.Forms.CheckBox chkbOpenIssues;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkbClones;
     }
 }
 

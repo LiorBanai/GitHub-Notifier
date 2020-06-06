@@ -69,7 +69,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1380, 560);
+            this.panel1.Size = new System.Drawing.Size(1482, 560);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -81,7 +81,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 2;
-            this.tabControl1.Size = new System.Drawing.Size(1380, 560);
+            this.tabControl1.Size = new System.Drawing.Size(1482, 560);
             this.tabControl1.TabIndex = 0;
             // 
             // tpRepo
@@ -91,7 +91,7 @@
             this.tpRepo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpRepo.Name = "tpRepo";
             this.tpRepo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpRepo.Size = new System.Drawing.Size(1372, 531);
+            this.tpRepo.Size = new System.Drawing.Size(1474, 531);
             this.tpRepo.TabIndex = 0;
             this.tpRepo.Text = "Repositories";
             this.tpRepo.UseVisualStyleBackColor = true;
@@ -159,7 +159,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1380, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1482, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -225,7 +225,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 593);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1380, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1482, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -257,7 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1380, 619);
+            this.ClientSize = new System.Drawing.Size(1482, 619);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
