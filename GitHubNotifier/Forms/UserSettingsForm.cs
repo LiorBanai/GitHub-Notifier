@@ -76,7 +76,7 @@ namespace GitHubNotifier.Forms
                 chkbDownloads.Checked = repo.ShowDownloads;
                 chkbOpenIssues.Checked = repo.ShowOpenIssues;
                 chkbViews.Checked = repo.ShowViews;
-
+                chkbClones.Checked = repo.ShowClones;
             }
         }
 

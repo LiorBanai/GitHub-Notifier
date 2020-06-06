@@ -30,6 +30,11 @@ namespace GitHubNotifier.UserControls
 
         private async void RepositoryEntry_Load(object sender, EventArgs e)
         {
+            lblViews.Visible = Repo.ShowViews;
+            lblDownloads.Visible = Repo.ShowDownloads;
+            lblLikes.Visible = Repo.ShowLikes;
+            lnklblIssues.Visible = Repo.ShowOpenIssues;
+            lblClones.Visible = Repo.ShowClones;
             lblDownloads.Text = "Downloads: " + Repo.LastTotalDownloads;
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
             lnklblIssues.Text = "Open Issues: " + Repo.OpenIssues;
