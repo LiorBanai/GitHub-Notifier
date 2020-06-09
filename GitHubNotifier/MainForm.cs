@@ -85,7 +85,7 @@ namespace GitHubNotifier
         {
             RepositoryEntry ar1 = new RepositoryEntry(repo);
             repos.Add(ar1);
-            tpRepo.Controls.Add(ar1);
+            panelRepositories.Controls.Add(ar1);
             ar1.Dock = DockStyle.Top;
         }
 
@@ -176,6 +176,14 @@ namespace GitHubNotifier
         {
             Settings.LastUnReadUserNotifications.Clear();
             lstNotifications.Items.Clear();
+        }
+
+        private async void tsbtnCheckAllRepositories_Click(object sender, EventArgs e)
+        {
+            foreach (RepositoryEntry repo in repos)
+            {
+                await repo.Check(true);
+            }
         }
     }
 }

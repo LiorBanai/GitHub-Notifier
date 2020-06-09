@@ -51,13 +51,18 @@
             this.tsslblNotifications = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.tsbtnCheckAllRepositories = new System.Windows.Forms.ToolStripButton();
+            this.panelRepositories = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tpRepo.SuspendLayout();
             this.tpNotifications.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -66,10 +71,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Location = new System.Drawing.Point(0, 31);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1495, 560);
+            this.panel1.Size = new System.Drawing.Size(1121, 455);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -78,20 +83,22 @@
             this.tabControl1.Controls.Add(this.tpNotifications);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 2;
-            this.tabControl1.Size = new System.Drawing.Size(1495, 560);
+            this.tabControl1.Size = new System.Drawing.Size(1121, 455);
             this.tabControl1.TabIndex = 0;
             // 
             // tpRepo
             // 
             this.tpRepo.AutoScroll = true;
-            this.tpRepo.Location = new System.Drawing.Point(4, 25);
-            this.tpRepo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tpRepo.Controls.Add(this.panelRepositories);
+            this.tpRepo.Controls.Add(this.toolStrip2);
+            this.tpRepo.Location = new System.Drawing.Point(4, 22);
+            this.tpRepo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tpRepo.Name = "tpRepo";
-            this.tpRepo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpRepo.Size = new System.Drawing.Size(1487, 531);
+            this.tpRepo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tpRepo.Size = new System.Drawing.Size(1113, 429);
             this.tpRepo.TabIndex = 0;
             this.tpRepo.Text = "Repositories";
             this.tpRepo.UseVisualStyleBackColor = true;
@@ -100,10 +107,10 @@
             // 
             this.tpNotifications.Controls.Add(this.lstNotifications);
             this.tpNotifications.Controls.Add(this.toolStrip1);
-            this.tpNotifications.Location = new System.Drawing.Point(4, 25);
-            this.tpNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tpNotifications.Location = new System.Drawing.Point(4, 22);
+            this.tpNotifications.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tpNotifications.Name = "tpNotifications";
-            this.tpNotifications.Size = new System.Drawing.Size(1474, 531);
+            this.tpNotifications.Size = new System.Drawing.Size(1113, 429);
             this.tpNotifications.TabIndex = 2;
             this.tpNotifications.Text = "Notifications";
             this.tpNotifications.UseVisualStyleBackColor = true;
@@ -112,11 +119,10 @@
             // 
             this.lstNotifications.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstNotifications.FormattingEnabled = true;
-            this.lstNotifications.ItemHeight = 16;
             this.lstNotifications.Location = new System.Drawing.Point(0, 27);
-            this.lstNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lstNotifications.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstNotifications.Name = "lstNotifications";
-            this.lstNotifications.Size = new System.Drawing.Size(1474, 504);
+            this.lstNotifications.Size = new System.Drawing.Size(1113, 402);
             this.lstNotifications.TabIndex = 0;
             // 
             // toolStrip1
@@ -127,7 +133,7 @@
             this.tsBtnClear});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1474, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1113, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -136,7 +142,7 @@
             this.tsBtnCheckNotifications.Image = global::GitHubNotifier.Properties.Resources.Refresh;
             this.tsBtnCheckNotifications.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnCheckNotifications.Name = "tsBtnCheckNotifications";
-            this.tsBtnCheckNotifications.Size = new System.Drawing.Size(107, 24);
+            this.tsBtnCheckNotifications.Size = new System.Drawing.Size(92, 24);
             this.tsBtnCheckNotifications.Text = "Check Now";
             this.tsBtnCheckNotifications.Click += new System.EventHandler(this.tsBtnCheckNotifications_Click);
             // 
@@ -145,7 +151,7 @@
             this.tsBtnClear.Image = global::GitHubNotifier.Properties.Resources.Clear_16x16;
             this.tsBtnClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnClear.Name = "tsBtnClear";
-            this.tsBtnClear.Size = new System.Drawing.Size(67, 24);
+            this.tsBtnClear.Size = new System.Drawing.Size(58, 24);
             this.tsBtnClear.Text = "Clear";
             this.tsBtnClear.Click += new System.EventHandler(this.tsBtnClear_Click);
             // 
@@ -158,8 +164,8 @@
             this.tsmiSettings});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1495, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1121, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -168,13 +174,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiExitForm});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // tsmiExitForm
             // 
             this.tsmiExitForm.Name = "tsmiExitForm";
-            this.tsmiExitForm.Size = new System.Drawing.Size(116, 26);
+            this.tsmiExitForm.Size = new System.Drawing.Size(93, 22);
             this.tsmiExitForm.Text = "Exit";
             this.tsmiExitForm.Click += new System.EventHandler(this.tsmiExitForm_Click);
             // 
@@ -182,14 +188,14 @@
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // tsmiSettings
             // 
             this.tsmiSettings.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(76, 24);
+            this.tsmiSettings.Size = new System.Drawing.Size(61, 20);
             this.tsmiSettings.Text = "Settings";
             this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
@@ -207,12 +213,12 @@
             this.contextMenuStripNotifyBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiExit});
             this.contextMenuStripNotifyBar.Name = "contextMenuStripNotifyBar";
-            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(103, 28);
+            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(94, 26);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(102, 24);
+            this.tsmiExit.Size = new System.Drawing.Size(93, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -222,23 +228,23 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslblAPILimit,
             this.tsslblNotifications});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 593);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 481);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1495, 26);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1121, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tsslblAPILimit
             // 
             this.tsslblAPILimit.Name = "tsslblAPILimit";
-            this.tsslblAPILimit.Size = new System.Drawing.Size(77, 20);
+            this.tsslblAPILimit.Size = new System.Drawing.Size(63, 17);
             this.tsslblAPILimit.Text = "API Limits:";
             // 
             // tsslblNotifications
             // 
             this.tsslblNotifications.Name = "tsslblNotifications";
-            this.tsslblNotifications.Size = new System.Drawing.Size(97, 20);
+            this.tsslblNotifications.Size = new System.Drawing.Size(78, 17);
             this.tsslblNotifications.Text = "Notifications:";
             // 
             // timerNotifications
@@ -253,16 +259,44 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
+            // toolStrip2
+            // 
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnCheckAllRepositories});
+            this.toolStrip2.Location = new System.Drawing.Point(2, 2);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1109, 27);
+            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // tsbtnCheckAllRepositories
+            // 
+            this.tsbtnCheckAllRepositories.Image = global::GitHubNotifier.Properties.Resources.Refresh;
+            this.tsbtnCheckAllRepositories.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnCheckAllRepositories.Name = "tsbtnCheckAllRepositories";
+            this.tsbtnCheckAllRepositories.Size = new System.Drawing.Size(92, 24);
+            this.tsbtnCheckAllRepositories.Text = "Check Now";
+            this.tsbtnCheckAllRepositories.Click += new System.EventHandler(this.tsbtnCheckAllRepositories_Click);
+            // 
+            // panelRepositories
+            // 
+            this.panelRepositories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRepositories.Location = new System.Drawing.Point(2, 29);
+            this.panelRepositories.Name = "panelRepositories";
+            this.panelRepositories.Size = new System.Drawing.Size(1109, 398);
+            this.panelRepositories.TabIndex = 3;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1495, 619);
+            this.ClientSize = new System.Drawing.Size(1121, 503);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "GitHub Notifier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -270,6 +304,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tpRepo.ResumeLayout(false);
+            this.tpRepo.PerformLayout();
             this.tpNotifications.ResumeLayout(false);
             this.tpNotifications.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -279,6 +315,8 @@
             this.contextMenuStripNotifyBar.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,6 +345,9 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslblNotifications;
         private System.Windows.Forms.Timer timerAPIRateCheck;
         private System.Windows.Forms.ToolStripButton tsBtnClear;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton tsbtnCheckAllRepositories;
+        private System.Windows.Forms.Panel panelRepositories;
     }
 }
 
