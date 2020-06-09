@@ -26,7 +26,19 @@ namespace GitHubNotifier
             if (Visible)
                 Hide();
             else
+            {
                 Show();
+                BringToFront();
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -40,6 +52,7 @@ namespace GitHubNotifier
 
             tabControl1.SelectedIndex = 0;
             timerNotifications.Interval = Settings.NotificationsIntervalCheck * 60 * 1000;
+            if (Settings.StartMinimized) Hide();
         }
 
         private async Task CheckAPILimits()

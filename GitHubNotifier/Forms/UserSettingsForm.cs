@@ -21,6 +21,7 @@ namespace GitHubNotifier.Forms
         {
             RefreshList();
             nudNotifications.Value = UserSettingsManager.Instance.NotificationsIntervalCheck;
+            chkbStartMinimized.Checked = UserSettingsManager.Instance.StartMinimized;
         }
 
         private void btnAddRepo_Click(object sender, System.EventArgs e)
@@ -38,7 +39,7 @@ namespace GitHubNotifier.Forms
             chklstRepo.Items.AddRange(UserSettingsManager.Instance.Repositories.ToArray());
             for (int i = 0; i < UserSettingsManager.Instance.Repositories.Count; i++)
             {
-                DataTypes.RepositorySettings r = UserSettingsManager.Instance.Repositories[i];
+                RepositorySettings r = UserSettingsManager.Instance.Repositories[i];
                 chklstRepo.SetItemCheckState(i, r.Enabled ? CheckState.Checked : CheckState.Unchecked);
             }
         }
@@ -77,6 +78,8 @@ namespace GitHubNotifier.Forms
                 chkbOpenIssues.Checked = repo.ShowOpenIssues;
                 chkbViews.Checked = repo.ShowViews;
                 chkbClones.Checked = repo.ShowClones;
+                txtSelectedRepoName.Text = repo.RepoName;
+                txtSelectedRepoDisplayName.Text = repo.DisplayName;
             }
         }
 
@@ -108,6 +111,23 @@ namespace GitHubNotifier.Forms
         {
             if (selectedRepositorySettings != null)
                 selectedRepositorySettings.ShowClones = chkbClones.Checked;
+        }
+
+        private void txtSelectedRepoName_TextChanged(object sender, System.EventArgs e)
+        {
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.RepoName = txtSelectedRepoName.Text;
+        }
+
+        private void txtSelectedRepoDisplayName_TextChanged(object sender, System.EventArgs e)
+        {
+            if (selectedRepositorySettings != null)
+                selectedRepositorySettings.DisplayName = txtSelectedRepoDisplayName.Text;
+        }
+
+        private void chkbStartMinimized_CheckedChanged(object sender, System.EventArgs e)
+        {
+            UserSettingsManager.Instance.StartMinimized = chkbStartMinimized.Checked;
         }
     }
 
