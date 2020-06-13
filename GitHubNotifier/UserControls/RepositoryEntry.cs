@@ -86,7 +86,11 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
+                        popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                         popupNotifier.IgnoreWhenFullScreen = true;
+                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
+
                     }
                     popupNotifier.Popup();
                 }
@@ -124,7 +128,11 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
+                        popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                         popupNotifier.IgnoreWhenFullScreen = true;
+                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
+
                     }
                     popupNotifier.Popup();
                 }
@@ -164,9 +172,16 @@ namespace GitHubNotifier.UserControls
                     ContentText = msg.Text,
                     IsRightToLeft = false,
                     Image = msg.Image,
+
                     IgnoreWhenFullScreen = true
                 })
+                {
+                    popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
+                    popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
+                    popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
+
                     popupNotifier.Popup();
+                }
             }
             else
             {
@@ -202,6 +217,9 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
+                        popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
+                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
@@ -233,6 +251,9 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
+                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
+                        popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
+                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
