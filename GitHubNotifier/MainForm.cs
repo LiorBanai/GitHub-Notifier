@@ -138,37 +138,35 @@ namespace GitHubNotifier
                 {
                     Settings.LastReadUserNotification = DateTime.Now;
                     Settings.LastUnReadUserNotifications = notifications.Where(n => n.Unread).ToList();
+                    foreach (var notification in notifications)
+                    {
+                        using (var popupNotifier = new NotificationWindow.PopupNotifier())
+                        {
+                            {
+                                popupNotifier.TitleText = notification.Repository.FullName;
+                                popupNotifier.ContentText = notification.Subject.Title;
+                                popupNotifier.IsRightToLeft = false;
+                                popupNotifier.Image = Properties.Resources.Question_32x32;
+                                popupNotifier.IgnoreWhenFullScreen = true;
+                            }
+                            popupNotifier.Popup();
+                        }
+                    }
                 }
             }
-            LoadAndDisplayNotifications(Settings.LastUnReadUserNotifications);
-        }
+            
 
-        private void LoadAndDisplayNotifications(List<GitHubUserNotification> notifications)
-        {
-            if (notifications.Any())
+            if (Settings.LastUnReadUserNotifications.Any())
             {
                 lstNotifications.Items.Clear();
-                lstNotifications.Items.AddRange(notifications.Select(n => n.Subject.Title).ToArray());
-
+                lstNotifications.Items.AddRange(Settings.LastUnReadUserNotifications.Select(n => n.Subject.Title).ToArray());
             }
 
-            tsslblNotifications.Text = $"Notification: {notifications.Count}. Last Update: {Settings.LastReadUserNotification}";
-
-            foreach (var notification in notifications)
-            {
-                using (var popupNotifier = new NotificationWindow.PopupNotifier())
-                {
-                    {
-                        popupNotifier.TitleText = notification.Repository.FullName;
-                        popupNotifier.ContentText = notification.Subject.Title;
-                        popupNotifier.IsRightToLeft = false;
-                        popupNotifier.Image = Properties.Resources.Question_32x32;
-                        popupNotifier.IgnoreWhenFullScreen = true;
-                    }
-                    popupNotifier.Popup();
-                }
-            }
+            tsslblNotifications.Text = $"Notification: {Settings.LastUnReadUserNotifications.Count}. Last Update: {Settings.LastReadUserNotification}";
+            
         }
+
+      
 
         private void tsmiExitForm_Click(object sender, EventArgs e)
         {
@@ -193,10 +191,15 @@ namespace GitHubNotifier
 
         private async void tsbtnCheckAllRepositories_Click(object sender, EventArgs e)
         {
-            foreach (RepositoryEntry repo in repos)
+            try
             {
-                await repo.Check(true);
+                await Task.WhenAll(repos.Select(r => r.Check(true)));
             }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
         }
     }
 }

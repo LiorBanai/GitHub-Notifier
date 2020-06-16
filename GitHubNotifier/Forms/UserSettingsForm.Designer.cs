@@ -46,17 +46,18 @@
             this.chkbViews = new System.Windows.Forms.CheckBox();
             this.chkbOpenIssues = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkbClones = new System.Windows.Forms.CheckBox();
             this.txtSelectedRepoName = new System.Windows.Forms.TextBox();
             this.txtSelectedRepoDisplayName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkbClones = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.chkbStartMinimized = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkbShowNotificationsOnlyOnce = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -73,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chklstRepo.FormattingEnabled = true;
             this.chklstRepo.Location = new System.Drawing.Point(8, 127);
-            this.chklstRepo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chklstRepo.Margin = new System.Windows.Forms.Padding(2);
             this.chklstRepo.Name = "chklstRepo";
             this.chklstRepo.Size = new System.Drawing.Size(774, 199);
             this.chklstRepo.TabIndex = 0;
@@ -84,7 +85,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Location = new System.Drawing.Point(797, 141);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(118, 28);
             this.btnDelete.TabIndex = 1;
@@ -117,7 +118,7 @@
             this.txtbRepoDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbRepoDisplayName.Location = new System.Drawing.Point(238, 69);
-            this.txtbRepoDisplayName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtbRepoDisplayName.Margin = new System.Windows.Forms.Padding(2);
             this.txtbRepoDisplayName.Name = "txtbRepoDisplayName";
             this.txtbRepoDisplayName.Size = new System.Drawing.Size(546, 20);
             this.txtbRepoDisplayName.TabIndex = 5;
@@ -127,7 +128,7 @@
             this.txtbRepoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbRepoName.Location = new System.Drawing.Point(238, 47);
-            this.txtbRepoName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtbRepoName.Margin = new System.Windows.Forms.Padding(2);
             this.txtbRepoName.Name = "txtbRepoName";
             this.txtbRepoName.Size = new System.Drawing.Size(546, 20);
             this.txtbRepoName.TabIndex = 6;
@@ -136,7 +137,7 @@
             // 
             this.btnAddRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddRepo.Location = new System.Drawing.Point(797, 49);
-            this.btnAddRepo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddRepo.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddRepo.Name = "btnAddRepo";
             this.btnAddRepo.Size = new System.Drawing.Size(118, 28);
             this.btnAddRepo.TabIndex = 7;
@@ -158,7 +159,7 @@
             // 
             this.nudMinutes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nudMinutes.Location = new System.Drawing.Point(684, 99);
-            this.nudMinutes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMinutes.Margin = new System.Windows.Forms.Padding(2);
             this.nudMinutes.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -181,7 +182,7 @@
             // nudNotifications
             // 
             this.nudNotifications.Location = new System.Drawing.Point(238, 10);
-            this.nudNotifications.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudNotifications.Margin = new System.Windows.Forms.Padding(2);
             this.nudNotifications.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -227,7 +228,7 @@
             // 
             this.chkbLikes.AutoSize = true;
             this.chkbLikes.Location = new System.Drawing.Point(7, 19);
-            this.chkbLikes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkbLikes.Margin = new System.Windows.Forms.Padding(2);
             this.chkbLikes.Name = "chkbLikes";
             this.chkbLikes.Size = new System.Drawing.Size(118, 17);
             this.chkbLikes.TabIndex = 12;
@@ -239,7 +240,7 @@
             // 
             this.chkbDownloads.AutoSize = true;
             this.chkbDownloads.Location = new System.Drawing.Point(7, 41);
-            this.chkbDownloads.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkbDownloads.Margin = new System.Windows.Forms.Padding(2);
             this.chkbDownloads.Name = "chkbDownloads";
             this.chkbDownloads.Size = new System.Drawing.Size(141, 17);
             this.chkbDownloads.TabIndex = 13;
@@ -251,7 +252,7 @@
             // 
             this.chkbViews.AutoSize = true;
             this.chkbViews.Location = new System.Drawing.Point(7, 84);
-            this.chkbViews.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkbViews.Margin = new System.Windows.Forms.Padding(2);
             this.chkbViews.Name = "chkbViews";
             this.chkbViews.Size = new System.Drawing.Size(121, 17);
             this.chkbViews.TabIndex = 15;
@@ -263,7 +264,7 @@
             // 
             this.chkbOpenIssues.AutoSize = true;
             this.chkbOpenIssues.Location = new System.Drawing.Point(7, 62);
-            this.chkbOpenIssues.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkbOpenIssues.Margin = new System.Windows.Forms.Padding(2);
             this.chkbOpenIssues.Name = "chkbOpenIssues";
             this.chkbOpenIssues.Size = new System.Drawing.Size(152, 17);
             this.chkbOpenIssues.TabIndex = 14;
@@ -284,25 +285,13 @@
             this.groupBox1.Controls.Add(this.chkbOpenIssues);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(3, 335);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(915, 141);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected:";
-            // 
-            // chkbClones
-            // 
-            this.chkbClones.AutoSize = true;
-            this.chkbClones.Location = new System.Drawing.Point(7, 106);
-            this.chkbClones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chkbClones.Name = "chkbClones";
-            this.chkbClones.Size = new System.Drawing.Size(125, 17);
-            this.chkbClones.TabIndex = 16;
-            this.chkbClones.Text = "Enable Clones Count";
-            this.chkbClones.UseVisualStyleBackColor = true;
-            this.chkbClones.CheckedChanged += new System.EventHandler(this.chkbClones_CheckedChanged);
             // 
             // txtSelectedRepoName
             // 
@@ -346,6 +335,18 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Repository name (as in User/Repo)";
             // 
+            // chkbClones
+            // 
+            this.chkbClones.AutoSize = true;
+            this.chkbClones.Location = new System.Drawing.Point(7, 106);
+            this.chkbClones.Margin = new System.Windows.Forms.Padding(2);
+            this.chkbClones.Name = "chkbClones";
+            this.chkbClones.Size = new System.Drawing.Size(125, 17);
+            this.chkbClones.TabIndex = 16;
+            this.chkbClones.Text = "Enable Clones Count";
+            this.chkbClones.UseVisualStyleBackColor = true;
+            this.chkbClones.CheckedChanged += new System.EventHandler(this.chkbClones_CheckedChanged);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -370,6 +371,30 @@
             this.tabPage1.Text = "Application";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // chkbStartMinimized
+            // 
+            this.chkbStartMinimized.AutoSize = true;
+            this.chkbStartMinimized.Location = new System.Drawing.Point(7, 27);
+            this.chkbStartMinimized.Margin = new System.Windows.Forms.Padding(2);
+            this.chkbStartMinimized.Name = "chkbStartMinimized";
+            this.chkbStartMinimized.Size = new System.Drawing.Size(169, 17);
+            this.chkbStartMinimized.TabIndex = 13;
+            this.chkbStartMinimized.Text = "Start the application Minimized";
+            this.chkbStartMinimized.UseVisualStyleBackColor = true;
+            this.chkbStartMinimized.CheckedChanged += new System.EventHandler(this.chkbStartMinimized_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(3, 3);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(915, 41);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "GitHub limits number of API call to 60 per hour. Add Environment Variable with ke" +
+    "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label2);
@@ -391,20 +416,9 @@
             this.tabPage2.Text = "Repositories";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(3, 3);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(915, 41);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "GitHub limits number of API call to 60 per hour. Add Environment Variable with ke" +
-    "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour";
-            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.chkbShowNotificationsOnlyOnce);
             this.tabPage3.Controls.Add(this.lblNotifications);
             this.tabPage3.Controls.Add(this.nudNotifications);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -414,17 +428,17 @@
             this.tabPage3.Text = "User Notifications";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // chkbStartMinimized
+            // chkbShowNotificationsOnlyOnce
             // 
-            this.chkbStartMinimized.AutoSize = true;
-            this.chkbStartMinimized.Location = new System.Drawing.Point(7, 27);
-            this.chkbStartMinimized.Margin = new System.Windows.Forms.Padding(2);
-            this.chkbStartMinimized.Name = "chkbStartMinimized";
-            this.chkbStartMinimized.Size = new System.Drawing.Size(169, 17);
-            this.chkbStartMinimized.TabIndex = 13;
-            this.chkbStartMinimized.Text = "Start the application Minimized";
-            this.chkbStartMinimized.UseVisualStyleBackColor = true;
-            this.chkbStartMinimized.CheckedChanged += new System.EventHandler(this.chkbStartMinimized_CheckedChanged);
+            this.chkbShowNotificationsOnlyOnce.AutoSize = true;
+            this.chkbShowNotificationsOnlyOnce.Location = new System.Drawing.Point(10, 46);
+            this.chkbShowNotificationsOnlyOnce.Margin = new System.Windows.Forms.Padding(2);
+            this.chkbShowNotificationsOnlyOnce.Name = "chkbShowNotificationsOnlyOnce";
+            this.chkbShowNotificationsOnlyOnce.Size = new System.Drawing.Size(163, 17);
+            this.chkbShowNotificationsOnlyOnce.TabIndex = 13;
+            this.chkbShowNotificationsOnlyOnce.Text = "Show Notifications only once";
+            this.chkbShowNotificationsOnlyOnce.UseVisualStyleBackColor = true;
+            this.chkbShowNotificationsOnlyOnce.CheckedChanged += new System.EventHandler(this.chkbShowNotificationsOnlyOnce_CheckedChanged);
             // 
             // UserSettingsForm
             // 
@@ -433,7 +447,7 @@
             this.ClientSize = new System.Drawing.Size(929, 505);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserSettingsForm";
             this.Text = "User Settings ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserSettingsForm_FormClosing);
@@ -483,6 +497,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.CheckBox chkbShowNotificationsOnlyOnce;
     }
 }
 

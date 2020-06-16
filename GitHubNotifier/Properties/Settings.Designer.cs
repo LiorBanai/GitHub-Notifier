@@ -93,5 +93,17 @@ namespace GitHubNotifier.Properties {
                 this["StartMinimized"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowNotificationsOnlyOnce {
+            get {
+                return ((bool)(this["ShowNotificationsOnlyOnce"]));
+            }
+            set {
+                this["ShowNotificationsOnlyOnce"] = value;
+            }
+        }
     }
 }
