@@ -154,19 +154,19 @@ namespace GitHubNotifier
                     }
                 }
             }
-            
+
 
             if (Settings.LastUnReadUserNotifications.Any())
             {
                 lstNotifications.Items.Clear();
-                lstNotifications.Items.AddRange(Settings.LastUnReadUserNotifications.Select(n => n.Subject.Title).ToArray());
+                lstNotifications.Items.AddRange(Settings.LastUnReadUserNotifications.Select(n => $"{n.Repository.FullName}:  {n.Subject.Title}").ToArray());
             }
 
             tsslblNotifications.Text = $"Notification: {Settings.LastUnReadUserNotifications.Count}. Last Update: {Settings.LastReadUserNotification}";
-            
+
         }
 
-      
+
 
         private void tsmiExitForm_Click(object sender, EventArgs e)
         {
