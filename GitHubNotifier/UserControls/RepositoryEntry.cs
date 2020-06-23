@@ -261,6 +261,8 @@ namespace GitHubNotifier.UserControls
 
                 if (change > 0)
                 {
+                    Repo.OpenIssues = repoInfo.OpenIssues;
+                    lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
                     var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
                         UserSettingsManager.Instance.GitHubToken, lastCheck);
                     if (issues.newData)

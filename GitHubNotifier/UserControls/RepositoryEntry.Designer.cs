@@ -39,15 +39,19 @@
             this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.lblLikes = new System.Windows.Forms.Label();
             this.lblDownloads = new System.Windows.Forms.Label();
+            this.timerDownloads = new System.Windows.Forms.Timer(this.components);
+            this.timerIssuesAndStars = new System.Windows.Forms.Timer(this.components);
+            this.timerViews = new System.Windows.Forms.Timer(this.components);
+            this.timerClones = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnCheckNow
             // 
             this.btnCheckNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCheckNow.Location = new System.Drawing.Point(982, 0);
-            this.btnCheckNow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnCheckNow.Location = new System.Drawing.Point(1309, 0);
+            this.btnCheckNow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCheckNow.Name = "btnCheckNow";
-            this.btnCheckNow.Size = new System.Drawing.Size(93, 21);
+            this.btnCheckNow.Size = new System.Drawing.Size(124, 26);
             this.btnCheckNow.TabIndex = 2;
             this.btnCheckNow.Text = "Check Now";
             this.btnCheckNow.UseVisualStyleBackColor = true;
@@ -55,10 +59,9 @@
             // 
             // lnkLabel
             // 
-            this.lnkLabel.Location = new System.Drawing.Point(4, 1);
-            this.lnkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnkLabel.Location = new System.Drawing.Point(5, 1);
             this.lnkLabel.Name = "lnkLabel";
-            this.lnkLabel.Size = new System.Drawing.Size(144, 36);
+            this.lnkLabel.Size = new System.Drawing.Size(192, 44);
             this.lnkLabel.TabIndex = 3;
             this.lnkLabel.TabStop = true;
             this.lnkLabel.Text = "N/A";
@@ -74,10 +77,9 @@
             // lblNext
             // 
             this.lblNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNext.Location = new System.Drawing.Point(878, 22);
-            this.lblNext.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNext.Location = new System.Drawing.Point(1171, 27);
             this.lblNext.Name = "lblNext";
-            this.lblNext.Size = new System.Drawing.Size(194, 15);
+            this.lblNext.Size = new System.Drawing.Size(259, 18);
             this.lblNext.TabIndex = 4;
             this.lblNext.Text = "Next Check:";
             this.lblNext.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -92,10 +94,9 @@
             // 
             this.lblClones.Image = global::GitHubNotifier.Properties.Resources.NewDataSource_32x32;
             this.lblClones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblClones.Location = new System.Drawing.Point(724, 2);
-            this.lblClones.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblClones.Location = new System.Drawing.Point(965, 2);
             this.lblClones.Name = "lblClones";
-            this.lblClones.Size = new System.Drawing.Size(169, 36);
+            this.lblClones.Size = new System.Drawing.Size(225, 44);
             this.lblClones.TabIndex = 8;
             this.lblClones.Text = "Clones:";
             this.lblClones.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -104,10 +105,9 @@
             // 
             this.lblViews.Image = global::GitHubNotifier.Properties.Resources.Show_32x32;
             this.lblViews.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblViews.Location = new System.Drawing.Point(597, 2);
-            this.lblViews.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblViews.Location = new System.Drawing.Point(796, 2);
             this.lblViews.Name = "lblViews";
-            this.lblViews.Size = new System.Drawing.Size(123, 36);
+            this.lblViews.Size = new System.Drawing.Size(164, 44);
             this.lblViews.TabIndex = 7;
             this.lblViews.Text = "Views:";
             this.lblViews.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -117,10 +117,9 @@
             this.lnklblIssues.ContextMenuStrip = this.cmsIssues;
             this.lnklblIssues.Image = global::GitHubNotifier.Properties.Resources.Issue_32x32;
             this.lnklblIssues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lnklblIssues.Location = new System.Drawing.Point(432, 1);
-            this.lnklblIssues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblIssues.Location = new System.Drawing.Point(576, 1);
             this.lnklblIssues.Name = "lnklblIssues";
-            this.lnklblIssues.Size = new System.Drawing.Size(161, 36);
+            this.lnklblIssues.Size = new System.Drawing.Size(215, 44);
             this.lnklblIssues.TabIndex = 6;
             this.lnklblIssues.TabStop = true;
             this.lnklblIssues.Text = "Open Issues:";
@@ -131,10 +130,9 @@
             // 
             this.lblLikes.Image = global::GitHubNotifier.Properties.Resources.Feature_32x32;
             this.lblLikes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLikes.Location = new System.Drawing.Point(152, 1);
-            this.lblLikes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLikes.Location = new System.Drawing.Point(203, 1);
             this.lblLikes.Name = "lblLikes";
-            this.lblLikes.Size = new System.Drawing.Size(113, 36);
+            this.lblLikes.Size = new System.Drawing.Size(151, 44);
             this.lblLikes.TabIndex = 1;
             this.lblLikes.Text = "Likes:";
             this.lblLikes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -143,17 +141,36 @@
             // 
             this.lblDownloads.Image = global::GitHubNotifier.Properties.Resources.Download_32x32;
             this.lblDownloads.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblDownloads.Location = new System.Drawing.Point(270, 1);
-            this.lblDownloads.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDownloads.Location = new System.Drawing.Point(360, 1);
             this.lblDownloads.Name = "lblDownloads";
-            this.lblDownloads.Size = new System.Drawing.Size(158, 36);
+            this.lblDownloads.Size = new System.Drawing.Size(211, 44);
             this.lblDownloads.TabIndex = 0;
             this.lblDownloads.Text = "Downloads:";
             this.lblDownloads.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timerDownloads
+            // 
+            this.timerDownloads.Enabled = true;
+            this.timerDownloads.Interval = 900000;
+            // 
+            // timerIssuesAndStars
+            // 
+            this.timerIssuesAndStars.Enabled = true;
+            this.timerIssuesAndStars.Interval = 900000;
+            // 
+            // timerViews
+            // 
+            this.timerViews.Enabled = true;
+            this.timerViews.Interval = 900000;
+            // 
+            // timerClones
+            // 
+            this.timerClones.Enabled = true;
+            this.timerClones.Interval = 900000;
+            // 
             // RepositoryEntry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblClones);
             this.Controls.Add(this.lblViews);
@@ -163,9 +180,9 @@
             this.Controls.Add(this.btnCheckNow);
             this.Controls.Add(this.lblLikes);
             this.Controls.Add(this.lblDownloads);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RepositoryEntry";
-            this.Size = new System.Drawing.Size(1075, 39);
+            this.Size = new System.Drawing.Size(1433, 48);
             this.Load += new System.EventHandler(this.RepositoryEntry_Load);
             this.ResumeLayout(false);
 
@@ -183,5 +200,9 @@
         private System.Windows.Forms.Label lblViews;
         private System.Windows.Forms.ContextMenuStrip cmsIssues;
         private System.Windows.Forms.Label lblClones;
+        private System.Windows.Forms.Timer timerDownloads;
+        private System.Windows.Forms.Timer timerIssuesAndStars;
+        private System.Windows.Forms.Timer timerViews;
+        private System.Windows.Forms.Timer timerClones;
     }
 }
