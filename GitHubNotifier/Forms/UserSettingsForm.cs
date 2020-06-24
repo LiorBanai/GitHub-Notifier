@@ -23,6 +23,7 @@ namespace GitHubNotifier.Forms
             nudNotifications.Value = UserSettingsManager.Instance.NotificationsIntervalCheck;
             chkbStartMinimized.Checked = UserSettingsManager.Instance.StartMinimized;
             chkbShowNotificationsOnlyOnce.Checked = UserSettingsManager.Instance.ShowNotificationsOnlyOnce;
+            chkbDoNotShowDecrementPopups.Checked = UserSettingsManager.Instance.DoNotShowDecrementPopups;
         }
 
         private void btnAddRepo_Click(object sender, System.EventArgs e)
@@ -134,6 +135,11 @@ namespace GitHubNotifier.Forms
         private void chkbShowNotificationsOnlyOnce_CheckedChanged(object sender, System.EventArgs e)
         {
             UserSettingsManager.Instance.ShowNotificationsOnlyOnce = chkbShowNotificationsOnlyOnce.Checked;
+        }
+
+        private void chkbDoNotShowDecrementPopups_CheckedChanged(object sender, System.EventArgs e)
+        {
+            UserSettingsManager.Instance.DoNotShowDecrementPopups = chkbDoNotShowDecrementPopups.Checked;
         }
     }
 

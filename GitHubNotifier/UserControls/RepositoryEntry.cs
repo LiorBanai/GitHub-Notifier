@@ -179,8 +179,8 @@ namespace GitHubNotifier.UserControls
                     popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
                     popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                     popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
-
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
             }
             else
@@ -222,7 +222,8 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
             }
             else
@@ -256,7 +257,8 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
 
                 if (change > 0)
