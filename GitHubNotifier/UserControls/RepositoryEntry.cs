@@ -238,10 +238,26 @@ namespace GitHubNotifier.UserControls
                 int change = repoInfo.OpenIssues - Repo.OpenIssues;
                 lnklblIssues.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
 
+                string issuesInfo = string.Empty;
+                if (change > 0)
+                {
+                    var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
+                        UserSettingsManager.Instance.GitHubToken, lastCheck);
+                    if (issues.newData)
+                    {
+                        var relevantIssues = issues.result.Take(change).ToList();
+                        issuesInfo = string.Join(Environment.NewLine, relevantIssues.Select(i=>i.Title));
+                        cmsIssues.Items.Clear();
+                        foreach (var issue in relevantIssues)
+                        {
+                            cmsIssues.Items.Add(issue.Title, null, (_, __) => OpenLink(issue.html_url));
+                        }
+                    }
+                }
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = $"Open Issues: {repoInfo.OpenIssues} ({(change > 0 ? "+" : string.Empty)}{change})",
+                    Text = $"Open Issues: {repoInfo.OpenIssues} ({(change > 0 ? "+" : string.Empty)}{change}): {issuesInfo}",
                     Image = Properties.Resources.Feature_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
@@ -251,26 +267,12 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentText = msg.Text;
                         popupNotifier.IsRightToLeft = false;
                         popupNotifier.Image = msg.Image;
-                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
+                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 14.0f);
                         popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
-                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
+                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 11);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     popupNotifier.Popup();
-                }
-
-                if (change > 0)
-                {
-                    var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
-                        UserSettingsManager.Instance.GitHubToken, lastCheck);
-                    if (issues.newData)
-                    {
-                        cmsIssues.Items.Clear();
-                        foreach (var issue in issues.result.Take(change))
-                        {
-                            cmsIssues.Items.Add(issue.Title, null, (_, __) => OpenLink(issue.html_url));
-                        }
-                    }
                 }
             }
             else
