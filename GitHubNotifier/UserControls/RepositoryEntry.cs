@@ -179,8 +179,8 @@ namespace GitHubNotifier.UserControls
                     popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
                     popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                     popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
-
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
             }
             else
@@ -222,7 +222,8 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
             }
             else
@@ -272,7 +273,24 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 11);
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
+                }
+
+                if (change > 0)
+                {
+                    Repo.OpenIssues = repoInfo.OpenIssues;
+                    lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
+                    var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
+                        UserSettingsManager.Instance.GitHubToken, lastCheck);
+                    if (issues.newData)
+                    {
+                        cmsIssues.Items.Clear();
+                        foreach (var issue in issues.result.Take(change))
+                        {
+                            cmsIssues.Items.Add(issue.Title, null, (_, __) => OpenLink(issue.html_url));
+                        }
+                    }
                 }
             }
             else
