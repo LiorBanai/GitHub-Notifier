@@ -247,7 +247,7 @@ namespace GitHubNotifier.UserControls
                     if (issues.newData)
                     {
                         var relevantIssues = issues.result.Take(change).ToList();
-                        issuesInfo = string.Join(Environment.NewLine, relevantIssues.Select(i=>i.Title));
+                        issuesInfo = string.Join(Environment.NewLine, relevantIssues.Select(i => i.Title));
                         cmsIssues.Items.Clear();
                         foreach (var issue in relevantIssues)
                         {
@@ -275,22 +275,6 @@ namespace GitHubNotifier.UserControls
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
                         popupNotifier.Popup();
-                }
-
-                if (change > 0)
-                {
-                    Repo.OpenIssues = repoInfo.OpenIssues;
-                    lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
-                    var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
-                        UserSettingsManager.Instance.GitHubToken, lastCheck);
-                    if (issues.newData)
-                    {
-                        cmsIssues.Items.Clear();
-                        foreach (var issue in issues.result.Take(change))
-                        {
-                            cmsIssues.Items.Add(issue.Title, null, (_, __) => OpenLink(issue.html_url));
-                        }
-                    }
                 }
             }
             else

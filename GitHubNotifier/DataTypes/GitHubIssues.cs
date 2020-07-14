@@ -55,7 +55,7 @@ namespace GitHubNotifier.DataTypes
 
     public class GitHubLabel
     {
-        public int id { get; set; }
+        public long id { get; set; }
         public string node_id { get; set; }
         public string url { get; set; }
         public string name { get; set; }
