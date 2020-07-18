@@ -1,100 +1,102 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
-    <UseWindowsForms>true</UseWindowsForms>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
-	  <IncludeSymbols>true</IncludeSymbols>
-	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	  <Authors>Lior Banai</Authors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/LiorBanai/GitHub-Notifier</PackageProjectUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/LiorBanai/GitHub-Notifier</RepositoryUrl>
-    <PackageIcon>GitHubNotifier.png</PackageIcon>
-    <Copyright>Lior Banai</Copyright>
-    <PackageId>LiorBanai.GitHubNotifier</PackageId>
-    <Version>1.0.4</Version>
-    <Product>LiorBanai.GitHubNotifier</Product>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Authors>Lior Banai</Authors>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageProjectUrl>https://github.com/LiorBanai/GitHub-Notifier</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/LiorBanai/GitHub-Notifier</RepositoryUrl>
+		<PackageIcon>GitHubNotifier.png</PackageIcon>
+		<Copyright>Lior Banai</Copyright>
+		<PackageId>LiorBanai.GitHubNotifier</PackageId>
+		<Version>1.0.4</Version>
+		<Product>LiorBanai.GitHubNotifier</Product>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="LiorBanaI.NotificationWindow" Version="1.0.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="LiorBanaI.NotificationWindow" Version="1.0.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Resources.Extensions" Version="4.6.0"/>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Forms\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\UserSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\UserSettingsForm.Designer.cs">
-      <DependentUpon>UserSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Update="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Update="UserControls\RepositoryEntry.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="UserControls\RepositoryEntry.Designer.cs">
-      <DependentUpon>RepositoryEntry.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Forms\Form1.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\UserSettingsForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\UserSettingsForm.Designer.cs">
+			<DependentUpon>UserSettingsForm.cs</DependentUpon>
+		</Compile>
+		<Compile Update="MainForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+		<Compile Update="UserControls\RepositoryEntry.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="UserControls\RepositoryEntry.Designer.cs">
+			<DependentUpon>RepositoryEntry.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UserControls\RepositoryEntry.resx">
-      <DependentUpon>RepositoryEntry.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="MainForm.resx">
+			<DependentUpon>MainForm.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="UserControls\RepositoryEntry.resx">
+			<DependentUpon>RepositoryEntry.cs</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="..\GitHubNotifier.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<None Include="..\GitHubNotifier.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
