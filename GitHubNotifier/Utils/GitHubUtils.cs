@@ -2,12 +2,14 @@
 using Newtonsoft.Json;
 using System;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace GitHubNotifier.Utils
 {
     public static class GitHubUtils
     {
+        public static event EventHandler<string> OnNameResolutionFailure;
         public static async Task<GitHubRateLimit> GetRateLimit(string token)
         {
             var data = await GetAsync<GitHubRateLimit>("https://api.github.com/rate_limit", token, DateTime.Now);
@@ -38,6 +40,11 @@ namespace GitHubNotifier.Utils
                     string responseText = await reader.ReadToEndAsync();
                     return (true, JsonConvert.DeserializeObject<T>(responseText));
                 }
+            }
+            catch (WebException e) when (e.Status == WebExceptionStatus.NameResolutionFailure)
+            {
+                OnNameResolutionFailure?.Invoke(null, "Error getting " + uri);
+                return (false, default);
             }
             catch (WebException e) when (((HttpWebResponse)e.Response).StatusCode == HttpStatusCode.NotModified)
             {

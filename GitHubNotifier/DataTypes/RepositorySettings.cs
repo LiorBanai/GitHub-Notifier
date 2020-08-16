@@ -27,7 +27,7 @@ namespace GitHubNotifier.DataTypes
         public int LastTotalUniqueViews { get; set; }
 
         public int OpenIssues { get; set; }
-        public bool Enabled { get; set; }
+        public bool Active { get; set; }
         public bool ShowLikes { get; set; }
         public bool ShowDownloads { get; set; }
         public bool ShowOpenIssues { get; set; }
@@ -36,7 +36,7 @@ namespace GitHubNotifier.DataTypes
         public bool ShowClones { get; set; }
         public RepositorySettings()
         {
-            Enabled = true;
+            Active = true;
             ShowLikes = true;
             ShowDownloads = true;
             ShowOpenIssues = true;

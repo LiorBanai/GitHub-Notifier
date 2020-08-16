@@ -24,7 +24,7 @@ namespace GitHubNotifier.UserControls
             Repo = repo;
             lnkLabel.Text = repo.DisplayName;
             timerUpdate.Interval = repo.UpdateMinutes * 60 * 1000;
-            timerUpdate.Enabled = repo.Enabled;
+            timerUpdate.Enabled = repo.Active;
             lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(repo.UpdateMinutes * 60 * 1000);
         }
 
@@ -49,7 +49,7 @@ namespace GitHubNotifier.UserControls
             lblLikes.Visible = Repo.ShowLikes;
             lnklblIssues.Visible = Repo.ShowOpenIssues;
             lblClones.Visible = Repo.ShowClones;
-            if (!Repo.Enabled) return;
+            if (!Repo.Active) return;
             if (Repo.ShowDownloads)
                 await CheckDownloads(forceCheck);
             if (Repo.ShowLikes || Repo.ShowOpenIssues)
@@ -237,8 +237,6 @@ namespace GitHubNotifier.UserControls
             if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
                 int change = repoInfo.OpenIssues - Repo.OpenIssues;
-                lnklblIssues.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
-
                 string issuesInfo = string.Empty;
                 if (change > 0)
                 {
@@ -276,28 +274,34 @@ namespace GitHubNotifier.UserControls
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
                         popupNotifier.Popup();
                 }
+                Repo.OpenIssues = repoInfo.OpenIssues;
+                lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
+                lnklblIssues.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;
             }
             else
             {
                 lnklblIssues.BackColor = SystemColors.Control;
             }
-
-            Repo.OpenIssues = repoInfo.OpenIssues;
-            lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
-
         }
 
         private async void timerUpdate_Tick(object sender, EventArgs e)
         {
-            await Check(false);
-            lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(timerUpdate.Interval);
+            await UpdateValues(false);
         }
 
         private async void btnCheckNow_Click(object sender, EventArgs e)
         {
-            await Check(true);
+            await UpdateValues(true);
         }
 
+        private async Task UpdateValues(bool forceCheck)
+        {
+            await Check(forceCheck);
+            timerUpdate.Stop();
+            timerUpdate.Start();
+            lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(timerUpdate.Interval);
+
+        }
         private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 

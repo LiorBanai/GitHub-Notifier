@@ -150,22 +150,18 @@
             // 
             // timerDownloads
             // 
-            this.timerDownloads.Enabled = true;
             this.timerDownloads.Interval = 900000;
             // 
             // timerIssuesAndStars
             // 
-            this.timerIssuesAndStars.Enabled = true;
             this.timerIssuesAndStars.Interval = 900000;
             // 
             // timerViews
             // 
-            this.timerViews.Enabled = true;
             this.timerViews.Interval = 900000;
             // 
             // timerClones
             // 
-            this.timerClones.Enabled = true;
             this.timerClones.Interval = 900000;
             // 
             // RepositoryEntry

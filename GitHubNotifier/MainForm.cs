@@ -47,7 +47,8 @@ namespace GitHubNotifier
             await CheckNotifications();
             foreach (RepositorySettings repo in Settings.Repositories)
             {
-                AddRepo(repo);
+                if (repo.Active)
+                    AddRepo(repo, tpActive);
             }
 
             tabControl1.SelectedIndex = 0;
@@ -94,11 +95,11 @@ namespace GitHubNotifier
         }
 
 
-        private void AddRepo(RepositorySettings repo)
+        private void AddRepo(RepositorySettings repo,TabPage page)
         {
             RepositoryEntry ar1 = new RepositoryEntry(repo);
             repos.Add(ar1);
-            panelRepositories.Controls.Add(ar1);
+            page.Controls.Add(ar1);
             ar1.Dock = DockStyle.Top;
         }
 

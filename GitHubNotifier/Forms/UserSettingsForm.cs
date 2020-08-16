@@ -42,7 +42,7 @@ namespace GitHubNotifier.Forms
             for (int i = 0; i < UserSettingsManager.Instance.Repositories.Count; i++)
             {
                 RepositorySettings r = UserSettingsManager.Instance.Repositories[i];
-                chklstRepo.SetItemCheckState(i, r.Enabled ? CheckState.Checked : CheckState.Unchecked);
+                chklstRepo.SetItemCheckState(i, r.Active ? CheckState.Checked : CheckState.Unchecked);
             }
         }
 
@@ -50,7 +50,7 @@ namespace GitHubNotifier.Forms
         {
             if (chklstRepo.SelectedItem is RepositorySettings repo)
             {
-                repo.Enabled = e.NewValue == CheckState.Checked;
+                repo.Active = e.NewValue == CheckState.Checked;
             }
         }
 
