@@ -92,7 +92,8 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
 
                     }
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
             }
             else
@@ -134,7 +135,8 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
 
                     }
-                    popupNotifier.Popup();
+                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        popupNotifier.Popup();
                 }
             }
             else
