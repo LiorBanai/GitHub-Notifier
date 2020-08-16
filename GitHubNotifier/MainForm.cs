@@ -49,6 +49,10 @@ namespace GitHubNotifier
             {
                 if (repo.Active)
                     AddRepo(repo, tpActive);
+                else
+                    AddRepo(repo, tpNonActive);
+
+
             }
 
             tabControl1.SelectedIndex = 0;
@@ -95,7 +99,7 @@ namespace GitHubNotifier
         }
 
 
-        private void AddRepo(RepositorySettings repo,TabPage page)
+        private void AddRepo(RepositorySettings repo, TabPage page)
         {
             RepositoryEntry ar1 = new RepositoryEntry(repo);
             repos.Add(ar1);
