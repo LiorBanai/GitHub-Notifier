@@ -41,22 +41,16 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.Resources.Extensions" Version="4.7.1"/>
+		<PackageReference Include="System.Resources.Extensions" Version="4.6.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Forms\Form1.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="Forms\UserSettingsForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
+		<Compile Update="Forms\Form1.cs" />
+		<Compile Update="Forms\UserSettingsForm.cs" />
 		<Compile Update="Forms\UserSettingsForm.Designer.cs">
 			<DependentUpon>UserSettingsForm.cs</DependentUpon>
 		</Compile>
-		<Compile Update="MainForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
+		<Compile Update="MainForm.cs" />
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -67,9 +61,7 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
-		<Compile Update="UserControls\RepositoryEntry.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
+		<Compile Update="UserControls\RepositoryEntry.cs" />
 		<Compile Update="UserControls\RepositoryEntry.Designer.cs">
 			<DependentUpon>RepositoryEntry.cs</DependentUpon>
 		</Compile>
