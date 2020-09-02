@@ -58,8 +58,8 @@ namespace GitHubNotifier.Utils
             {
                 return (false, default);
             }
-            catch (Exception e) {
-
+            catch (Exception)
+            {
                 return (false, default);
             }
         }
