@@ -77,4 +77,4 @@ jobs:
         run: |
           Get-ChildItem .\artifactory -Filter *.nupkg |
           Where-Object { !$_.Name.Contains('preview') } |
-          ForEach-Object { dotnet nuget push $_ --source https://nuget.pkg.github.com/LiorBanai/index.json  } 
+          ForEach-Object { dotnet nuget push $_ --source https://nuget.pkg.github.com/LiorBanai/index.json --skip-duplicate --api-key ${{secrets.GITHUB_TOKEN}}  } 
