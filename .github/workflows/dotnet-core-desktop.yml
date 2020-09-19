@@ -73,3 +73,8 @@ jobs:
           Where-Object { !$_.Name.Contains('preview') } |
           ForEach-Object { dotnet nuget push $_ --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key ${{secrets.NUGET_API_KEY}} }
         shell: pwsh
+      - name: 'Dotnet NuGet Push to github registry'     
+        run: |
+          Get-ChildItem .\artifactory -Filter *.nupkg |
+          Where-Object { !$_.Name.Contains('preview') } |
+          ForEach-Object { dotnet nuget push $_ --source https://nuget.pkg.github.com/LiorBanai/index.json   
