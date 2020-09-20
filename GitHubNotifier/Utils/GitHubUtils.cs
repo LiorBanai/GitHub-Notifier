@@ -46,6 +46,10 @@ namespace GitHubNotifier.Utils
                 OnNameResolutionFailure?.Invoke(null, "Error getting " + uri);
                 return (false, default);
             }
+            catch (WebException e) when (e.Status==WebExceptionStatus.UnknownError)
+            {
+                return (false, default);
+            }
             catch (WebException e) when (((HttpWebResponse)e.Response).StatusCode == HttpStatusCode.NotModified)
             {
                 return (false, default);

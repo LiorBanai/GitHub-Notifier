@@ -11,11 +11,12 @@ namespace GitHubNotifier
         [STAThread]
         static void Main()
         {
+            Application.SetCompatibleTextRenderingDefault(true);
 #if !NET472
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+           
             Application.Run(new MainForm());
         }
     }
