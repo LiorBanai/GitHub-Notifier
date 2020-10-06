@@ -11,7 +11,7 @@
 <a href="https://github.com/LiorBanai/GitHub-Notifier/releases"> 
     <img src="https://img.shields.io/github/v/release/LiorBanai/GitHub-Notifier"  alt="Latest Release"/>
 </a> 
- <a href="https://github.com/LiorBanai/GitHub-Notifier/compare/V1.0.3...master">
+ <a href="https://github.com/LiorBanai/GitHub-Notifier/compare/V1.0.4...master">
     <img src="https://img.shields.io/github/commits-since/LiorBanai/GitHub-Notifier/latest"  alt="Commits Since Latest Release"/>
 </a>
                                                                                                                            
