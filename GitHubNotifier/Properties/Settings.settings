@@ -26,5 +26,8 @@
     <Setting Name="DoNotShowDecrementPopups" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="RepositoryRoot" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\git</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

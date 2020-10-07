@@ -117,5 +117,17 @@ namespace GitHubNotifier.Properties {
                 this["DoNotShowDecrementPopups"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\git")]
+        public string RepositoryRoot {
+            get {
+                return ((string)(this["RepositoryRoot"]));
+            }
+            set {
+                this["RepositoryRoot"] = value;
+            }
+        }
     }
 }

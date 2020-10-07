@@ -22,6 +22,8 @@ namespace GitHubNotifier.Managers
         public string GitHubToken { get; } = Environment.GetEnvironmentVariable("GitHubNotifier_Token");
         public bool StartMinimized { get; set; }
         public bool DoNotShowDecrementPopups { get; set; }
+        public string RepositoryRoot { get; set; }
+
         private UserSettingsManager()
         {
             NotificationsIntervalCheck = 15;
@@ -44,6 +46,8 @@ namespace GitHubNotifier.Managers
             ShowNotificationsOnlyOnce = Settings.Default.ShowNotificationsOnlyOnce;
             DoNotShowDecrementPopups = Settings.Default.DoNotShowDecrementPopups;
             Repositories = ParseSettings<List<RepositorySettings>>(Settings.Default.Repositories);
+            RepositoryRoot = Settings.Default.RepositoryRoot;
+
             if (Repositories == null || !Repositories.Any())
             {
                 Repositories = new List<RepositorySettings>
@@ -69,6 +73,7 @@ namespace GitHubNotifier.Managers
             Settings.Default.StartMinimized = StartMinimized;
             Settings.Default.ShowNotificationsOnlyOnce = ShowNotificationsOnlyOnce;
             Settings.Default.DoNotShowDecrementPopups = DoNotShowDecrementPopups;
+            Settings.Default.RepositoryRoot= RepositoryRoot;
             Settings.Default.Save();
         }
         private T ParseSettings<T>(string data) where T : new()

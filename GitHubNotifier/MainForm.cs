@@ -5,7 +5,10 @@ using GitHubNotifier.UserControls;
 using GitHubNotifier.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,6 +46,7 @@ namespace GitHubNotifier
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
+            txtRepositoryRoot.Text = Settings.RepositoryRoot;
             await CheckAPILimits();
             await CheckNotifications();
             foreach (RepositorySettings repo in Settings.Repositories)
@@ -206,5 +210,111 @@ namespace GitHubNotifier
             }
 
         }
+
+        private void btnRepositoryBrowse_Click(object sender, EventArgs e)
+        {
+            using (var folderBrowserDialog = new FolderBrowserDialog() { ShowNewFolderButton = false })
+            {
+                DialogResult result = folderBrowserDialog.ShowDialog(); // Show the dialog.
+                if (result == DialogResult.OK) // Test result.
+                {
+                    txtRepositoryRoot.Text = folderBrowserDialog.SelectedPath;
+                }
+            }
+        }
+
+        private void txtRepositoryRoot_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+                Settings.RepositoryRoot = txtRepositoryRoot.Text;
+        }
+
+        private async void btnFetch_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                var dirs = chkbSubfoldersRepositories.Checked
+                    ? Directory.GetDirectories(txtRepositoryRoot.Text)
+                    : new[] {txtRepositoryRoot.Text};
+                foreach (string dir in dirs)
+                {
+                   PrintToUi("################### Fetching repository: "+dir);
+                   await PullOrFetchRepository("fetch", dir); 
+                    PrintToUi("################### End Fetching repository: " + dir);
+                }
+            }
+        }
+        private async void btnPull_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                var dirs = chkbSubfoldersRepositories.Checked
+                    ? Directory.GetDirectories(txtRepositoryRoot.Text)
+                    : new[] { txtRepositoryRoot.Text }; foreach (string dir in dirs)
+                {
+                    PrintToUi("################### Fetching repository: " + dir);
+                    await PullOrFetchRepository("pull", dir);
+                    PrintToUi("################### End Fetching repository: " + dir);
+                }
+            }
+        }
+
+        private Task PullOrFetchRepository(string command, string repoPath)
+        {
+            try
+            {
+                TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
+                ProcessStartInfo start = new ProcessStartInfo
+                {
+                    FileName = "git.exe",
+                    Arguments = command,
+                    WorkingDirectory = Path.Combine(repoPath),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                };
+                var publishCmd = new Process();
+                publishCmd.OutputDataReceived += (s, e) =>
+                {
+                    PrintToUi(e.Data);
+                };
+                publishCmd.ErrorDataReceived += (s, e) =>
+                {
+                    PrintToUi(e.Data);
+                };
+                publishCmd.StartInfo = start;
+                publishCmd.Exited += (_, e) =>
+                {
+                    PrintToUi($"######## Git operation Ended for command: {command}"); 
+                    tcs.SetResult($"Process Exited for git.exe");
+                };
+                publishCmd.EnableRaisingEvents = true;
+                publishCmd.Start();
+                publishCmd.BeginOutputReadLine();
+                publishCmd.BeginErrorReadLine();
+                Thread.Sleep(1000);
+                return tcs.Task;
+                
+            }
+            catch (Exception e)
+            {
+                PrintToUi($"######## ERROR: Git operation Ended for command: {command}: {e.Message}");
+            }
+            return Task.CompletedTask;
+        }
+
+        private void PrintToUi(string data)
+        {
+            BeginInvoke(new MethodInvoker(() =>
+            {
+                richTextBox1.Text += Environment.NewLine + data;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }));
+        }
+
+
     }
 }
