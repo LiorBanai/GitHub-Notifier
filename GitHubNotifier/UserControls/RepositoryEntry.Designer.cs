@@ -134,7 +134,7 @@
             this.lblLikes.Name = "lblLikes";
             this.lblLikes.Size = new System.Drawing.Size(151, 44);
             this.lblLikes.TabIndex = 1;
-            this.lblLikes.Text = "Likes:";
+            this.lblLikes.Text = "Stars:";
             this.lblLikes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDownloads

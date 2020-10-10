@@ -39,8 +39,11 @@ namespace GitHubNotifier.UserControls
             lblLikes.Text = "Likes: " + Repo.LastTotalStars;
             lnklblIssues.Text = "Open Issues: " + Repo.OpenIssues;
             lblViews.Text = $"Views: {Repo.LastTotalViews}. U:{Repo.LastTotalUniqueViews}";
-            await Check(true);
+            if (Repo.Active)
+                await Check(true);
         }
+
+        public bool Active() => Repo.Active;
         public async Task Check(bool forceCheck)
         {
 
@@ -49,7 +52,7 @@ namespace GitHubNotifier.UserControls
             lblLikes.Visible = Repo.ShowLikes;
             lnklblIssues.Visible = Repo.ShowOpenIssues;
             lblClones.Visible = Repo.ShowClones;
-            if (!Repo.Active) return;
+            if (!Repo.Active && !forceCheck) return;
             if (Repo.ShowDownloads)
                 await CheckDownloads(forceCheck);
             if (Repo.ShowLikes || Repo.ShowOpenIssues)
@@ -209,7 +212,7 @@ namespace GitHubNotifier.UserControls
                 PopupMessage msg = new PopupMessage
                 {
                     Caption = Repo.DisplayName,
-                    Text = $"Likes: {repoInfo.Stargazers} ({(change > 0 ? "+" : string.Empty)}{change})",
+                    Text = $"Stars: {repoInfo.Stargazers} ({(change > 0 ? "+" : string.Empty)}{change})",
                     Image = Properties.Resources.Feature_32x32
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
@@ -234,7 +237,7 @@ namespace GitHubNotifier.UserControls
             }
 
             Repo.LastTotalStars = repoInfo.Stargazers;
-            lblLikes.Text = "Likes: " + repoInfo.Stargazers;
+            lblLikes.Text = "Stars: " + repoInfo.Stargazers;
 
             if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
@@ -322,9 +325,9 @@ namespace GitHubNotifier.UserControls
             {
                 Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Console.WriteLine(exception);
+                //ignore 
 
             }
         }

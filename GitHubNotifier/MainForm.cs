@@ -202,11 +202,11 @@ namespace GitHubNotifier
         {
             try
             {
-                await Task.WhenAll(repos.Select(r => r.Check(true)));
+                await Task.WhenAll(repos.Where(r=>r.Active()).Select(r => r.Check(true)));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Console.WriteLine(exception);
+                //ignore
             }
 
         }
