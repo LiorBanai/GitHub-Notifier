@@ -41,7 +41,7 @@
             this.nudNotifications = new System.Windows.Forms.NumericUpDown();
             this.lblNotifications = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.chkbLikes = new System.Windows.Forms.CheckBox();
+            this.chkbStars = new System.Windows.Forms.CheckBox();
             this.chkbDownloads = new System.Windows.Forms.CheckBox();
             this.chkbViews = new System.Windows.Forms.CheckBox();
             this.chkbOpenIssues = new System.Windows.Forms.CheckBox();
@@ -53,12 +53,12 @@
             this.chkbClones = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkbDoNotShowDecrementPopups = new System.Windows.Forms.CheckBox();
             this.chkbStartMinimized = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.chkbShowNotificationsOnlyOnce = new System.Windows.Forms.CheckBox();
-            this.chkbDoNotShowDecrementPopups = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -220,17 +220,17 @@
             this.label2.Text = "GitHub limits number of API call to 60 per hour. Add Environment Variable with ke" +
     "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour";
             // 
-            // chkbLikes
+            // chkbStars
             // 
-            this.chkbLikes.AutoSize = true;
-            this.chkbLikes.Location = new System.Drawing.Point(9, 23);
-            this.chkbLikes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkbLikes.Name = "chkbLikes";
-            this.chkbLikes.Size = new System.Drawing.Size(152, 21);
-            this.chkbLikes.TabIndex = 12;
-            this.chkbLikes.Text = "Enable Likes Count";
-            this.chkbLikes.UseVisualStyleBackColor = true;
-            this.chkbLikes.CheckedChanged += new System.EventHandler(this.chkbLikes_CheckedChanged);
+            this.chkbStars.AutoSize = true;
+            this.chkbStars.Location = new System.Drawing.Point(9, 23);
+            this.chkbStars.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkbStars.Name = "chkbStars";
+            this.chkbStars.Size = new System.Drawing.Size(152, 21);
+            this.chkbStars.TabIndex = 12;
+            this.chkbStars.Text = "Enable Stars Count";
+            this.chkbStars.UseVisualStyleBackColor = true;
+            this.chkbStars.CheckedChanged += new System.EventHandler(this.chkbStars_CheckedChanged);
             // 
             // chkbDownloads
             // 
@@ -275,7 +275,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.chkbClones);
-            this.groupBox1.Controls.Add(this.chkbLikes);
+            this.groupBox1.Controls.Add(this.chkbStars);
             this.groupBox1.Controls.Add(this.chkbViews);
             this.groupBox1.Controls.Add(this.chkbDownloads);
             this.groupBox1.Controls.Add(this.chkbOpenIssues);
@@ -348,7 +348,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1239, 622);
@@ -360,13 +360,25 @@
             this.tabPage1.Controls.Add(this.chkbStartMinimized);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1231, 593);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Application";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // chkbDoNotShowDecrementPopups
+            // 
+            this.chkbDoNotShowDecrementPopups.AutoSize = true;
+            this.chkbDoNotShowDecrementPopups.Location = new System.Drawing.Point(9, 58);
+            this.chkbDoNotShowDecrementPopups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkbDoNotShowDecrementPopups.Name = "chkbDoNotShowDecrementPopups";
+            this.chkbDoNotShowDecrementPopups.Size = new System.Drawing.Size(324, 21);
+            this.chkbDoNotShowDecrementPopups.TabIndex = 14;
+            this.chkbDoNotShowDecrementPopups.Text = "Do not Show Popup On decrement of counters";
+            this.chkbDoNotShowDecrementPopups.UseVisualStyleBackColor = true;
+            this.chkbDoNotShowDecrementPopups.CheckedChanged += new System.EventHandler(this.chkbDoNotShowDecrementPopups_CheckedChanged);
             // 
             // chkbStartMinimized
             // 
@@ -405,9 +417,9 @@
             this.tabPage2.Controls.Add(this.btnAddRepo);
             this.tabPage2.Controls.Add(this.txtbRepoDisplayName);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1231, 593);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Repositories";
@@ -419,7 +431,7 @@
             this.tabPage3.Controls.Add(this.lblNotifications);
             this.tabPage3.Controls.Add(this.nudNotifications);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1231, 593);
             this.tabPage3.TabIndex = 2;
@@ -437,18 +449,6 @@
             this.chkbShowNotificationsOnlyOnce.Text = "Show Notifications only once";
             this.chkbShowNotificationsOnlyOnce.UseVisualStyleBackColor = true;
             this.chkbShowNotificationsOnlyOnce.CheckedChanged += new System.EventHandler(this.chkbShowNotificationsOnlyOnce_CheckedChanged);
-            // 
-            // chkbDoNotShowDecrementPopups
-            // 
-            this.chkbDoNotShowDecrementPopups.AutoSize = true;
-            this.chkbDoNotShowDecrementPopups.Location = new System.Drawing.Point(9, 58);
-            this.chkbDoNotShowDecrementPopups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chkbDoNotShowDecrementPopups.Name = "chkbDoNotShowDecrementPopups";
-            this.chkbDoNotShowDecrementPopups.Size = new System.Drawing.Size(324, 21);
-            this.chkbDoNotShowDecrementPopups.TabIndex = 14;
-            this.chkbDoNotShowDecrementPopups.Text = "Do not Show Popup On decrement of counters";
-            this.chkbDoNotShowDecrementPopups.UseVisualStyleBackColor = true;
-            this.chkbDoNotShowDecrementPopups.CheckedChanged += new System.EventHandler(this.chkbDoNotShowDecrementPopups_CheckedChanged);
             // 
             // UserSettingsForm
             // 
@@ -491,7 +491,7 @@
         private System.Windows.Forms.NumericUpDown nudNotifications;
         private System.Windows.Forms.Label lblNotifications;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox chkbLikes;
+        private System.Windows.Forms.CheckBox chkbStars;
         private System.Windows.Forms.CheckBox chkbDownloads;
         private System.Windows.Forms.CheckBox chkbViews;
         private System.Windows.Forms.CheckBox chkbOpenIssues;

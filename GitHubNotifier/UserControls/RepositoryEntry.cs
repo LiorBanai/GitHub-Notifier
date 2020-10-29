@@ -2,6 +2,7 @@
 using GitHubNotifier.Managers;
 using GitHubNotifier.Utils;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -238,7 +239,7 @@ namespace GitHubNotifier.UserControls
 
             Repo.LastTotalStars = repoInfo.Stargazers;
             lblLikes.Text = "Stars: " + repoInfo.Stargazers;
-
+            List<GitHubIssue> relevantIssues=new List<GitHubIssue>();
             if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
                 int change = repoInfo.OpenIssues - Repo.OpenIssues;
@@ -249,7 +250,7 @@ namespace GitHubNotifier.UserControls
                         UserSettingsManager.Instance.GitHubToken, lastCheck);
                     if (issues.newData)
                     {
-                        var relevantIssues = issues.result.Take(change).ToList();
+                        relevantIssues = issues.result.Take(change).ToList();
                         issuesInfo = string.Join(Environment.NewLine, relevantIssues.Select(i => i.Title));
                         cmsIssues.Items.Clear();
                         foreach (var issue in relevantIssues)
@@ -264,21 +265,26 @@ namespace GitHubNotifier.UserControls
                     Text = $"Open Issues: {repoInfo.OpenIssues} ({(change > 0 ? "+" : string.Empty)}{change}): {issuesInfo}",
                     Image = Properties.Resources.Feature_32x32,
                 };
-                using (var popupNotifier = new NotificationWindow.PopupNotifier())
+                foreach (var issue in relevantIssues)
                 {
+
+                    using (var popupNotifier = new NotificationWindow.PopupNotifier())
                     {
-                        popupNotifier.TitleText = msg.Caption;
-                        popupNotifier.ContentText = msg.Text;
-                        popupNotifier.IsRightToLeft = false;
-                        popupNotifier.Image = msg.Image;
-                        popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 14.0f);
-                        popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
-                        popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 11);
-                        popupNotifier.IgnoreWhenFullScreen = true;
+                        {
+                            popupNotifier.TitleText = msg.Caption;
+                            popupNotifier.ContentText = issue.Title;
+                            popupNotifier.IsRightToLeft = false;
+                            popupNotifier.Image = msg.Image;
+                            popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 14.0f);
+                            popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
+                            popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 11);
+                            popupNotifier.IgnoreWhenFullScreen = true;
+                        }
+                        if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                            popupNotifier.Popup();
                     }
-                    if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
-                        popupNotifier.Popup();
                 }
+
                 Repo.OpenIssues = repoInfo.OpenIssues;
                 lnklblIssues.Text = "Open Issues: " + repoInfo.OpenIssues;
                 lnklblIssues.BackColor = change > 0 ? Color.LightGreen : Color.LightPink;

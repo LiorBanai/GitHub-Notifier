@@ -75,7 +75,7 @@ namespace GitHubNotifier.Forms
             {
                 groupBox1.Text = "Repository:" + repo.DisplayName;
                 selectedRepositorySettings = repo;
-                chkbLikes.Checked = repo.ShowLikes;
+                chkbStars.Checked = repo.ShowLikes;
                 chkbDownloads.Checked = repo.ShowDownloads;
                 chkbOpenIssues.Checked = repo.ShowOpenIssues;
                 chkbViews.Checked = repo.ShowViews;
@@ -85,10 +85,10 @@ namespace GitHubNotifier.Forms
             }
         }
 
-        private void chkbLikes_CheckedChanged(object sender, System.EventArgs e)
+        private void chkbStars_CheckedChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
-                selectedRepositorySettings.ShowLikes = chkbLikes.Checked;
+                selectedRepositorySettings.ShowLikes = chkbStars.Checked;
         }
 
         private void chkbDownloads_CheckedChanged(object sender, System.EventArgs e)
