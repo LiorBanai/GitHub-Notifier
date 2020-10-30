@@ -59,6 +59,8 @@
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripNotifyBar = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCheckAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslblAPILimit = new System.Windows.Forms.ToolStripStatusLabel();
@@ -66,8 +68,6 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.tsmiCheckAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -379,6 +379,7 @@
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "GitHub Notifier";
             this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // contextMenuStripNotifyBar
@@ -389,12 +390,24 @@
             this.toolStripSeparator1,
             this.tsmiExit});
             this.contextMenuStripNotifyBar.Name = "contextMenuStripNotifyBar";
-            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(211, 86);
+            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(140, 58);
+            // 
+            // tsmiCheckAll
+            // 
+            this.tsmiCheckAll.Name = "tsmiCheckAll";
+            this.tsmiCheckAll.Size = new System.Drawing.Size(139, 24);
+            this.tsmiCheckAll.Text = "Check All";
+            this.tsmiCheckAll.Click += new System.EventHandler(this.tsmiCheckAll_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(210, 24);
+            this.tsmiExit.Size = new System.Drawing.Size(139, 24);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -442,18 +455,6 @@
             this.timerAPIRateCheck.Enabled = true;
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
-            // 
-            // tsmiCheckAll
-            // 
-            this.tsmiCheckAll.Name = "tsmiCheckAll";
-            this.tsmiCheckAll.Size = new System.Drawing.Size(210, 24);
-            this.tsmiCheckAll.Text = "Check All";
-            this.tsmiCheckAll.Click += new System.EventHandler(this.tsmiCheckAll_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // MainForm
             // 

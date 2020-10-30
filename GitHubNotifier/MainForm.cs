@@ -322,5 +322,10 @@ namespace GitHubNotifier
         {
             await CheckAll();
         }
+
+        private async void notifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            await CheckAll();
+        }
     }
 }
