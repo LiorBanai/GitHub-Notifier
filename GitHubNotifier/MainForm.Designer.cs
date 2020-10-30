@@ -44,6 +44,14 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
+            this.tpGitOperations = new System.Windows.Forms.TabPage();
+            this.chkbSubfoldersRepositories = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnPull = new System.Windows.Forms.Button();
+            this.btnFetch = new System.Windows.Forms.Button();
+            this.btnRepositoryBrowse = new System.Windows.Forms.Button();
+            this.txtRepositoryRoot = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExitForm = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,14 +66,8 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.tpGitOperations = new System.Windows.Forms.TabPage();
-            this.btnRepositoryBrowse = new System.Windows.Forms.Button();
-            this.txtRepositoryRoot = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnPull = new System.Windows.Forms.Button();
-            this.btnFetch = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.chkbSubfoldersRepositories = new System.Windows.Forms.CheckBox();
+            this.tsmiCheckAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -74,10 +76,10 @@
             this.toolStrip2.SuspendLayout();
             this.tpNotifications.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tpGitOperations.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tpGitOperations.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -233,6 +235,100 @@
             this.tsBtnClear.Text = "Clear";
             this.tsBtnClear.Click += new System.EventHandler(this.tsBtnClear_Click);
             // 
+            // tpGitOperations
+            // 
+            this.tpGitOperations.Controls.Add(this.chkbSubfoldersRepositories);
+            this.tpGitOperations.Controls.Add(this.richTextBox1);
+            this.tpGitOperations.Controls.Add(this.btnPull);
+            this.tpGitOperations.Controls.Add(this.btnFetch);
+            this.tpGitOperations.Controls.Add(this.btnRepositoryBrowse);
+            this.tpGitOperations.Controls.Add(this.txtRepositoryRoot);
+            this.tpGitOperations.Controls.Add(this.label1);
+            this.tpGitOperations.Location = new System.Drawing.Point(4, 25);
+            this.tpGitOperations.Name = "tpGitOperations";
+            this.tpGitOperations.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGitOperations.Size = new System.Drawing.Size(1487, 531);
+            this.tpGitOperations.TabIndex = 3;
+            this.tpGitOperations.Text = "Git Operations";
+            this.tpGitOperations.UseVisualStyleBackColor = true;
+            // 
+            // chkbSubfoldersRepositories
+            // 
+            this.chkbSubfoldersRepositories.AutoSize = true;
+            this.chkbSubfoldersRepositories.Checked = true;
+            this.chkbSubfoldersRepositories.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(179, 41);
+            this.chkbSubfoldersRepositories.Name = "chkbSubfoldersRepositories";
+            this.chkbSubfoldersRepositories.Size = new System.Drawing.Size(544, 21);
+            this.chkbSubfoldersRepositories.TabIndex = 19;
+            this.chkbSubfoldersRepositories.Text = "sub folders are GIT repositories (for single folder of specific repositroy unchec" +
+    "k it)";
+            this.chkbSubfoldersRepositories.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(11, 77);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1467, 448);
+            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.Text = "";
+            // 
+            // btnPull
+            // 
+            this.btnPull.Location = new System.Drawing.Point(85, 42);
+            this.btnPull.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPull.Name = "btnPull";
+            this.btnPull.Size = new System.Drawing.Size(69, 28);
+            this.btnPull.TabIndex = 17;
+            this.btnPull.Text = "Pull";
+            this.btnPull.UseVisualStyleBackColor = true;
+            this.btnPull.Click += new System.EventHandler(this.btnPull_Click);
+            // 
+            // btnFetch
+            // 
+            this.btnFetch.Location = new System.Drawing.Point(11, 42);
+            this.btnFetch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFetch.Name = "btnFetch";
+            this.btnFetch.Size = new System.Drawing.Size(69, 28);
+            this.btnFetch.TabIndex = 16;
+            this.btnFetch.Text = "Fetch";
+            this.btnFetch.UseVisualStyleBackColor = true;
+            this.btnFetch.Click += new System.EventHandler(this.btnFetch_Click);
+            // 
+            // btnRepositoryBrowse
+            // 
+            this.btnRepositoryBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1409, 7);
+            this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRepositoryBrowse.Name = "btnRepositoryBrowse";
+            this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 28);
+            this.btnRepositoryBrowse.TabIndex = 15;
+            this.btnRepositoryBrowse.Text = "Browse";
+            this.btnRepositoryBrowse.UseVisualStyleBackColor = true;
+            this.btnRepositoryBrowse.Click += new System.EventHandler(this.btnRepositoryBrowse_Click);
+            // 
+            // txtRepositoryRoot
+            // 
+            this.txtRepositoryRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRepositoryRoot.Location = new System.Drawing.Point(275, 9);
+            this.txtRepositoryRoot.Name = "txtRepositoryRoot";
+            this.txtRepositoryRoot.Size = new System.Drawing.Size(1092, 22);
+            this.txtRepositoryRoot.TabIndex = 13;
+            this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(201, 17);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Folder of Repository (or many)";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -289,14 +385,16 @@
             // 
             this.contextMenuStripNotifyBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripNotifyBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCheckAll,
+            this.toolStripSeparator1,
             this.tsmiExit});
             this.contextMenuStripNotifyBar.Name = "contextMenuStripNotifyBar";
-            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(103, 28);
+            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(211, 86);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(102, 24);
+            this.tsmiExit.Size = new System.Drawing.Size(210, 24);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -345,99 +443,17 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // tpGitOperations
+            // tsmiCheckAll
             // 
-            this.tpGitOperations.Controls.Add(this.chkbSubfoldersRepositories);
-            this.tpGitOperations.Controls.Add(this.richTextBox1);
-            this.tpGitOperations.Controls.Add(this.btnPull);
-            this.tpGitOperations.Controls.Add(this.btnFetch);
-            this.tpGitOperations.Controls.Add(this.btnRepositoryBrowse);
-            this.tpGitOperations.Controls.Add(this.txtRepositoryRoot);
-            this.tpGitOperations.Controls.Add(this.label1);
-            this.tpGitOperations.Location = new System.Drawing.Point(4, 25);
-            this.tpGitOperations.Name = "tpGitOperations";
-            this.tpGitOperations.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGitOperations.Size = new System.Drawing.Size(1487, 531);
-            this.tpGitOperations.TabIndex = 3;
-            this.tpGitOperations.Text = "Git Operations";
-            this.tpGitOperations.UseVisualStyleBackColor = true;
+            this.tsmiCheckAll.Name = "tsmiCheckAll";
+            this.tsmiCheckAll.Size = new System.Drawing.Size(210, 24);
+            this.tsmiCheckAll.Text = "Check All";
+            this.tsmiCheckAll.Click += new System.EventHandler(this.tsmiCheckAll_Click);
             // 
-            // btnRepositoryBrowse
+            // toolStripSeparator1
             // 
-            this.btnRepositoryBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1409, 7);
-            this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRepositoryBrowse.Name = "btnRepositoryBrowse";
-            this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 28);
-            this.btnRepositoryBrowse.TabIndex = 15;
-            this.btnRepositoryBrowse.Text = "Browse";
-            this.btnRepositoryBrowse.UseVisualStyleBackColor = true;
-            this.btnRepositoryBrowse.Click += new System.EventHandler(this.btnRepositoryBrowse_Click);
-            // 
-            // txtRepositoryRoot
-            // 
-            this.txtRepositoryRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepositoryRoot.Location = new System.Drawing.Point(275, 9);
-            this.txtRepositoryRoot.Name = "txtRepositoryRoot";
-            this.txtRepositoryRoot.Size = new System.Drawing.Size(1092, 22);
-            this.txtRepositoryRoot.TabIndex = 13;
-            this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 17);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Folder of Repository (or many)";
-            // 
-            // btnPull
-            // 
-            this.btnPull.Location = new System.Drawing.Point(85, 42);
-            this.btnPull.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPull.Name = "btnPull";
-            this.btnPull.Size = new System.Drawing.Size(69, 28);
-            this.btnPull.TabIndex = 17;
-            this.btnPull.Text = "Pull";
-            this.btnPull.UseVisualStyleBackColor = true;
-            this.btnPull.Click += new System.EventHandler(this.btnPull_Click);
-            // 
-            // btnFetch
-            // 
-            this.btnFetch.Location = new System.Drawing.Point(11, 42);
-            this.btnFetch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFetch.Name = "btnFetch";
-            this.btnFetch.Size = new System.Drawing.Size(69, 28);
-            this.btnFetch.TabIndex = 16;
-            this.btnFetch.Text = "Fetch";
-            this.btnFetch.UseVisualStyleBackColor = true;
-            this.btnFetch.Click += new System.EventHandler(this.btnFetch_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(11, 77);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1467, 448);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
-            // 
-            // chkbSubfoldersRepositories
-            // 
-            this.chkbSubfoldersRepositories.AutoSize = true;
-            this.chkbSubfoldersRepositories.Checked = true;
-            this.chkbSubfoldersRepositories.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(179, 41);
-            this.chkbSubfoldersRepositories.Name = "chkbSubfoldersRepositories";
-            this.chkbSubfoldersRepositories.Size = new System.Drawing.Size(544, 21);
-            this.chkbSubfoldersRepositories.TabIndex = 19;
-            this.chkbSubfoldersRepositories.Text = "sub folders are GIT repositories (for single folder of specific repositroy unchec" +
-    "k it)";
-            this.chkbSubfoldersRepositories.UseVisualStyleBackColor = true;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // MainForm
             // 
@@ -466,13 +482,13 @@
             this.tpNotifications.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tpGitOperations.ResumeLayout(false);
+            this.tpGitOperations.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStripNotifyBar.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tpGitOperations.ResumeLayout(false);
-            this.tpGitOperations.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,6 +532,8 @@
         private System.Windows.Forms.Button btnPull;
         private System.Windows.Forms.Button btnFetch;
         private System.Windows.Forms.CheckBox chkbSubfoldersRepositories;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCheckAll;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

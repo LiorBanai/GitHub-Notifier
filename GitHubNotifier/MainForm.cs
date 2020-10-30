@@ -200,17 +200,20 @@ namespace GitHubNotifier
 
         private async void tsbtnCheckAllRepositories_Click(object sender, EventArgs e)
         {
+            await CheckAll();
+        }
+
+        public async Task CheckAll()
+        {
             try
             {
-                await Task.WhenAll(repos.Where(r=>r.Active()).Select(r => r.Check(true)));
+                await Task.WhenAll(repos.Where(r => r.Active()).Select(r => r.Check(true)));
             }
             catch (Exception)
             {
                 //ignore
             }
-
         }
-
         private void btnRepositoryBrowse_Click(object sender, EventArgs e)
         {
             using (var folderBrowserDialog = new FolderBrowserDialog() { ShowNewFolderButton = false })
@@ -315,6 +318,9 @@ namespace GitHubNotifier
             }));
         }
 
-
+        private async void tsmiCheckAll_Click(object sender, EventArgs e)
+        {
+            await CheckAll();
+        }
     }
 }
