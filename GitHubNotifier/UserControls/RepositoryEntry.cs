@@ -41,7 +41,9 @@ namespace GitHubNotifier.UserControls
             lnklblIssues.Text = "Open Issues: " + Repo.OpenIssues;
             lblViews.Text = $"Views: {Repo.LastTotalViews}. U:{Repo.LastTotalUniqueViews}";
             if (Repo.Active)
+            {
                 await Check(true);
+            }
         }
 
         public bool Active() => Repo.Active;
@@ -53,15 +55,31 @@ namespace GitHubNotifier.UserControls
             lblLikes.Visible = Repo.ShowLikes;
             lnklblIssues.Visible = Repo.ShowOpenIssues;
             lblClones.Visible = Repo.ShowClones;
-            if (!Repo.Active && !forceCheck) return;
+            if (!Repo.Active && !forceCheck)
+            {
+                return;
+            }
+
             if (Repo.ShowDownloads)
+            {
                 await CheckDownloads(forceCheck);
+            }
+
             if (Repo.ShowLikes || Repo.ShowOpenIssues)
+            {
                 await CheckStarsAndIssues(forceCheck);
+            }
+
             if (Repo.ShowViews)
+            {
                 await CheckTrafficViews(forceCheck);
+            }
+
             if (Repo.ShowClones)
+            {
                 await CheckTrafficClone(forceCheck);
+            }
+
             Repo.LastChecked = DateTime.Now;
 
         }
@@ -72,7 +90,10 @@ namespace GitHubNotifier.UserControls
             var (newData, views) = await GitHubUtils.GetAsync<GithubTrafficViews>(Repo.RepoApiTrafficViewsUrl,
                 UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
+            {
                 return;
+            }
+
             if (Repo.LastTotalViews != views.Total)
             {
                 int change = views.Total - Repo.LastTotalViews;
@@ -97,7 +118,9 @@ namespace GitHubNotifier.UserControls
 
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                    {
                         popupNotifier.Popup();
+                    }
                 }
             }
             else
@@ -115,7 +138,10 @@ namespace GitHubNotifier.UserControls
             var (newData, clones) = await GitHubUtils.GetAsync<GithubTrafficClones>(Repo.RepoApiTrafficClonesUrl,
                 UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
+            {
                 return;
+            }
+
             if (Repo.LastTotalClones != clones.Total)
             {
                 int change = clones.Total - Repo.LastTotalClones;
@@ -140,7 +166,9 @@ namespace GitHubNotifier.UserControls
 
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                    {
                         popupNotifier.Popup();
+                    }
                 }
             }
             else
@@ -159,7 +187,9 @@ namespace GitHubNotifier.UserControls
             var (newData, entries) = await GitHubUtils.GetAsync<GithubReleaseEntry[]>(Repo.RepoApiReleasesUrl,
                 UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
+            {
                 return;
+            }
 
             var downloads = entries.OrderByDescending(r => r.Published).SelectMany(entry => entry.Assets).Sum(a => a.Downloads);
             if (Repo.LastTotalDownloads != downloads)
@@ -186,7 +216,9 @@ namespace GitHubNotifier.UserControls
                     popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                     popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                    {
                         popupNotifier.Popup();
+                    }
                 }
             }
             else
@@ -201,11 +233,18 @@ namespace GitHubNotifier.UserControls
 
         private async Task CheckStarsAndIssues(bool forceCheck)
         {
-            if (!Repo.ShowOpenIssues && !Repo.ShowLikes) return;
+            if (!Repo.ShowOpenIssues && !Repo.ShowLikes)
+            {
+                return;
+            }
+
             var lastCheck = forceCheck ? DateTime.MinValue : Repo.LastChecked;
             var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(Repo.RepoApiUrl, UserSettingsManager.Instance.GitHubToken, lastCheck);
             if (!newData)
+            {
                 return;
+            }
+
             if (Repo.ShowLikes && Repo.LastTotalStars != repoInfo.Stargazers)
             {
                 int change = repoInfo.Stargazers - Repo.LastTotalStars;
@@ -229,7 +268,9 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.IgnoreWhenFullScreen = true;
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                    {
                         popupNotifier.Popup();
+                    }
                 }
             }
             else
@@ -281,7 +322,9 @@ namespace GitHubNotifier.UserControls
                             popupNotifier.IgnoreWhenFullScreen = true;
                         }
                         if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
+                        {
                             popupNotifier.Popup();
+                        }
                     }
                 }
 
@@ -322,7 +365,9 @@ namespace GitHubNotifier.UserControls
         private void lnklblIssues_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
+            {
                 OpenLink(Repo.RepoIssueUrl);
+            }
         }
 
         private void OpenLink(string url)

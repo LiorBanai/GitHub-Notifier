@@ -88,43 +88,57 @@ namespace GitHubNotifier.Forms
         private void chkbStars_CheckedChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.ShowLikes = chkbStars.Checked;
+            }
         }
 
         private void chkbDownloads_CheckedChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.ShowDownloads = chkbDownloads.Checked;
+            }
         }
 
         private void chkbOpenIssues_CheckedChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.ShowOpenIssues = chkbOpenIssues.Checked;
+            }
         }
 
         private void chkbViews_CheckedChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.ShowViews = chkbViews.Checked;
+            }
         }
 
         private void chkbClones_CheckedChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.ShowClones = chkbClones.Checked;
+            }
         }
 
         private void txtSelectedRepoName_TextChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.RepoName = txtSelectedRepoName.Text;
+            }
         }
 
         private void txtSelectedRepoDisplayName_TextChanged(object sender, System.EventArgs e)
         {
             if (selectedRepositorySettings != null)
+            {
                 selectedRepositorySettings.DisplayName = txtSelectedRepoDisplayName.Text;
+            }
         }
 
         private void chkbStartMinimized_CheckedChanged(object sender, System.EventArgs e)

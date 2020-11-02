@@ -27,7 +27,9 @@ namespace GitHubNotifier
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (Visible)
+            {
                 Hide();
+            }
             else
             {
                 Show();
@@ -52,16 +54,21 @@ namespace GitHubNotifier
             foreach (RepositorySettings repo in Settings.Repositories)
             {
                 if (repo.Active)
+                {
                     AddRepo(repo, tpActive);
+                }
                 else
+                {
                     AddRepo(repo, tpNonActive);
-
-
+                }
             }
 
             tabControl1.SelectedIndex = 0;
             timerNotifications.Interval = Settings.NotificationsIntervalCheck * 60 * 1000;
-            if (Settings.StartMinimized) Hide();
+            if (Settings.StartMinimized)
+            {
+                Hide();
+            }
         }
 
         private async Task CheckAPILimits()
@@ -229,7 +236,9 @@ namespace GitHubNotifier
         private void txtRepositoryRoot_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
                 Settings.RepositoryRoot = txtRepositoryRoot.Text;
+            }
         }
 
         private async void btnFetch_Click(object sender, EventArgs e)
