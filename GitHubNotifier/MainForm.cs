@@ -34,6 +34,7 @@ namespace GitHubNotifier
             {
                 Show();
                 BringToFront();
+                Focus();
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -336,6 +337,13 @@ namespace GitHubNotifier
         {
             await CheckNotifications(true);
             await CheckAll();
+        }
+
+        private void tsmiOpen_Click(object sender, EventArgs e)
+        {
+            Show();
+            BringToFront();
+            Focus();
         }
     }
 }

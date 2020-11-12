@@ -68,6 +68,8 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
+            this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -386,28 +388,30 @@
             // 
             this.contextMenuStripNotifyBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripNotifyBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpen,
+            this.toolStripSeparator2,
             this.tsmiCheckAll,
             this.toolStripSeparator1,
             this.tsmiExit});
             this.contextMenuStripNotifyBar.Name = "contextMenuStripNotifyBar";
-            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(140, 58);
+            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(211, 116);
             // 
             // tsmiCheckAll
             // 
             this.tsmiCheckAll.Name = "tsmiCheckAll";
-            this.tsmiCheckAll.Size = new System.Drawing.Size(139, 24);
+            this.tsmiCheckAll.Size = new System.Drawing.Size(210, 24);
             this.tsmiCheckAll.Text = "Check All";
             this.tsmiCheckAll.Click += new System.EventHandler(this.tsmiCheckAll_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(139, 24);
+            this.tsmiExit.Size = new System.Drawing.Size(210, 24);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -455,6 +459,18 @@
             this.timerAPIRateCheck.Enabled = true;
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
+            // 
+            // tsmiOpen
+            // 
+            this.tsmiOpen.Name = "tsmiOpen";
+            this.tsmiOpen.Size = new System.Drawing.Size(210, 24);
+            this.tsmiOpen.Text = "Open";
+            this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
             // 
             // MainForm
             // 
@@ -535,6 +551,8 @@
         private System.Windows.Forms.CheckBox chkbSubfoldersRepositories;
         private System.Windows.Forms.ToolStripMenuItem tsmiCheckAll;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
