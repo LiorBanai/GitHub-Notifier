@@ -335,8 +335,11 @@ namespace GitHubNotifier
 
         private async void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            await CheckNotifications(true);
-            await CheckAll();
+            if (e.Button == MouseButtons.Left)
+            {
+                await CheckNotifications(true);
+                await CheckAll();
+            }
         }
 
         private void tsmiOpen_Click(object sender, EventArgs e)
