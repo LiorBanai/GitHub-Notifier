@@ -280,7 +280,7 @@ namespace GitHubNotifier.UserControls
 
             Repo.LastTotalStars = repoInfo.Stargazers;
             lblLikes.Text = "Stars: " + repoInfo.Stargazers;
-            List<GitHubIssue> relevantIssues=new List<GitHubIssue>();
+            List<GitHubIssue> relevantIssues = new List<GitHubIssue>();
             if (Repo.ShowOpenIssues && Repo.OpenIssues != repoInfo.OpenIssues)
             {
                 int change = repoInfo.OpenIssues - Repo.OpenIssues;
@@ -292,6 +292,15 @@ namespace GitHubNotifier.UserControls
                     if (issues.newData)
                     {
                         relevantIssues = issues.result.Take(change).ToList();
+                        //foreach (var issue in relevantIssues)
+                        //{
+                        //    if (issue.comments > 0)
+                        //    {
+                        //        var comments = await GitHubUtils.GetAsync<GitHubComment[]>(issue.comments_url,
+                        //        UserSettingsManager.Instance.GitHubToken, lastCheck);
+                        //    }
+
+                        //}
                         issuesInfo = string.Join(Environment.NewLine, relevantIssues.Select(i => i.Title));
                         cmsIssues.Items.Clear();
                         foreach (var issue in relevantIssues)

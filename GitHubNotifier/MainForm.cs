@@ -24,18 +24,10 @@ namespace GitHubNotifier
             InitializeComponent();
         }
 
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private async void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (Visible)
-            {
-                Hide();
-            }
-            else
-            {
-                Show();
-                BringToFront();
-                Focus();
-            }
+            await CheckNotifications(true);
+            await CheckAll();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -248,11 +240,11 @@ namespace GitHubNotifier
             {
                 var dirs = chkbSubfoldersRepositories.Checked
                     ? Directory.GetDirectories(txtRepositoryRoot.Text)
-                    : new[] {txtRepositoryRoot.Text};
+                    : new[] { txtRepositoryRoot.Text };
                 foreach (string dir in dirs)
                 {
-                   PrintToUi("################### Fetching repository: "+dir);
-                   await PullOrFetchRepository("fetch", dir); 
+                    PrintToUi("################### Fetching repository: " + dir);
+                    await PullOrFetchRepository("fetch", dir);
                     PrintToUi("################### End Fetching repository: " + dir);
                 }
             }
@@ -300,7 +292,7 @@ namespace GitHubNotifier
                 publishCmd.StartInfo = start;
                 publishCmd.Exited += (_, e) =>
                 {
-                    PrintToUi($"######## Git operation Ended for command: {command}"); 
+                    PrintToUi($"######## Git operation Ended for command: {command}");
                     tcs.SetResult($"Process Exited for git.exe");
                 };
                 publishCmd.EnableRaisingEvents = true;
@@ -309,7 +301,7 @@ namespace GitHubNotifier
                 publishCmd.BeginErrorReadLine();
                 Thread.Sleep(1000);
                 return tcs.Task;
-                
+
             }
             catch (Exception e)
             {
@@ -337,8 +329,16 @@ namespace GitHubNotifier
         {
             if (e.Button == MouseButtons.Left)
             {
-                await CheckNotifications(true);
-                await CheckAll();
+                if (Visible)
+                {
+                    Hide();
+                }
+                else
+                {
+                    Show();
+                    BringToFront();
+                    Focus();
+                }
             }
         }
 
