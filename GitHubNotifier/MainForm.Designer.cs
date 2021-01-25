@@ -59,6 +59,8 @@
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripNotifyBar = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiCheckAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,8 +70,9 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tvRepositories = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -82,6 +85,10 @@
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -239,8 +246,8 @@
             // 
             // tpGitOperations
             // 
+            this.tpGitOperations.Controls.Add(this.splitContainer1);
             this.tpGitOperations.Controls.Add(this.chkbSubfoldersRepositories);
-            this.tpGitOperations.Controls.Add(this.richTextBox1);
             this.tpGitOperations.Controls.Add(this.btnPull);
             this.tpGitOperations.Controls.Add(this.btnFetch);
             this.tpGitOperations.Controls.Add(this.btnRepositoryBrowse);
@@ -269,12 +276,10 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(11, 77);
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1467, 448);
+            this.richTextBox1.Size = new System.Drawing.Size(976, 448);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
@@ -394,24 +399,36 @@
             this.toolStripSeparator1,
             this.tsmiExit});
             this.contextMenuStripNotifyBar.Name = "contextMenuStripNotifyBar";
-            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(211, 116);
+            this.contextMenuStripNotifyBar.Size = new System.Drawing.Size(140, 88);
+            // 
+            // tsmiOpen
+            // 
+            this.tsmiOpen.Name = "tsmiOpen";
+            this.tsmiOpen.Size = new System.Drawing.Size(139, 24);
+            this.tsmiOpen.Text = "Open";
+            this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(136, 6);
             // 
             // tsmiCheckAll
             // 
             this.tsmiCheckAll.Name = "tsmiCheckAll";
-            this.tsmiCheckAll.Size = new System.Drawing.Size(210, 24);
+            this.tsmiCheckAll.Size = new System.Drawing.Size(139, 24);
             this.tsmiCheckAll.Text = "Check All";
             this.tsmiCheckAll.Click += new System.EventHandler(this.tsmiCheckAll_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(210, 24);
+            this.tsmiExit.Size = new System.Drawing.Size(139, 24);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -460,17 +477,45 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // tsmiOpen
+            // splitContainer1
             // 
-            this.tsmiOpen.Name = "tsmiOpen";
-            this.tsmiOpen.Size = new System.Drawing.Size(210, 24);
-            this.tsmiOpen.Text = "Open";
-            this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(11, 77);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // toolStripSeparator2
+            // splitContainer1.Panel1
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
+            this.splitContainer1.Panel1.Controls.Add(this.tvRepositories);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
+            this.splitContainer1.Size = new System.Drawing.Size(1470, 448);
+            this.splitContainer1.SplitterDistance = 490;
+            this.splitContainer1.TabIndex = 20;
+            // 
+            // tvRepositories
+            // 
+            this.tvRepositories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvRepositories.ImageIndex = 0;
+            this.tvRepositories.ImageList = this.imageList1;
+            this.tvRepositories.Location = new System.Drawing.Point(0, 0);
+            this.tvRepositories.Name = "tvRepositories";
+            this.tvRepositories.SelectedImageIndex = 0;
+            this.tvRepositories.Size = new System.Drawing.Size(490, 448);
+            this.tvRepositories.TabIndex = 0;
+            this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "IconBlack.png");
+            this.imageList1.Images.SetKeyName(1, "IconColorful.png");
+            this.imageList1.Images.SetKeyName(2, "iconGreen.png");
+            this.imageList1.Images.SetKeyName(3, "IconRed.png");
             // 
             // MainForm
             // 
@@ -506,6 +551,10 @@
             this.contextMenuStripNotifyBar.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -553,6 +602,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView tvRepositories;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

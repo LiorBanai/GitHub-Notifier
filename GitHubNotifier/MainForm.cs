@@ -16,6 +16,7 @@ namespace GitHubNotifier
 {
     public partial class MainForm : Form
     {
+        private Dictionary<string, List<string>> _output = new Dictionary<string, List<string>>(0);
         List<RepositoryEntry> repos = new List<RepositoryEntry>();
         private UserSettingsManager Settings => UserSettingsManager.Instance;
         private bool preventExit = true;
@@ -238,14 +239,29 @@ namespace GitHubNotifier
         {
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
+                tvRepositories.Nodes.Clear();
+                _output.Clear();
                 var dirs = chkbSubfoldersRepositories.Checked
                     ? Directory.GetDirectories(txtRepositoryRoot.Text)
                     : new[] { txtRepositoryRoot.Text };
-                foreach (string dir in dirs)
+
+                List<TreeNode> nodes = new List<TreeNode>();
+                foreach (var dir in dirs)
                 {
-                    PrintToUi("################### Fetching repository: " + dir);
-                    await PullOrFetchRepository("fetch", dir);
-                    PrintToUi("################### End Fetching repository: " + dir);
+                    var dirName = Path.GetFileName(dir);
+                    nodes.Add(new TreeNode(dirName, 0, 0));
+                }
+                tvRepositories.Nodes.AddRange(nodes.ToArray());
+                for (var index = 0; index < dirs.Length; index++)
+                {
+                    string dir = dirs[index];
+                    var dirName = Path.GetFileName(dir);
+                    _output[dirName] = new List<string>();
+                    PrintToUi("Fetching repository: " + dir);
+                    nodes[index].SelectedImageIndex = 1;
+                    await PullOrFetchRepository("fetch", dir, dirName);
+                    nodes[index].SelectedImageIndex = 2;
+                    PrintToUi("End Fetching repository: " + dir);
                 }
             }
         }
@@ -253,18 +269,34 @@ namespace GitHubNotifier
         {
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
+                tvRepositories.Nodes.Clear();
+                _output.Clear();
                 var dirs = chkbSubfoldersRepositories.Checked
                     ? Directory.GetDirectories(txtRepositoryRoot.Text)
-                    : new[] { txtRepositoryRoot.Text }; foreach (string dir in dirs)
+                    : new[] { txtRepositoryRoot.Text };
+
+                List<TreeNode> nodes = new List<TreeNode>();
+                foreach (var dir in dirs)
                 {
-                    PrintToUi("################### Fetching repository: " + dir);
-                    await PullOrFetchRepository("pull", dir);
-                    PrintToUi("################### End Fetching repository: " + dir);
+                    var dirName = Path.GetFileName(dir);
+                    nodes.Add(new TreeNode(dirName, 0, 0));
+                }
+                tvRepositories.Nodes.AddRange(nodes.ToArray());
+                for (var index = 0; index < dirs.Length; index++)
+                {
+                    string dir = dirs[index];
+                    var dirName = Path.GetFileName(dir);
+                    _output[dirName] = new List<string>();
+                    PrintToUi("Pulling repository: " + dir);
+                    nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
+                    await PullOrFetchRepository("pull", dir, dirName);
+                    nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
+                    PrintToUi("End pulling repository: " + dir);
                 }
             }
         }
 
-        private Task PullOrFetchRepository(string command, string repoPath)
+        private Task PullOrFetchRepository(string command, string repoPath, string dirName)
         {
             try
             {
@@ -283,16 +315,20 @@ namespace GitHubNotifier
                 var publishCmd = new Process();
                 publishCmd.OutputDataReceived += (s, e) =>
                 {
+                    _output[dirName].Add(e.Data);
                     PrintToUi(e.Data);
                 };
                 publishCmd.ErrorDataReceived += (s, e) =>
                 {
+                    _output[dirName].Add(e.Data);
                     PrintToUi(e.Data);
                 };
                 publishCmd.StartInfo = start;
                 publishCmd.Exited += (_, e) =>
                 {
-                    PrintToUi($"######## Git operation Ended for command: {command}");
+                    string msg = $"Git operation Ended for command: {command}";
+                    _output[dirName].Add(msg);
+                    PrintToUi(msg);
                     tcs.SetResult($"Process Exited for git.exe");
                 };
                 publishCmd.EnableRaisingEvents = true;
@@ -305,7 +341,9 @@ namespace GitHubNotifier
             }
             catch (Exception e)
             {
-                PrintToUi($"######## ERROR: Git operation Ended for command: {command}: {e.Message}");
+                string msg = $"######## ERROR: Git operation Ended for command: {command}: {e.Message}";
+                _output[dirName].Add(msg);
+                PrintToUi(msg);
             }
             return Task.CompletedTask;
         }
@@ -347,6 +385,12 @@ namespace GitHubNotifier
             Show();
             BringToFront();
             Focus();
+        }
+
+        private void tvRepositories_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            richTextBox1.Text = string.Join(Environment.NewLine, _output[e.Node.Text]);
+
         }
     }
 }
