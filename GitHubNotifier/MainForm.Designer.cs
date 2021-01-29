@@ -45,8 +45,11 @@
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
             this.tpGitOperations = new System.Windows.Forms.TabPage();
-            this.chkbSubfoldersRepositories = new System.Windows.Forms.CheckBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tvRepositories = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.chkbSubfoldersRepositories = new System.Windows.Forms.CheckBox();
             this.btnPull = new System.Windows.Forms.Button();
             this.btnFetch = new System.Windows.Forms.Button();
             this.btnRepositoryBrowse = new System.Windows.Forms.Button();
@@ -70,9 +73,6 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tvRepositories = new System.Windows.Forms.TreeView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -82,13 +82,13 @@
             this.tpNotifications.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tpGitOperations.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.contextMenuStripNotifyBar.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.contextMenuStripNotifyBar.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -261,6 +261,55 @@
             this.tpGitOperations.Text = "Git Operations";
             this.tpGitOperations.UseVisualStyleBackColor = true;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(11, 77);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tvRepositories);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
+            this.splitContainer1.Size = new System.Drawing.Size(1470, 448);
+            this.splitContainer1.SplitterDistance = 490;
+            this.splitContainer1.TabIndex = 20;
+            // 
+            // tvRepositories
+            // 
+            this.tvRepositories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvRepositories.ImageIndex = 0;
+            this.tvRepositories.ImageList = this.imageList1;
+            this.tvRepositories.Location = new System.Drawing.Point(0, 0);
+            this.tvRepositories.Name = "tvRepositories";
+            this.tvRepositories.SelectedImageIndex = 0;
+            this.tvRepositories.Size = new System.Drawing.Size(490, 448);
+            this.tvRepositories.TabIndex = 0;
+            this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "IconBlack.png");
+            this.imageList1.Images.SetKeyName(1, "IconColorful.png");
+            this.imageList1.Images.SetKeyName(2, "iconGreen.png");
+            this.imageList1.Images.SetKeyName(3, "IconRed.png");
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(976, 448);
+            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.Text = "";
+            // 
             // chkbSubfoldersRepositories
             // 
             this.chkbSubfoldersRepositories.AutoSize = true;
@@ -273,15 +322,6 @@
             this.chkbSubfoldersRepositories.Text = "sub folders are GIT repositories (for single folder of specific repositroy unchec" +
     "k it)";
             this.chkbSubfoldersRepositories.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(976, 448);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
             // 
             // btnPull
             // 
@@ -387,7 +427,6 @@
             this.notifyIcon.Text = "GitHub Notifier";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // contextMenuStripNotifyBar
             // 
@@ -477,46 +516,6 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(11, 77);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tvRepositories);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1470, 448);
-            this.splitContainer1.SplitterDistance = 490;
-            this.splitContainer1.TabIndex = 20;
-            // 
-            // tvRepositories
-            // 
-            this.tvRepositories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvRepositories.ImageIndex = 0;
-            this.tvRepositories.ImageList = this.imageList1;
-            this.tvRepositories.Location = new System.Drawing.Point(0, 0);
-            this.tvRepositories.Name = "tvRepositories";
-            this.tvRepositories.SelectedImageIndex = 0;
-            this.tvRepositories.Size = new System.Drawing.Size(490, 448);
-            this.tvRepositories.TabIndex = 0;
-            this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "IconBlack.png");
-            this.imageList1.Images.SetKeyName(1, "IconColorful.png");
-            this.imageList1.Images.SetKeyName(2, "iconGreen.png");
-            this.imageList1.Images.SetKeyName(3, "IconRed.png");
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -546,15 +545,15 @@
             this.toolStrip1.PerformLayout();
             this.tpGitOperations.ResumeLayout(false);
             this.tpGitOperations.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStripNotifyBar.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

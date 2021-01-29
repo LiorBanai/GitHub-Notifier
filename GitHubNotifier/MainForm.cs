@@ -24,12 +24,6 @@ namespace GitHubNotifier
         {
             InitializeComponent();
         }
-
-        private async void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            await CheckNotifications(true);
-            await CheckAll();
-        }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -376,6 +370,10 @@ namespace GitHubNotifier
                     Show();
                     BringToFront();
                     Focus();
+                    TopMost = true;
+                    TopMost = false; 
+                    await CheckNotifications(true);
+                    await CheckAll();
                 }
             }
         }
