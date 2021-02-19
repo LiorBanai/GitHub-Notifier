@@ -86,7 +86,8 @@ namespace GitHubNotifier
                     ContentText = "Still here. Right click and exit to close",
                     IsRightToLeft = false,
                     Image = Properties.Resources.Feature_32x32,
-                    IgnoreWhenFullScreen = true
+                    IgnoreWhenFullScreen = true,
+                    AutoContentHeight = true
                 };
                 popupNotifier.Popup();
             }
@@ -152,6 +153,7 @@ namespace GitHubNotifier
                                 popupNotifier.IsRightToLeft = false;
                                 popupNotifier.Image = Properties.Resources.Question_32x32;
                                 popupNotifier.IgnoreWhenFullScreen = true;
+                                popupNotifier.AutoContentHeight = true;
                             }
                             popupNotifier.Popup();
                         }

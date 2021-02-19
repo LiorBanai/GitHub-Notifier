@@ -115,6 +115,7 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                         popupNotifier.IgnoreWhenFullScreen = true;
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
+                        popupNotifier.AutoContentHeight = true;
 
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
@@ -163,6 +164,7 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                         popupNotifier.IgnoreWhenFullScreen = true;
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
+                        popupNotifier.AutoContentHeight = true;
 
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
@@ -208,7 +210,7 @@ namespace GitHubNotifier.UserControls
                     ContentText = msg.Text,
                     IsRightToLeft = false,
                     Image = msg.Image,
-
+                    AutoContentHeight = true,
                     IgnoreWhenFullScreen = true
                 })
                 {
@@ -266,6 +268,7 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.IgnoreWhenFullScreen = true;
+                        popupNotifier.AutoContentHeight = true;
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
                     {
@@ -329,6 +332,7 @@ namespace GitHubNotifier.UserControls
                             popupNotifier.ContentColor = change > 0 ? Color.ForestGreen : Color.Red;
                             popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 11);
                             popupNotifier.IgnoreWhenFullScreen = true;
+                            popupNotifier.AutoContentHeight = true;
                         }
                         if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
                         {
