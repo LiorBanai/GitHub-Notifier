@@ -73,6 +73,7 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
+            this.chkbClearLog = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -246,6 +247,7 @@
             // 
             // tpGitOperations
             // 
+            this.tpGitOperations.Controls.Add(this.chkbClearLog);
             this.tpGitOperations.Controls.Add(this.splitContainer1);
             this.tpGitOperations.Controls.Add(this.chkbSubfoldersRepositories);
             this.tpGitOperations.Controls.Add(this.btnPull);
@@ -266,7 +268,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(11, 77);
+            this.splitContainer1.Location = new System.Drawing.Point(11, 104);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -276,7 +278,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1470, 448);
+            this.splitContainer1.Size = new System.Drawing.Size(1470, 421);
             this.splitContainer1.SplitterDistance = 490;
             this.splitContainer1.TabIndex = 20;
             // 
@@ -288,7 +290,7 @@
             this.tvRepositories.Location = new System.Drawing.Point(0, 0);
             this.tvRepositories.Name = "tvRepositories";
             this.tvRepositories.SelectedImageIndex = 0;
-            this.tvRepositories.Size = new System.Drawing.Size(490, 448);
+            this.tvRepositories.Size = new System.Drawing.Size(490, 421);
             this.tvRepositories.TabIndex = 0;
             this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
             // 
@@ -306,7 +308,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(976, 448);
+            this.richTextBox1.Size = new System.Drawing.Size(976, 421);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
@@ -516,6 +518,18 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
+            // chkbClearLog
+            // 
+            this.chkbClearLog.AutoSize = true;
+            this.chkbClearLog.Checked = true;
+            this.chkbClearLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbClearLog.Location = new System.Drawing.Point(11, 77);
+            this.chkbClearLog.Name = "chkbClearLog";
+            this.chkbClearLog.Size = new System.Drawing.Size(218, 21);
+            this.chkbClearLog.TabIndex = 21;
+            this.chkbClearLog.Text = "Clear old log before operation";
+            this.chkbClearLog.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -604,6 +618,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tvRepositories;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.CheckBox chkbClearLog;
     }
 }
 

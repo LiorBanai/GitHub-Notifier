@@ -265,6 +265,10 @@ namespace GitHubNotifier
         {
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
+                if (chkbClearLog.Checked)
+                {
+                    richTextBox1.Text = "";
+                }
                 tvRepositories.Nodes.Clear();
                 _output.Clear();
                 var dirs = chkbSubfoldersRepositories.Checked
