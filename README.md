@@ -1,6 +1,5 @@
 <h1 align="left">GitHub-Notifier <img src="./Assets/GitHubNotifier.jpg" align="right" width="63px" height="63px"></h1> 
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b86b59709a04b13991f5a4f3d775cb2)](https://app.codacy.com/gh/LiorBanai/GitHub-Notifier?utm_source=github.com&utm_medium=referral&utm_content=LiorBanai/GitHub-Notifier&utm_campaign=Badge_Grade)
   [![Nuget](https://img.shields.io/nuget/dt/LiorBanai.GitHubNotifier)](https://www.nuget.org/packages/LiorBanai.GitHubNotifier/) ![CodeQL](https://github.com/LiorBanai/GitHub-Notifier/workflows/CodeQL/badge.svg)  [![Build Status](https://liorbanai.visualstudio.com/GitHub-Notifier/_apis/build/status/LiorBanai.GitHub-Notifier?branchName=master)](https://liorbanai.visualstudio.com/GitHub-Notifier/_build/latest?definitionId=4&branchName=master)
 <a href="https://github.com/LiorBanai/GitHub-Notifier/issues">
     <img src="https://img.shields.io/github/issues/LiorBanai/GitHub-Notifier"  alt="Issues"/>
