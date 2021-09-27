@@ -335,7 +335,7 @@
             this.chkbSubfoldersRepositories.AutoSize = true;
             this.chkbSubfoldersRepositories.Checked = true;
             this.chkbSubfoldersRepositories.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(331, 47);
+            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(407, 47);
             this.chkbSubfoldersRepositories.Name = "chkbSubfoldersRepositories";
             this.chkbSubfoldersRepositories.Size = new System.Drawing.Size(544, 21);
             this.chkbSubfoldersRepositories.TabIndex = 19;
@@ -381,9 +381,9 @@
             // 
             this.txtRepositoryRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepositoryRoot.Location = new System.Drawing.Point(332, 9);
+            this.txtRepositoryRoot.Location = new System.Drawing.Point(407, 9);
             this.txtRepositoryRoot.Name = "txtRepositoryRoot";
-            this.txtRepositoryRoot.Size = new System.Drawing.Size(1035, 22);
+            this.txtRepositoryRoot.Size = new System.Drawing.Size(960, 22);
             this.txtRepositoryRoot.TabIndex = 13;
             this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
             // 
@@ -556,7 +556,7 @@
             this.btnCleanUntrack.Location = new System.Drawing.Point(162, 42);
             this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4);
             this.btnCleanUntrack.Name = "btnCleanUntrack";
-            this.btnCleanUntrack.Size = new System.Drawing.Size(162, 28);
+            this.btnCleanUntrack.Size = new System.Drawing.Size(238, 28);
             this.btnCleanUntrack.TabIndex = 22;
             this.btnCleanUntrack.Text = "Clean Untracked items";
             this.btnCleanUntrack.UseVisualStyleBackColor = true;
