@@ -245,7 +245,8 @@ namespace GitHubNotifier
                 foreach (var dir in dirs)
                 {
                     var dirName = Path.GetFileName(dir);
-                    nodes.Add(new TreeNode(dirName, 0, 0));
+                    TreeNode node = new TreeNode(dirName, 0, 0) { Tag = dir };
+                    nodes.Add(node);
                 }
                 tvRepositories.Nodes.AddRange(nodes.ToArray());
                 for (var index = 0; index < dirs.Length; index++)
@@ -255,7 +256,7 @@ namespace GitHubNotifier
                     _output[dirName] = new List<string>();
                     PrintToUi("Fetching repository: " + dir);
                     nodes[index].SelectedImageIndex = 1;
-                    await PullOrFetchRepository("fetch", dir, dirName);
+                    await ExecuteGitCommand("fetch", dir, dirName);
                     nodes[index].SelectedImageIndex = 2;
                     PrintToUi("End Fetching repository: " + dir);
                 }
@@ -279,7 +280,8 @@ namespace GitHubNotifier
                 foreach (var dir in dirs)
                 {
                     var dirName = Path.GetFileName(dir);
-                    nodes.Add(new TreeNode(dirName, 0, 0));
+                    var node = new TreeNode(dirName, 0, 0) { Tag = dir };
+                    nodes.Add(node);
                 }
                 tvRepositories.Nodes.AddRange(nodes.ToArray());
                 for (var index = 0; index < dirs.Length; index++)
@@ -289,14 +291,14 @@ namespace GitHubNotifier
                     _output[dirName] = new List<string>();
                     PrintToUi("Pulling repository: " + dir);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
-                    await PullOrFetchRepository("pull", dir, dirName);
+                    await ExecuteGitCommand("pull", dir, dirName);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
                     PrintToUi("End pulling repository: " + dir);
                 }
             }
         }
 
-        private Task PullOrFetchRepository(string command, string repoPath, string dirName)
+        private Task ExecuteGitCommand(string command, string repoPath, string dirName)
         {
             try
             {
@@ -393,8 +395,68 @@ namespace GitHubNotifier
 
         private void tvRepositories_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            richTextBox1.Text = string.Join(Environment.NewLine, _output[e.Node.Text]);
+            if (_output.TryGetValue(e.Node.Text, out var items))
+            {
+                richTextBox1.Text = string.Join(Environment.NewLine, items);
+            }
 
+        }
+
+        private void tsmiOpenFolder_Click(object sender, EventArgs e)
+        {
+            if (tvRepositories.SelectedNode?.Tag is string path)
+            {
+                OpenFolder(path);
+            }
+        }
+
+        private void OpenFolder(string folder)
+        {
+            try
+            {
+                Process.Start("explorer.exe", " \"" + folder + "\"");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, @"Error Opening file location", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnCleanUntrack_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                if (chkbClearLog.Checked)
+                {
+                    richTextBox1.Text = "";
+                }
+                tvRepositories.Nodes.Clear();
+                _output.Clear();
+                var dirs = chkbSubfoldersRepositories.Checked
+                    ? Directory.GetDirectories(txtRepositoryRoot.Text)
+                    : new[] { txtRepositoryRoot.Text };
+
+                List<TreeNode> nodes = new List<TreeNode>();
+                foreach (var dir in dirs)
+                {
+                    var dirName = Path.GetFileName(dir);
+                    var node = new TreeNode(dirName, 0, 0) { Tag = dir };
+                    nodes.Add(node);
+                }
+                tvRepositories.Nodes.AddRange(nodes.ToArray());
+                for (var index = 0; index < dirs.Length; index++)
+                {
+                    string dir = dirs[index];
+                    var dirName = Path.GetFileName(dir);
+                    _output[dirName] = new List<string>();
+                    PrintToUi("executing git.exe clean -d -fx on repository: " + dir);
+                    nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
+                    await ExecuteGitCommand("clean -d -fx", dir, dirName);
+                    nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
+                    PrintToUi("Done git.exe clean -d -fx on repository: " + dir);
+                }
+            }
         }
     }
 }

@@ -45,6 +45,7 @@
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
             this.tpGitOperations = new System.Windows.Forms.TabPage();
+            this.chkbClearLog = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvRepositories = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -73,7 +74,9 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.chkbClearLog = new System.Windows.Forms.CheckBox();
+            this.contextMenuStripRepository = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCleanUntrack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -90,6 +93,7 @@
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStripRepository.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -247,6 +251,7 @@
             // 
             // tpGitOperations
             // 
+            this.tpGitOperations.Controls.Add(this.btnCleanUntrack);
             this.tpGitOperations.Controls.Add(this.chkbClearLog);
             this.tpGitOperations.Controls.Add(this.splitContainer1);
             this.tpGitOperations.Controls.Add(this.chkbSubfoldersRepositories);
@@ -262,6 +267,18 @@
             this.tpGitOperations.TabIndex = 3;
             this.tpGitOperations.Text = "Git Operations";
             this.tpGitOperations.UseVisualStyleBackColor = true;
+            // 
+            // chkbClearLog
+            // 
+            this.chkbClearLog.AutoSize = true;
+            this.chkbClearLog.Checked = true;
+            this.chkbClearLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbClearLog.Location = new System.Drawing.Point(11, 77);
+            this.chkbClearLog.Name = "chkbClearLog";
+            this.chkbClearLog.Size = new System.Drawing.Size(218, 21);
+            this.chkbClearLog.TabIndex = 21;
+            this.chkbClearLog.Text = "Clear old log before operation";
+            this.chkbClearLog.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -284,6 +301,7 @@
             // 
             // tvRepositories
             // 
+            this.tvRepositories.ContextMenuStrip = this.contextMenuStripRepository;
             this.tvRepositories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvRepositories.ImageIndex = 0;
             this.tvRepositories.ImageList = this.imageList1;
@@ -317,7 +335,7 @@
             this.chkbSubfoldersRepositories.AutoSize = true;
             this.chkbSubfoldersRepositories.Checked = true;
             this.chkbSubfoldersRepositories.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(179, 41);
+            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(331, 47);
             this.chkbSubfoldersRepositories.Name = "chkbSubfoldersRepositories";
             this.chkbSubfoldersRepositories.Size = new System.Drawing.Size(544, 21);
             this.chkbSubfoldersRepositories.TabIndex = 19;
@@ -363,9 +381,9 @@
             // 
             this.txtRepositoryRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepositoryRoot.Location = new System.Drawing.Point(275, 9);
+            this.txtRepositoryRoot.Location = new System.Drawing.Point(332, 9);
             this.txtRepositoryRoot.Name = "txtRepositoryRoot";
-            this.txtRepositoryRoot.Size = new System.Drawing.Size(1092, 22);
+            this.txtRepositoryRoot.Size = new System.Drawing.Size(1035, 22);
             this.txtRepositoryRoot.TabIndex = 13;
             this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
             // 
@@ -518,17 +536,31 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // chkbClearLog
+            // contextMenuStripRepository
             // 
-            this.chkbClearLog.AutoSize = true;
-            this.chkbClearLog.Checked = true;
-            this.chkbClearLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbClearLog.Location = new System.Drawing.Point(11, 77);
-            this.chkbClearLog.Name = "chkbClearLog";
-            this.chkbClearLog.Size = new System.Drawing.Size(218, 21);
-            this.chkbClearLog.TabIndex = 21;
-            this.chkbClearLog.Text = "Clear old log before operation";
-            this.chkbClearLog.UseVisualStyleBackColor = true;
+            this.contextMenuStripRepository.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripRepository.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenFolder});
+            this.contextMenuStripRepository.Name = "contextMenuStripRepository";
+            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 28);
+            // 
+            // tsmiOpenFolder
+            // 
+            this.tsmiOpenFolder.Name = "tsmiOpenFolder";
+            this.tsmiOpenFolder.Size = new System.Drawing.Size(235, 24);
+            this.tsmiOpenFolder.Text = "Open Repository Folder";
+            this.tsmiOpenFolder.Click += new System.EventHandler(this.tsmiOpenFolder_Click);
+            // 
+            // btnCleanUntrack
+            // 
+            this.btnCleanUntrack.Location = new System.Drawing.Point(162, 42);
+            this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCleanUntrack.Name = "btnCleanUntrack";
+            this.btnCleanUntrack.Size = new System.Drawing.Size(162, 28);
+            this.btnCleanUntrack.TabIndex = 22;
+            this.btnCleanUntrack.Text = "Clean Untracked items";
+            this.btnCleanUntrack.UseVisualStyleBackColor = true;
+            this.btnCleanUntrack.Click += new System.EventHandler(this.btnCleanUntrack_Click);
             // 
             // MainForm
             // 
@@ -568,6 +600,7 @@
             this.contextMenuStripNotifyBar.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStripRepository.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -619,6 +652,9 @@
         private System.Windows.Forms.TreeView tvRepositories;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.CheckBox chkbClearLog;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripRepository;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenFolder;
+        private System.Windows.Forms.Button btnCleanUntrack;
     }
 }
 
