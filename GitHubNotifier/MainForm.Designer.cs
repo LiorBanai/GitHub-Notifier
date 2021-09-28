@@ -45,9 +45,12 @@
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
             this.tpGitOperations = new System.Windows.Forms.TabPage();
+            this.btnCleanUntrack = new System.Windows.Forms.Button();
             this.chkbClearLog = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvRepositories = new System.Windows.Forms.TreeView();
+            this.contextMenuStripRepository = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.chkbSubfoldersRepositories = new System.Windows.Forms.CheckBox();
@@ -74,9 +77,6 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStripRepository = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnCleanUntrack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -90,10 +90,10 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.contextMenuStripRepository.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.contextMenuStripRepository.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -268,6 +268,18 @@
             this.tpGitOperations.Text = "Git Operations";
             this.tpGitOperations.UseVisualStyleBackColor = true;
             // 
+            // btnCleanUntrack
+            // 
+            this.btnCleanUntrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCleanUntrack.Location = new System.Drawing.Point(1240, 42);
+            this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCleanUntrack.Name = "btnCleanUntrack";
+            this.btnCleanUntrack.Size = new System.Drawing.Size(238, 28);
+            this.btnCleanUntrack.TabIndex = 22;
+            this.btnCleanUntrack.Text = "Clean Untracked items";
+            this.btnCleanUntrack.UseVisualStyleBackColor = true;
+            this.btnCleanUntrack.Click += new System.EventHandler(this.btnCleanUntrack_Click);
+            // 
             // chkbClearLog
             // 
             this.chkbClearLog.AutoSize = true;
@@ -311,6 +323,21 @@
             this.tvRepositories.Size = new System.Drawing.Size(490, 421);
             this.tvRepositories.TabIndex = 0;
             this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
+            // 
+            // contextMenuStripRepository
+            // 
+            this.contextMenuStripRepository.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripRepository.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiOpenFolder});
+            this.contextMenuStripRepository.Name = "contextMenuStripRepository";
+            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 28);
+            // 
+            // tsmiOpenFolder
+            // 
+            this.tsmiOpenFolder.Name = "tsmiOpenFolder";
+            this.tsmiOpenFolder.Size = new System.Drawing.Size(235, 24);
+            this.tsmiOpenFolder.Text = "Open Repository Folder";
+            this.tsmiOpenFolder.Click += new System.EventHandler(this.tsmiOpenFolder_Click);
             // 
             // imageList1
             // 
@@ -536,32 +563,6 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // contextMenuStripRepository
-            // 
-            this.contextMenuStripRepository.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStripRepository.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiOpenFolder});
-            this.contextMenuStripRepository.Name = "contextMenuStripRepository";
-            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 28);
-            // 
-            // tsmiOpenFolder
-            // 
-            this.tsmiOpenFolder.Name = "tsmiOpenFolder";
-            this.tsmiOpenFolder.Size = new System.Drawing.Size(235, 24);
-            this.tsmiOpenFolder.Text = "Open Repository Folder";
-            this.tsmiOpenFolder.Click += new System.EventHandler(this.tsmiOpenFolder_Click);
-            // 
-            // btnCleanUntrack
-            // 
-            this.btnCleanUntrack.Location = new System.Drawing.Point(162, 42);
-            this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCleanUntrack.Name = "btnCleanUntrack";
-            this.btnCleanUntrack.Size = new System.Drawing.Size(238, 28);
-            this.btnCleanUntrack.TabIndex = 22;
-            this.btnCleanUntrack.Text = "Clean Untracked items";
-            this.btnCleanUntrack.UseVisualStyleBackColor = true;
-            this.btnCleanUntrack.Click += new System.EventHandler(this.btnCleanUntrack_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -595,12 +596,12 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.contextMenuStripRepository.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStripNotifyBar.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.contextMenuStripRepository.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
