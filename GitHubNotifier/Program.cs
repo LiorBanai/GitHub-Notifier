@@ -12,7 +12,7 @@ namespace GitHubNotifier
         static void Main()
         {
             Application.SetCompatibleTextRenderingDefault(true);
-#if !NET472
+#if !NET472 && !NET48
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
             Application.EnableVisualStyles();
