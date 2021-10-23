@@ -1,6 +1,9 @@
-﻿using GitHubNotifier.DataTypes;
+﻿using System.Collections.Generic;
+using System.IO;
+using GitHubNotifier.DataTypes;
 using GitHubNotifier.Managers;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace GitHubNotifier.Forms
 {
@@ -154,6 +157,34 @@ namespace GitHubNotifier.Forms
         private void chkbDoNotShowDecrementPopups_CheckedChanged(object sender, System.EventArgs e)
         {
             UserSettingsManager.Instance.DoNotShowDecrementPopups = chkbDoNotShowDecrementPopups.Checked;
+        }
+
+        private void btnImport_Click(object sender, System.EventArgs e)
+        {
+            FileDialog f = new OpenFileDialog();
+            f.Filter = "json file|*.json";
+            f.Title = "Import repositories";
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                var data = File.ReadAllText(f.FileName);
+                List<RepositorySettings> repositories = JsonConvert.DeserializeObject<List<RepositorySettings>>(data);
+                UserSettingsManager.Instance.Repositories = repositories;
+            }
+        }
+
+        private void btnExport_Click(object sender, System.EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "json file|*.json";
+            saveFileDialog1.Title = "Export repositories";
+           ;
+
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+               var data = JsonConvert.SerializeObject(UserSettingsManager.Instance.Repositories);
+               File.WriteAllText(saveFileDialog1.FileName, data);
+            }
         }
     }
 

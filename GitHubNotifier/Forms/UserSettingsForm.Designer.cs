@@ -59,6 +59,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.chkbShowNotificationsOnlyOnce = new System.Windows.Forms.CheckBox();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNotifications)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -405,6 +407,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnImport);
+            this.tabPage2.Controls.Add(this.btnExport);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.label1);
@@ -449,6 +453,30 @@
             this.chkbShowNotificationsOnlyOnce.Text = "Show Notifications only once";
             this.chkbShowNotificationsOnlyOnce.UseVisualStyleBackColor = true;
             this.chkbShowNotificationsOnlyOnce.CheckedChanged += new System.EventHandler(this.chkbShowNotificationsOnlyOnce_CheckedChanged);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Location = new System.Drawing.Point(1133, 3);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(87, 34);
+            this.btnExport.TabIndex = 17;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Location = new System.Drawing.Point(1040, 2);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(87, 34);
+            this.btnImport.TabIndex = 18;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // UserSettingsForm
             // 
@@ -509,6 +537,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.CheckBox chkbShowNotificationsOnlyOnce;
         private System.Windows.Forms.CheckBox chkbDoNotShowDecrementPopups;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnImport;
     }
 }
 
