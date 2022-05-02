@@ -41,14 +41,7 @@ namespace GitHubNotifier
             await CheckNotifications();
             foreach (RepositorySettings repo in Settings.Repositories)
             {
-                if (repo.Active)
-                {
-                    AddRepo(repo, tpActive);
-                }
-                else
-                {
-                    AddRepo(repo, tpNonActive);
-                }
+                AddRepo(repo, repo.Active ? tpActive : tpNonActive);
             }
 
             tabControl1.SelectedIndex = 0;
@@ -254,11 +247,11 @@ namespace GitHubNotifier
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi("Fetching repository: " + dir);
+                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}:Fetching repository: " + dir);
                     nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("fetch", dir, dirName);
                     nodes[index].SelectedImageIndex = 2;
-                    PrintToUi("End Fetching repository: " + dir);
+                    PrintToUi($"{DateTime.Now.ToShortTimeString()}:End Fetching repository: {dir}:{Environment.NewLine}{Environment.NewLine}");
                 }
             }
         }
@@ -289,11 +282,11 @@ namespace GitHubNotifier
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi("Pulling repository: " + dir);
+                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}: Pulling repository: " + dir);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("pull", dir, dirName);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
-                    PrintToUi("End pulling repository: " + dir);
+                    PrintToUi($"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
                 }
             }
         }
@@ -328,7 +321,7 @@ namespace GitHubNotifier
                 publishCmd.StartInfo = start;
                 publishCmd.Exited += (_, e) =>
                 {
-                    string msg = $"Git operation Ended for command: {command}";
+                    string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
                     _output[dirName].Add(msg);
                     PrintToUi(msg);
                     tcs.SetResult($"Process Exited for git.exe");
@@ -343,7 +336,7 @@ namespace GitHubNotifier
             }
             catch (Exception e)
             {
-                string msg = $"######## ERROR: Git operation Ended for command: {command}: {e.Message}";
+                string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
                 _output[dirName].Add(msg);
                 PrintToUi(msg);
             }
@@ -379,7 +372,8 @@ namespace GitHubNotifier
                     BringToFront();
                     Focus();
                     TopMost = true;
-                    TopMost = false; 
+                    TopMost = false;
+                    tabControl1.SelectedIndex = 0;
                     await CheckNotifications(true);
                     await CheckAll();
                 }
@@ -450,11 +444,11 @@ namespace GitHubNotifier
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi("executing git.exe clean -d -fx on repository: " + dir);
+                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}: executing git.exe clean -d -fx on repository: " + dir);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("clean -d -fx", dir, dirName);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
-                    PrintToUi("Done git.exe clean -d -fx on repository: " + dir);
+                    PrintToUi($"{DateTime.Now.ToShortTimeString()}: Done git.exe clean -d -fx on repository: {dir}{Environment.NewLine}{Environment.NewLine}");
                 }
             }
         }
