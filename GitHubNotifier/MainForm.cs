@@ -45,6 +45,7 @@ namespace GitHubNotifier
             }
 
             tabControl1.SelectedIndex = 0;
+            tabControl2.SelectedIndex = 0;
             timerNotifications.Interval = Settings.NotificationsIntervalCheck * 60 * 1000;
             if (Settings.StartMinimized)
             {
