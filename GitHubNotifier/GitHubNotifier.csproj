@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net472;net48;netcoreapp3.1;net5-windows;net6-windows</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net48;net472;net471</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -16,7 +16,7 @@
 		<PackageIcon>GitHubNotifier.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>1.5.0</Version>
+		<Version>1.5.2</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 	</PropertyGroup>
@@ -31,7 +31,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LiorBanaI.NotificationWindow" Version="1.5.1" />
+		<PackageReference Include="LiorBanaI.NotificationWindow" Version="1.5.2" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>

@@ -231,7 +231,8 @@ namespace GitHubNotifier
             {
                 tvRepositories.Nodes.Clear();
                 _output.Clear();
-                var dirs = chkbSubfoldersRepositories.Checked
+                bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
+                var dirs = !currentFolderIsGit
                     ? Directory.GetDirectories(txtRepositoryRoot.Text)
                     : new[] { txtRepositoryRoot.Text };
 
@@ -256,6 +257,55 @@ namespace GitHubNotifier
                 }
             }
         }
+
+        private bool CheckIfCurrentFolderIsGet(string directory)
+        {
+            bool inside = false;
+            try
+            {
+                ProcessStartInfo start = new ProcessStartInfo
+                {
+                    FileName = "git.exe",
+                    Arguments = "rev-parse --is-inside-work-tree",
+                    WorkingDirectory = Path.Combine(directory),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                };
+                var checkCmd = new Process();
+
+                checkCmd.ErrorDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        PrintToUi(e.Data);
+                    }
+                };
+                checkCmd.StartInfo = start;
+                checkCmd.OutputDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        inside = e.Data.Contains("true");
+                    }
+                };
+
+                checkCmd.EnableRaisingEvents = true;
+                checkCmd.Start();
+                checkCmd.BeginOutputReadLine();
+                checkCmd.BeginErrorReadLine();
+                checkCmd.WaitForExit();
+            }
+            catch (Exception e)
+            {
+                string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command rev-parse --is-inside-work-tree";
+                PrintToUi(msg);
+            }
+            return inside;
+        }
+
         private async void btnPull_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
@@ -266,7 +316,8 @@ namespace GitHubNotifier
                 }
                 tvRepositories.Nodes.Clear();
                 _output.Clear();
-                var dirs = chkbSubfoldersRepositories.Checked
+                bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
+                var dirs = !currentFolderIsGit
                     ? Directory.GetDirectories(txtRepositoryRoot.Text)
                     : new[] { txtRepositoryRoot.Text };
 
@@ -283,7 +334,7 @@ namespace GitHubNotifier
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}: Pulling repository: " + dir);
+                    PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pulling repository: " + dir);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("pull", dir, dirName);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
@@ -294,54 +345,60 @@ namespace GitHubNotifier
 
         private Task ExecuteGitCommand(string command, string repoPath, string dirName)
         {
-            try
+           return Task.Run(() =>
             {
-                TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
-                ProcessStartInfo start = new ProcessStartInfo
+                try
                 {
-                    FileName = "git.exe",
-                    Arguments = command,
-                    WorkingDirectory = Path.Combine(repoPath),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true,
-                    UseShellExecute = false,
-                };
-                var publishCmd = new Process();
-                publishCmd.OutputDataReceived += (s, e) =>
+                    ProcessStartInfo start = new ProcessStartInfo
+                    {
+                        FileName = "git.exe",
+                        Arguments = command,
+                        WorkingDirectory = Path.Combine(repoPath),
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
+                        UseShellExecute = false,
+                    };
+                    var publishCmd = new Process();
+                    publishCmd.OutputDataReceived += (s, e) =>
+                    {
+                        if (!string.IsNullOrEmpty(e.Data))
+                        {
+                            _output[dirName].Add(e.Data);
+                            PrintToUi(e.Data);
+                        }
+                    };
+                    publishCmd.ErrorDataReceived += (s, e) =>
+                    {
+                        if (!string.IsNullOrEmpty(e.Data))
+                        {
+                            _output[dirName].Add(e.Data);
+                            PrintToUi(e.Data);
+                        }
+                    };
+                    publishCmd.StartInfo = start;
+                    publishCmd.Exited += (_, e) =>
+                    {
+                        string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
+                        _output[dirName].Add(msg);
+                        PrintToUi(msg);
+                    };
+                    publishCmd.EnableRaisingEvents = true;
+                    publishCmd.Start();
+                    publishCmd.BeginOutputReadLine();
+                    publishCmd.BeginErrorReadLine();
+                    publishCmd.WaitForExit();
+
+                }
+                catch (Exception e)
                 {
-                    _output[dirName].Add(e.Data);
-                    PrintToUi(e.Data);
-                };
-                publishCmd.ErrorDataReceived += (s, e) =>
-                {
-                    _output[dirName].Add(e.Data);
-                    PrintToUi(e.Data);
-                };
-                publishCmd.StartInfo = start;
-                publishCmd.Exited += (_, e) =>
-                {
-                    string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
+                    string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
                     _output[dirName].Add(msg);
                     PrintToUi(msg);
-                    tcs.SetResult($"Process Exited for git.exe");
-                };
-                publishCmd.EnableRaisingEvents = true;
-                publishCmd.Start();
-                publishCmd.BeginOutputReadLine();
-                publishCmd.BeginErrorReadLine();
-                Thread.Sleep(1000);
-                return tcs.Task;
-
-            }
-            catch (Exception e)
-            {
-                string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
-                _output[dirName].Add(msg);
-                PrintToUi(msg);
-            }
-            return Task.CompletedTask;
+                }
+            });
+            
         }
 
         private void PrintToUi(string data)
@@ -428,7 +485,8 @@ namespace GitHubNotifier
                 }
                 tvRepositories.Nodes.Clear();
                 _output.Clear();
-                var dirs = chkbSubfoldersRepositories.Checked
+                bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
+                var dirs = !currentFolderIsGit
                     ? Directory.GetDirectories(txtRepositoryRoot.Text)
                     : new[] { txtRepositoryRoot.Text };
 

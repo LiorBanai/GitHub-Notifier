@@ -53,7 +53,6 @@
             this.tsmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.chkbSubfoldersRepositories = new System.Windows.Forms.CheckBox();
             this.btnPull = new System.Windows.Forms.Button();
             this.btnFetch = new System.Windows.Forms.Button();
             this.btnRepositoryBrowse = new System.Windows.Forms.Button();
@@ -254,7 +253,6 @@
             this.tpGitOperations.Controls.Add(this.btnCleanUntrack);
             this.tpGitOperations.Controls.Add(this.chkbClearLog);
             this.tpGitOperations.Controls.Add(this.splitContainer1);
-            this.tpGitOperations.Controls.Add(this.chkbSubfoldersRepositories);
             this.tpGitOperations.Controls.Add(this.btnPull);
             this.tpGitOperations.Controls.Add(this.btnFetch);
             this.tpGitOperations.Controls.Add(this.btnRepositoryBrowse);
@@ -271,10 +269,10 @@
             // btnCleanUntrack
             // 
             this.btnCleanUntrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanUntrack.Location = new System.Drawing.Point(1240, 42);
+            this.btnCleanUntrack.Location = new System.Drawing.Point(1274, 6);
             this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4);
             this.btnCleanUntrack.Name = "btnCleanUntrack";
-            this.btnCleanUntrack.Size = new System.Drawing.Size(238, 28);
+            this.btnCleanUntrack.Size = new System.Drawing.Size(204, 28);
             this.btnCleanUntrack.TabIndex = 22;
             this.btnCleanUntrack.Text = "Clean Untracked items";
             this.btnCleanUntrack.UseVisualStyleBackColor = true;
@@ -285,9 +283,9 @@
             this.chkbClearLog.AutoSize = true;
             this.chkbClearLog.Checked = true;
             this.chkbClearLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbClearLog.Location = new System.Drawing.Point(11, 77);
+            this.chkbClearLog.Location = new System.Drawing.Point(8, 39);
             this.chkbClearLog.Name = "chkbClearLog";
-            this.chkbClearLog.Size = new System.Drawing.Size(218, 21);
+            this.chkbClearLog.Size = new System.Drawing.Size(207, 20);
             this.chkbClearLog.TabIndex = 21;
             this.chkbClearLog.Text = "Clear old log before operation";
             this.chkbClearLog.UseVisualStyleBackColor = true;
@@ -297,7 +295,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(11, 104);
+            this.splitContainer1.Location = new System.Drawing.Point(11, 77);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -307,7 +305,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1470, 421);
+            this.splitContainer1.Size = new System.Drawing.Size(1470, 448);
             this.splitContainer1.SplitterDistance = 490;
             this.splitContainer1.TabIndex = 20;
             // 
@@ -320,7 +318,7 @@
             this.tvRepositories.Location = new System.Drawing.Point(0, 0);
             this.tvRepositories.Name = "tvRepositories";
             this.tvRepositories.SelectedImageIndex = 0;
-            this.tvRepositories.Size = new System.Drawing.Size(490, 421);
+            this.tvRepositories.Size = new System.Drawing.Size(490, 448);
             this.tvRepositories.TabIndex = 0;
             this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
             // 
@@ -353,26 +351,13 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(976, 421);
+            this.richTextBox1.Size = new System.Drawing.Size(976, 448);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
-            // chkbSubfoldersRepositories
-            // 
-            this.chkbSubfoldersRepositories.AutoSize = true;
-            this.chkbSubfoldersRepositories.Checked = true;
-            this.chkbSubfoldersRepositories.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbSubfoldersRepositories.Location = new System.Drawing.Point(407, 47);
-            this.chkbSubfoldersRepositories.Name = "chkbSubfoldersRepositories";
-            this.chkbSubfoldersRepositories.Size = new System.Drawing.Size(544, 21);
-            this.chkbSubfoldersRepositories.TabIndex = 19;
-            this.chkbSubfoldersRepositories.Text = "sub folders are GIT repositories (for single folder of specific repositroy unchec" +
-    "k it)";
-            this.chkbSubfoldersRepositories.UseVisualStyleBackColor = true;
-            // 
             // btnPull
             // 
-            this.btnPull.Location = new System.Drawing.Point(85, 42);
+            this.btnPull.Location = new System.Drawing.Point(81, 4);
             this.btnPull.Margin = new System.Windows.Forms.Padding(4);
             this.btnPull.Name = "btnPull";
             this.btnPull.Size = new System.Drawing.Size(69, 28);
@@ -383,7 +368,7 @@
             // 
             // btnFetch
             // 
-            this.btnFetch.Location = new System.Drawing.Point(11, 42);
+            this.btnFetch.Location = new System.Drawing.Point(7, 4);
             this.btnFetch.Margin = new System.Windows.Forms.Padding(4);
             this.btnFetch.Name = "btnFetch";
             this.btnFetch.Size = new System.Drawing.Size(69, 28);
@@ -395,7 +380,7 @@
             // btnRepositoryBrowse
             // 
             this.btnRepositoryBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1409, 7);
+            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1204, 7);
             this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4);
             this.btnRepositoryBrowse.Name = "btnRepositoryBrowse";
             this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 28);
@@ -410,16 +395,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRepositoryRoot.Location = new System.Drawing.Point(407, 9);
             this.txtRepositoryRoot.Name = "txtRepositoryRoot";
-            this.txtRepositoryRoot.Size = new System.Drawing.Size(960, 22);
+            this.txtRepositoryRoot.Size = new System.Drawing.Size(790, 22);
             this.txtRepositoryRoot.TabIndex = 13;
             this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 12);
+            this.label1.Location = new System.Drawing.Point(204, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 17);
+            this.label1.Size = new System.Drawing.Size(188, 16);
             this.label1.TabIndex = 14;
             this.label1.Text = "Folder of Repository (or many)";
             // 
@@ -644,7 +629,6 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnPull;
         private System.Windows.Forms.Button btnFetch;
-        private System.Windows.Forms.CheckBox chkbSubfoldersRepositories;
         private System.Windows.Forms.ToolStripMenuItem tsmiCheckAll;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
