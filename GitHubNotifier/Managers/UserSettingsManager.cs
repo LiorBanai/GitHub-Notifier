@@ -13,7 +13,7 @@ namespace GitHubNotifier.Managers
             new Lazy<UserSettingsManager>(() => new UserSettingsManager());
 
         public static UserSettingsManager Instance { get; set; } = _instance.Value;
-
+        public event EventHandler RepositoriesChanged;
         public List<RepositorySettings> Repositories { get; set; }
         public DateTime LastReadUserNotification { get; set; }
         public List<GitHubUserNotification> LastUnReadUserNotifications { get; set; }
@@ -62,8 +62,18 @@ namespace GitHubNotifier.Managers
         internal void AddNewRepository(string displayName, string id, int updateInterval)
         {
             Repositories.Add(new RepositorySettings(displayName, id, updateInterval));
+            Save();
+            RepositoriesChanged?.Invoke(this,EventArgs.Empty);
+
         }
-        internal void RemoveRepository(RepositorySettings repo) => Repositories.Remove(repo);
+
+        internal void RemoveRepository(RepositorySettings repo)
+        {
+            Repositories.Remove(repo);
+            Save();
+            RepositoriesChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public void Save()
         {
             Settings.Default.Repositories = JsonConvert.SerializeObject(Repositories);

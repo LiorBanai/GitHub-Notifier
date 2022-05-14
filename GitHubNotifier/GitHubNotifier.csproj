@@ -16,9 +16,10 @@
 		<PackageIcon>GitHubNotifier.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>1.5.2</Version>
+		<Version>1.5.3</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -29,6 +30,10 @@
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="GitHubNotifier.ico" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
 	</ItemGroup>
@@ -46,7 +51,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Forms\Form1.cs" />
 		<Compile Update="Forms\UserSettingsForm.cs" />
 		<Compile Update="Forms\UserSettingsForm.Designer.cs">
 			<DependentUpon>UserSettingsForm.cs</DependentUpon>

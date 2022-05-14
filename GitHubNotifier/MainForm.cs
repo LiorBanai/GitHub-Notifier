@@ -39,11 +39,7 @@ namespace GitHubNotifier
             txtRepositoryRoot.Text = Settings.RepositoryRoot;
             await CheckAPILimits();
             await CheckNotifications();
-            foreach (RepositorySettings repo in Settings.Repositories)
-            {
-                AddRepo(repo, repo.Active ? tpActive : tpNonActive);
-            }
-
+            LoadRepositories();
             tabControl1.SelectedIndex = 0;
             tabControl2.SelectedIndex = 0;
             timerNotifications.Interval = Settings.NotificationsIntervalCheck * 60 * 1000;
@@ -51,8 +47,26 @@ namespace GitHubNotifier
             {
                 Hide();
             }
+            Settings.RepositoriesChanged += Settings_RepositoriesChanged;
         }
 
+        private void Settings_RepositoriesChanged(object sender, EventArgs e)
+        {
+           Invoke(new MethodInvoker(LoadRepositories));
+        }
+
+        private void LoadRepositories()
+        {
+            repos.Clear();
+            tpActive.Controls.Clear();
+            tpNonActive.Controls.Clear();
+            foreach (RepositorySettings repo in Settings.Repositories)
+            {
+                AddRepo(repo, repo.Active ? tpActive : tpNonActive);
+            }
+
+
+        }
         private async Task CheckAPILimits()
         {
             try
@@ -345,60 +359,60 @@ namespace GitHubNotifier
 
         private Task ExecuteGitCommand(string command, string repoPath, string dirName)
         {
-           return Task.Run(() =>
-            {
-                try
-                {
-                    ProcessStartInfo start = new ProcessStartInfo
-                    {
-                        FileName = "git.exe",
-                        Arguments = command,
-                        WorkingDirectory = Path.Combine(repoPath),
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        RedirectStandardError = true,
-                        RedirectStandardOutput = true,
-                        CreateNoWindow = true,
-                        UseShellExecute = false,
-                    };
-                    var publishCmd = new Process();
-                    publishCmd.OutputDataReceived += (s, e) =>
-                    {
-                        if (!string.IsNullOrEmpty(e.Data))
-                        {
-                            _output[dirName].Add(e.Data);
-                            PrintToUi(e.Data);
-                        }
-                    };
-                    publishCmd.ErrorDataReceived += (s, e) =>
-                    {
-                        if (!string.IsNullOrEmpty(e.Data))
-                        {
-                            _output[dirName].Add(e.Data);
-                            PrintToUi(e.Data);
-                        }
-                    };
-                    publishCmd.StartInfo = start;
-                    publishCmd.Exited += (_, e) =>
-                    {
-                        string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
-                        _output[dirName].Add(msg);
-                        PrintToUi(msg);
-                    };
-                    publishCmd.EnableRaisingEvents = true;
-                    publishCmd.Start();
-                    publishCmd.BeginOutputReadLine();
-                    publishCmd.BeginErrorReadLine();
-                    publishCmd.WaitForExit();
+            return Task.Run(() =>
+             {
+                 try
+                 {
+                     ProcessStartInfo start = new ProcessStartInfo
+                     {
+                         FileName = "git.exe",
+                         Arguments = command,
+                         WorkingDirectory = Path.Combine(repoPath),
+                         WindowStyle = ProcessWindowStyle.Hidden,
+                         RedirectStandardError = true,
+                         RedirectStandardOutput = true,
+                         CreateNoWindow = true,
+                         UseShellExecute = false,
+                     };
+                     var publishCmd = new Process();
+                     publishCmd.OutputDataReceived += (s, e) =>
+                     {
+                         if (!string.IsNullOrEmpty(e.Data))
+                         {
+                             _output[dirName].Add(e.Data);
+                             PrintToUi(e.Data);
+                         }
+                     };
+                     publishCmd.ErrorDataReceived += (s, e) =>
+                     {
+                         if (!string.IsNullOrEmpty(e.Data))
+                         {
+                             _output[dirName].Add(e.Data);
+                             PrintToUi(e.Data);
+                         }
+                     };
+                     publishCmd.StartInfo = start;
+                     publishCmd.Exited += (_, e) =>
+                     {
+                         string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
+                         _output[dirName].Add(msg);
+                         PrintToUi(msg);
+                     };
+                     publishCmd.EnableRaisingEvents = true;
+                     publishCmd.Start();
+                     publishCmd.BeginOutputReadLine();
+                     publishCmd.BeginErrorReadLine();
+                     publishCmd.WaitForExit();
 
-                }
-                catch (Exception e)
-                {
-                    string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
-                    _output[dirName].Add(msg);
-                    PrintToUi(msg);
-                }
-            });
-            
+                 }
+                 catch (Exception e)
+                 {
+                     string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
+                     _output[dirName].Add(msg);
+                     PrintToUi(msg);
+                 }
+             });
+
         }
 
         private void PrintToUi(string data)

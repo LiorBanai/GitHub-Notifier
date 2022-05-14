@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using GitHubNotifier.DataTypes;
 using GitHubNotifier.Managers;
@@ -166,9 +167,19 @@ namespace GitHubNotifier.Forms
             f.Title = "Import repositories";
             if (f.ShowDialog() == DialogResult.OK)
             {
-                var data = File.ReadAllText(f.FileName);
-                List<RepositorySettings> repositories = JsonConvert.DeserializeObject<List<RepositorySettings>>(data);
-                UserSettingsManager.Instance.Repositories = repositories;
+                try
+                {
+                    var data = File.ReadAllText(f.FileName);
+                    List<RepositorySettings> repositories = JsonConvert.DeserializeObject<List<RepositorySettings>>(data);
+                    UserSettingsManager.Instance.Repositories = repositories;
+                    RefreshList();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show($"Error: {exception.Message}", "Error importing Json", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
             }
         }
 
@@ -177,13 +188,13 @@ namespace GitHubNotifier.Forms
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "json file|*.json";
             saveFileDialog1.Title = "Export repositories";
-           ;
+            ;
 
             // If the file name is not an empty string open it for saving.
-            if (saveFileDialog1.ShowDialog()==DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-               var data = JsonConvert.SerializeObject(UserSettingsManager.Instance.Repositories);
-               File.WriteAllText(saveFileDialog1.FileName, data);
+                var data = JsonConvert.SerializeObject(UserSettingsManager.Instance.Repositories);
+                File.WriteAllText(saveFileDialog1.FileName, data);
             }
         }
     }
