@@ -13,10 +13,10 @@
 		<PackageProjectUrl>https://github.com/LiorBanai/GitHub-Notifier</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/LiorBanai/GitHub-Notifier</RepositoryUrl>
-		<PackageIcon>GitHubNotifier.png</PackageIcon>
+		<PackageIcon>icon.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>1.5.3</Version>
+		<Version>1.5.4</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
