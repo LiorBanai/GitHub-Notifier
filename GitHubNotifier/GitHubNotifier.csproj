@@ -21,7 +21,12 @@
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<None Include="..\icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
