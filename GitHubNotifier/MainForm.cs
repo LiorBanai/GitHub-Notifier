@@ -52,7 +52,7 @@ namespace GitHubNotifier
 
         private void Settings_RepositoriesChanged(object sender, EventArgs e)
         {
-           Invoke(new MethodInvoker(LoadRepositories));
+            Invoke(new MethodInvoker(LoadRepositories));
         }
 
         private void LoadRepositories()
@@ -346,17 +346,22 @@ namespace GitHubNotifier
                 for (var index = 0; index < dirs.Length; index++)
                 {
                     string dir = dirs[index];
-                    var dirName = Path.GetFileName(dir);
-                    _output[dirName] = new List<string>();
-                    PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pulling repository: " + dir);
-                    nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
-                    await ExecuteGitCommand("pull", dir, dirName);
-                    nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
-                    PrintToUi($"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+                    await PullRepo(dir, index);
                 }
             }
         }
 
+        private async Task PullRepo(string dir, int index)
+        {
+            var dirName = Path.GetFileName(dir);
+            _output[dirName] = new List<string>();
+            PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pulling repository: " + dir);
+            tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 1;
+            await ExecuteGitCommand("pull", dir, dirName);
+            tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 2;
+            PrintToUi($"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+
+        }
         private Task ExecuteGitCommand(string command, string repoPath, string dirName)
         {
             return Task.Run(() =>
@@ -523,6 +528,42 @@ namespace GitHubNotifier
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
                     PrintToUi($"{DateTime.Now.ToShortTimeString()}: Done git.exe clean -d -fx on repository: {dir}{Environment.NewLine}{Environment.NewLine}");
                 }
+            }
+        }
+
+        private void btnListFolders_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                if (chkbClearLog.Checked)
+                {
+                    richTextBox1.Text = "";
+                }
+
+                tvRepositories.Nodes.Clear();
+                _output.Clear();
+                bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
+                var dirs = !currentFolderIsGit
+                    ? Directory.GetDirectories(txtRepositoryRoot.Text)
+                    : new[] { txtRepositoryRoot.Text };
+
+                List<TreeNode> nodes = new List<TreeNode>();
+                foreach (var dir in dirs)
+                {
+                    var dirName = Path.GetFileName(dir);
+                    var node = new TreeNode(dirName, 0, 0) { Tag = dir };
+                    nodes.Add(node);
+                }
+
+                tvRepositories.Nodes.AddRange(nodes.ToArray());
+            }
+        }
+
+        private async void tsmiPullFolder_Click(object sender, EventArgs e)
+        {
+            if (tvRepositories.SelectedNode?.Tag is string path)
+            {
+                await PullRepo(path, tvRepositories.Nodes.IndexOf(tvRepositories.SelectedNode));
             }
         }
     }

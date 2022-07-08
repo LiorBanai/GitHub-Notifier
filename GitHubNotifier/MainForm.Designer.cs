@@ -45,6 +45,7 @@
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
             this.tpGitOperations = new System.Windows.Forms.TabPage();
+            this.btnListFolders = new System.Windows.Forms.Button();
             this.btnCleanUntrack = new System.Windows.Forms.Button();
             this.chkbClearLog = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -76,6 +77,7 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
+            this.tsmiPullFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -101,10 +103,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1495, 560);
+            this.panel1.Size = new System.Drawing.Size(1495, 700);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -117,7 +119,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 2;
-            this.tabControl1.Size = new System.Drawing.Size(1495, 560);
+            this.tabControl1.Size = new System.Drawing.Size(1495, 700);
             this.tabControl1.TabIndex = 0;
             // 
             // tpRepo
@@ -125,11 +127,11 @@
             this.tpRepo.AutoScroll = true;
             this.tpRepo.Controls.Add(this.panelRepositories);
             this.tpRepo.Controls.Add(this.toolStrip2);
-            this.tpRepo.Location = new System.Drawing.Point(4, 25);
+            this.tpRepo.Location = new System.Drawing.Point(4, 29);
             this.tpRepo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpRepo.Name = "tpRepo";
             this.tpRepo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpRepo.Size = new System.Drawing.Size(1487, 531);
+            this.tpRepo.Size = new System.Drawing.Size(1487, 667);
             this.tpRepo.TabIndex = 0;
             this.tpRepo.Text = "Repositories";
             this.tpRepo.UseVisualStyleBackColor = true;
@@ -139,9 +141,9 @@
             this.panelRepositories.Controls.Add(this.tabControl2);
             this.panelRepositories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRepositories.Location = new System.Drawing.Point(3, 29);
-            this.panelRepositories.Margin = new System.Windows.Forms.Padding(4);
+            this.panelRepositories.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelRepositories.Name = "panelRepositories";
-            this.panelRepositories.Size = new System.Drawing.Size(1481, 500);
+            this.panelRepositories.Size = new System.Drawing.Size(1481, 636);
             this.panelRepositories.TabIndex = 3;
             // 
             // tabControl2
@@ -150,27 +152,30 @@
             this.tabControl2.Controls.Add(this.tpNonActive);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1481, 500);
+            this.tabControl2.Size = new System.Drawing.Size(1481, 636);
             this.tabControl2.TabIndex = 0;
             // 
             // tpActive
             // 
-            this.tpActive.Location = new System.Drawing.Point(4, 25);
+            this.tpActive.Location = new System.Drawing.Point(4, 29);
+            this.tpActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpActive.Name = "tpActive";
-            this.tpActive.Padding = new System.Windows.Forms.Padding(3);
-            this.tpActive.Size = new System.Drawing.Size(1473, 471);
+            this.tpActive.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpActive.Size = new System.Drawing.Size(1473, 603);
             this.tpActive.TabIndex = 0;
             this.tpActive.Text = "Actives";
             this.tpActive.UseVisualStyleBackColor = true;
             // 
             // tpNonActive
             // 
-            this.tpNonActive.Location = new System.Drawing.Point(4, 25);
+            this.tpNonActive.Location = new System.Drawing.Point(4, 29);
+            this.tpNonActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpNonActive.Name = "tpNonActive";
-            this.tpNonActive.Padding = new System.Windows.Forms.Padding(3);
-            this.tpNonActive.Size = new System.Drawing.Size(1473, 471);
+            this.tpNonActive.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpNonActive.Size = new System.Drawing.Size(1473, 603);
             this.tpNonActive.TabIndex = 1;
             this.tpNonActive.Text = "Non Actives";
             this.tpNonActive.UseVisualStyleBackColor = true;
@@ -199,10 +204,10 @@
             // 
             this.tpNotifications.Controls.Add(this.lstNotifications);
             this.tpNotifications.Controls.Add(this.toolStrip1);
-            this.tpNotifications.Location = new System.Drawing.Point(4, 25);
+            this.tpNotifications.Location = new System.Drawing.Point(4, 29);
             this.tpNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpNotifications.Name = "tpNotifications";
-            this.tpNotifications.Size = new System.Drawing.Size(1487, 531);
+            this.tpNotifications.Size = new System.Drawing.Size(1487, 667);
             this.tpNotifications.TabIndex = 2;
             this.tpNotifications.Text = "Notifications";
             this.tpNotifications.UseVisualStyleBackColor = true;
@@ -211,11 +216,11 @@
             // 
             this.lstNotifications.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstNotifications.FormattingEnabled = true;
-            this.lstNotifications.ItemHeight = 16;
+            this.lstNotifications.ItemHeight = 20;
             this.lstNotifications.Location = new System.Drawing.Point(0, 27);
             this.lstNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstNotifications.Name = "lstNotifications";
-            this.lstNotifications.Size = new System.Drawing.Size(1487, 504);
+            this.lstNotifications.Size = new System.Drawing.Size(1487, 640);
             this.lstNotifications.TabIndex = 0;
             // 
             // toolStrip1
@@ -250,6 +255,7 @@
             // 
             // tpGitOperations
             // 
+            this.tpGitOperations.Controls.Add(this.btnListFolders);
             this.tpGitOperations.Controls.Add(this.btnCleanUntrack);
             this.tpGitOperations.Controls.Add(this.chkbClearLog);
             this.tpGitOperations.Controls.Add(this.splitContainer1);
@@ -258,21 +264,33 @@
             this.tpGitOperations.Controls.Add(this.btnRepositoryBrowse);
             this.tpGitOperations.Controls.Add(this.txtRepositoryRoot);
             this.tpGitOperations.Controls.Add(this.label1);
-            this.tpGitOperations.Location = new System.Drawing.Point(4, 25);
+            this.tpGitOperations.Location = new System.Drawing.Point(4, 29);
+            this.tpGitOperations.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpGitOperations.Name = "tpGitOperations";
-            this.tpGitOperations.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGitOperations.Size = new System.Drawing.Size(1487, 531);
+            this.tpGitOperations.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpGitOperations.Size = new System.Drawing.Size(1487, 667);
             this.tpGitOperations.TabIndex = 3;
             this.tpGitOperations.Text = "Git Operations";
             this.tpGitOperations.UseVisualStyleBackColor = true;
             // 
+            // btnListFolders
+            // 
+            this.btnListFolders.Location = new System.Drawing.Point(158, 5);
+            this.btnListFolders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnListFolders.Name = "btnListFolders";
+            this.btnListFolders.Size = new System.Drawing.Size(113, 35);
+            this.btnListFolders.TabIndex = 23;
+            this.btnListFolders.Text = "List Folders";
+            this.btnListFolders.UseVisualStyleBackColor = true;
+            this.btnListFolders.Click += new System.EventHandler(this.btnListFolders_Click);
+            // 
             // btnCleanUntrack
             // 
             this.btnCleanUntrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanUntrack.Location = new System.Drawing.Point(1274, 6);
-            this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCleanUntrack.Location = new System.Drawing.Point(1274, 8);
+            this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCleanUntrack.Name = "btnCleanUntrack";
-            this.btnCleanUntrack.Size = new System.Drawing.Size(204, 28);
+            this.btnCleanUntrack.Size = new System.Drawing.Size(204, 35);
             this.btnCleanUntrack.TabIndex = 22;
             this.btnCleanUntrack.Text = "Clean Untracked items";
             this.btnCleanUntrack.UseVisualStyleBackColor = true;
@@ -283,9 +301,10 @@
             this.chkbClearLog.AutoSize = true;
             this.chkbClearLog.Checked = true;
             this.chkbClearLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbClearLog.Location = new System.Drawing.Point(8, 39);
+            this.chkbClearLog.Location = new System.Drawing.Point(8, 49);
+            this.chkbClearLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkbClearLog.Name = "chkbClearLog";
-            this.chkbClearLog.Size = new System.Drawing.Size(207, 20);
+            this.chkbClearLog.Size = new System.Drawing.Size(234, 24);
             this.chkbClearLog.TabIndex = 21;
             this.chkbClearLog.Text = "Clear old log before operation";
             this.chkbClearLog.UseVisualStyleBackColor = true;
@@ -295,7 +314,8 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(11, 77);
+            this.splitContainer1.Location = new System.Drawing.Point(11, 96);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -305,7 +325,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1470, 448);
+            this.splitContainer1.Size = new System.Drawing.Size(1470, 560);
             this.splitContainer1.SplitterDistance = 490;
             this.splitContainer1.TabIndex = 20;
             // 
@@ -316,9 +336,10 @@
             this.tvRepositories.ImageIndex = 0;
             this.tvRepositories.ImageList = this.imageList1;
             this.tvRepositories.Location = new System.Drawing.Point(0, 0);
+            this.tvRepositories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tvRepositories.Name = "tvRepositories";
             this.tvRepositories.SelectedImageIndex = 0;
-            this.tvRepositories.Size = new System.Drawing.Size(490, 448);
+            this.tvRepositories.Size = new System.Drawing.Size(490, 560);
             this.tvRepositories.TabIndex = 0;
             this.tvRepositories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRepositories_AfterSelect);
             // 
@@ -326,9 +347,10 @@
             // 
             this.contextMenuStripRepository.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripRepository.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiOpenFolder});
+            this.tsmiOpenFolder,
+            this.tsmiPullFolder});
             this.contextMenuStripRepository.Name = "contextMenuStripRepository";
-            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 28);
+            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 80);
             // 
             // tsmiOpenFolder
             // 
@@ -339,6 +361,7 @@
             // 
             // imageList1
             // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "IconBlack.png");
@@ -350,17 +373,18 @@
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(976, 448);
+            this.richTextBox1.Size = new System.Drawing.Size(976, 560);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
             // btnPull
             // 
-            this.btnPull.Location = new System.Drawing.Point(81, 4);
-            this.btnPull.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPull.Location = new System.Drawing.Point(81, 5);
+            this.btnPull.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPull.Name = "btnPull";
-            this.btnPull.Size = new System.Drawing.Size(69, 28);
+            this.btnPull.Size = new System.Drawing.Size(69, 35);
             this.btnPull.TabIndex = 17;
             this.btnPull.Text = "Pull";
             this.btnPull.UseVisualStyleBackColor = true;
@@ -368,10 +392,10 @@
             // 
             // btnFetch
             // 
-            this.btnFetch.Location = new System.Drawing.Point(7, 4);
-            this.btnFetch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFetch.Location = new System.Drawing.Point(7, 5);
+            this.btnFetch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnFetch.Name = "btnFetch";
-            this.btnFetch.Size = new System.Drawing.Size(69, 28);
+            this.btnFetch.Size = new System.Drawing.Size(69, 35);
             this.btnFetch.TabIndex = 16;
             this.btnFetch.Text = "Fetch";
             this.btnFetch.UseVisualStyleBackColor = true;
@@ -380,10 +404,10 @@
             // btnRepositoryBrowse
             // 
             this.btnRepositoryBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1204, 7);
-            this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1204, 9);
+            this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRepositoryBrowse.Name = "btnRepositoryBrowse";
-            this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 28);
+            this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 35);
             this.btnRepositoryBrowse.TabIndex = 15;
             this.btnRepositoryBrowse.Text = "Browse";
             this.btnRepositoryBrowse.UseVisualStyleBackColor = true;
@@ -393,18 +417,19 @@
             // 
             this.txtRepositoryRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepositoryRoot.Location = new System.Drawing.Point(407, 9);
+            this.txtRepositoryRoot.Location = new System.Drawing.Point(505, 11);
+            this.txtRepositoryRoot.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRepositoryRoot.Name = "txtRepositoryRoot";
-            this.txtRepositoryRoot.Size = new System.Drawing.Size(790, 22);
+            this.txtRepositoryRoot.Size = new System.Drawing.Size(692, 27);
             this.txtRepositoryRoot.TabIndex = 13;
             this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(204, 12);
+            this.label1.Location = new System.Drawing.Point(278, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 16);
+            this.label1.Size = new System.Drawing.Size(212, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "Folder of Repository (or many)";
             // 
@@ -510,7 +535,7 @@
             this.tsslblAPILimit,
             this.tsslblNotifications,
             this.tsslError});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 593);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 748);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1495, 26);
@@ -548,11 +573,18 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
+            // tsmiPullFolder
+            // 
+            this.tsmiPullFolder.Name = "tsmiPullFolder";
+            this.tsmiPullFolder.Size = new System.Drawing.Size(235, 24);
+            this.tsmiPullFolder.Text = "Pull Repository";
+            this.tsmiPullFolder.Click += new System.EventHandler(this.tsmiPullFolder_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1495, 619);
+            this.ClientSize = new System.Drawing.Size(1495, 774);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
@@ -640,6 +672,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripRepository;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenFolder;
         private System.Windows.Forms.Button btnCleanUntrack;
+        private System.Windows.Forms.Button btnListFolders;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPullFolder;
     }
 }
 
