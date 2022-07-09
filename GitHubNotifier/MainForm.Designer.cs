@@ -52,6 +52,7 @@
             this.tvRepositories = new System.Windows.Forms.TreeView();
             this.contextMenuStripRepository = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPullFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnPull = new System.Windows.Forms.Button();
@@ -77,7 +78,6 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.tsmiPullFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -275,7 +275,8 @@
             // 
             // btnListFolders
             // 
-            this.btnListFolders.Location = new System.Drawing.Point(158, 5);
+            this.btnListFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnListFolders.Location = new System.Drawing.Point(1160, 7);
             this.btnListFolders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnListFolders.Name = "btnListFolders";
             this.btnListFolders.Size = new System.Drawing.Size(113, 35);
@@ -350,7 +351,7 @@
             this.tsmiOpenFolder,
             this.tsmiPullFolder});
             this.contextMenuStripRepository.Name = "contextMenuStripRepository";
-            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 80);
+            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 52);
             // 
             // tsmiOpenFolder
             // 
@@ -358,6 +359,13 @@
             this.tsmiOpenFolder.Size = new System.Drawing.Size(235, 24);
             this.tsmiOpenFolder.Text = "Open Repository Folder";
             this.tsmiOpenFolder.Click += new System.EventHandler(this.tsmiOpenFolder_Click);
+            // 
+            // tsmiPullFolder
+            // 
+            this.tsmiPullFolder.Name = "tsmiPullFolder";
+            this.tsmiPullFolder.Size = new System.Drawing.Size(235, 24);
+            this.tsmiPullFolder.Text = "Pull Repository";
+            this.tsmiPullFolder.Click += new System.EventHandler(this.tsmiPullFolder_Click);
             // 
             // imageList1
             // 
@@ -404,7 +412,7 @@
             // btnRepositoryBrowse
             // 
             this.btnRepositoryBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1204, 9);
+            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1083, 7);
             this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRepositoryBrowse.Name = "btnRepositoryBrowse";
             this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 35);
@@ -417,7 +425,7 @@
             // 
             this.txtRepositoryRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRepositoryRoot.Location = new System.Drawing.Point(505, 11);
+            this.txtRepositoryRoot.Location = new System.Drawing.Point(384, 10);
             this.txtRepositoryRoot.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRepositoryRoot.Name = "txtRepositoryRoot";
             this.txtRepositoryRoot.Size = new System.Drawing.Size(692, 27);
@@ -427,7 +435,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(278, 13);
+            this.label1.Location = new System.Drawing.Point(157, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 20);
             this.label1.TabIndex = 14;
@@ -572,13 +580,6 @@
             this.timerAPIRateCheck.Enabled = true;
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
-            // 
-            // tsmiPullFolder
-            // 
-            this.tsmiPullFolder.Name = "tsmiPullFolder";
-            this.tsmiPullFolder.Size = new System.Drawing.Size(235, 24);
-            this.tsmiPullFolder.Text = "Pull Repository";
-            this.tsmiPullFolder.Click += new System.EventHandler(this.tsmiPullFolder_Click);
             // 
             // MainForm
             // 
