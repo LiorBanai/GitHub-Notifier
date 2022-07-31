@@ -376,6 +376,7 @@
             this.imageList1.Images.SetKeyName(1, "IconColorful.png");
             this.imageList1.Images.SetKeyName(2, "iconGreen.png");
             this.imageList1.Images.SetKeyName(3, "IconRed.png");
+            this.imageList1.Images.SetKeyName(4, "IconSetStars3_16x16.png");
             // 
             // richTextBox1
             // 

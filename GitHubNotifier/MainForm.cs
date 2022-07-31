@@ -358,7 +358,9 @@ namespace GitHubNotifier
             PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pulling repository: " + dir);
             tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 1;
             await ExecuteGitCommand("pull", dir, dirName);
-            tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 2;
+            tvRepositories.Nodes[index].ImageIndex = _output[dirName].Contains("Already up to date", StringComparer.InvariantCultureIgnoreCase)
+                ? tvRepositories.Nodes[index].SelectedImageIndex = 2
+                : tvRepositories.Nodes[index].SelectedImageIndex = 4;
             PrintToUi($"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
 
         }
