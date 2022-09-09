@@ -78,6 +78,7 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
+            this.btnCleanObjAndBinFolder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -255,6 +256,7 @@
             // 
             // tpGitOperations
             // 
+            this.tpGitOperations.Controls.Add(this.btnCleanObjAndBinFolder);
             this.tpGitOperations.Controls.Add(this.btnListFolders);
             this.tpGitOperations.Controls.Add(this.btnCleanUntrack);
             this.tpGitOperations.Controls.Add(this.chkbClearLog);
@@ -288,7 +290,7 @@
             // btnCleanUntrack
             // 
             this.btnCleanUntrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanUntrack.Location = new System.Drawing.Point(1274, 8);
+            this.btnCleanUntrack.Location = new System.Drawing.Point(1274, 7);
             this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCleanUntrack.Name = "btnCleanUntrack";
             this.btnCleanUntrack.Size = new System.Drawing.Size(204, 35);
@@ -582,6 +584,18 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
+            // btnCleanObjAndBinFolder
+            // 
+            this.btnCleanObjAndBinFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCleanObjAndBinFolder.Location = new System.Drawing.Point(1274, 43);
+            this.btnCleanObjAndBinFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCleanObjAndBinFolder.Name = "btnCleanObjAndBinFolder";
+            this.btnCleanObjAndBinFolder.Size = new System.Drawing.Size(204, 35);
+            this.btnCleanObjAndBinFolder.TabIndex = 24;
+            this.btnCleanObjAndBinFolder.Text = "clean obj and bin folders";
+            this.btnCleanObjAndBinFolder.UseVisualStyleBackColor = true;
+            this.btnCleanObjAndBinFolder.Click += new System.EventHandler(this.btnCleanObjAndBinFolder_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -676,6 +690,7 @@
         private System.Windows.Forms.Button btnCleanUntrack;
         private System.Windows.Forms.Button btnListFolders;
         private System.Windows.Forms.ToolStripMenuItem tsmiPullFolder;
+        private System.Windows.Forms.Button btnCleanObjAndBinFolder;
     }
 }
 

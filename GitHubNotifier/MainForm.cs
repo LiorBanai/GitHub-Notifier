@@ -5,6 +5,7 @@ using GitHubNotifier.UserControls;
 using GitHubNotifier.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -20,10 +21,12 @@ namespace GitHubNotifier
         List<RepositoryEntry> repos = new List<RepositoryEntry>();
         private UserSettingsManager Settings => UserSettingsManager.Instance;
         private bool preventExit = true;
+
         public MainForm()
         {
             InitializeComponent();
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -31,6 +34,7 @@ namespace GitHubNotifier
                 Close();
                 return true;
             }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -47,6 +51,7 @@ namespace GitHubNotifier
             {
                 Hide();
             }
+
             Settings.RepositoriesChanged += Settings_RepositoriesChanged;
         }
 
@@ -67,6 +72,7 @@ namespace GitHubNotifier
 
 
         }
+
         private async Task CheckAPILimits()
         {
             try
@@ -173,10 +179,12 @@ namespace GitHubNotifier
             if (Settings.LastUnReadUserNotifications.Any())
             {
                 lstNotifications.Items.Clear();
-                lstNotifications.Items.AddRange(Settings.LastUnReadUserNotifications.Select(n => $"{n.Repository.FullName}:  {n.Subject.Title}").ToArray());
+                lstNotifications.Items.AddRange(Settings.LastUnReadUserNotifications
+                    .Select(n => $"{n.Repository.FullName}:  {n.Subject.Title}").ToArray());
             }
 
-            tsslblNotifications.Text = $"Notification: {Settings.LastUnReadUserNotifications.Count}. Last Update: {Settings.LastReadUserNotification}";
+            tsslblNotifications.Text =
+                $"Notification: {Settings.LastUnReadUserNotifications.Count}. Last Update: {Settings.LastReadUserNotification}";
 
         }
 
@@ -219,6 +227,7 @@ namespace GitHubNotifier
                 //ignore
             }
         }
+
         private void btnRepositoryBrowse_Click(object sender, EventArgs e)
         {
             using (var folderBrowserDialog = new FolderBrowserDialog() { ShowNewFolderButton = false })
@@ -257,17 +266,21 @@ namespace GitHubNotifier
                     TreeNode node = new TreeNode(dirName, 0, 0) { Tag = dir };
                     nodes.Add(node);
                 }
+
                 tvRepositories.Nodes.AddRange(nodes.ToArray());
                 for (var index = 0; index < dirs.Length; index++)
                 {
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}:Fetching repository: " + dir);
+                    PrintToUi(
+                        $"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}:Fetching repository: " +
+                        dir);
                     nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("fetch", dir, dirName);
                     nodes[index].SelectedImageIndex = 2;
-                    PrintToUi($"{DateTime.Now.ToShortTimeString()}:End Fetching repository: {dir}:{Environment.NewLine}{Environment.NewLine}");
+                    PrintToUi(
+                        $"{DateTime.Now.ToShortTimeString()}:End Fetching repository: {dir}:{Environment.NewLine}{Environment.NewLine}");
                 }
             }
         }
@@ -314,9 +327,11 @@ namespace GitHubNotifier
             }
             catch (Exception e)
             {
-                string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command rev-parse --is-inside-work-tree";
+                string msg =
+                    $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command rev-parse --is-inside-work-tree";
                 PrintToUi(msg);
             }
+
             return inside;
         }
 
@@ -328,6 +343,7 @@ namespace GitHubNotifier
                 {
                     richTextBox1.Text = "";
                 }
+
                 tvRepositories.Nodes.Clear();
                 _output.Clear();
                 bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
@@ -342,6 +358,7 @@ namespace GitHubNotifier
                     var node = new TreeNode(dirName, 0, 0) { Tag = dir };
                     nodes.Add(node);
                 }
+
                 tvRepositories.Nodes.AddRange(nodes.ToArray());
                 for (var index = 0; index < dirs.Length; index++)
                 {
@@ -361,64 +378,67 @@ namespace GitHubNotifier
             tvRepositories.Nodes[index].ImageIndex = _output[dirName].Any(s => s.Contains("Already up to date"))
                 ? tvRepositories.Nodes[index].SelectedImageIndex = 2
                 : tvRepositories.Nodes[index].SelectedImageIndex = 4;
-            PrintToUi($"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+            PrintToUi(
+                $"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
 
         }
+
         private Task ExecuteGitCommand(string command, string repoPath, string dirName)
         {
             return Task.Run(() =>
-             {
-                 try
-                 {
-                     ProcessStartInfo start = new ProcessStartInfo
-                     {
-                         FileName = "git.exe",
-                         Arguments = command,
-                         WorkingDirectory = Path.Combine(repoPath),
-                         WindowStyle = ProcessWindowStyle.Hidden,
-                         RedirectStandardError = true,
-                         RedirectStandardOutput = true,
-                         CreateNoWindow = true,
-                         UseShellExecute = false,
-                     };
-                     var publishCmd = new Process();
-                     publishCmd.OutputDataReceived += (s, e) =>
-                     {
-                         if (!string.IsNullOrEmpty(e.Data))
-                         {
-                             _output[dirName].Add(e.Data);
-                             PrintToUi(e.Data);
-                         }
-                     };
-                     publishCmd.ErrorDataReceived += (s, e) =>
-                     {
-                         if (!string.IsNullOrEmpty(e.Data))
-                         {
-                             _output[dirName].Add(e.Data);
-                             PrintToUi(e.Data);
-                         }
-                     };
-                     publishCmd.StartInfo = start;
-                     publishCmd.Exited += (_, e) =>
-                     {
-                         string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
-                         _output[dirName].Add(msg);
-                         PrintToUi(msg);
-                     };
-                     publishCmd.EnableRaisingEvents = true;
-                     publishCmd.Start();
-                     publishCmd.BeginOutputReadLine();
-                     publishCmd.BeginErrorReadLine();
-                     publishCmd.WaitForExit();
+            {
+                try
+                {
+                    ProcessStartInfo start = new ProcessStartInfo
+                    {
+                        FileName = "git.exe",
+                        Arguments = command,
+                        WorkingDirectory = Path.Combine(repoPath),
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
+                        UseShellExecute = false,
+                    };
+                    var publishCmd = new Process();
+                    publishCmd.OutputDataReceived += (s, e) =>
+                    {
+                        if (!string.IsNullOrEmpty(e.Data))
+                        {
+                            _output[dirName].Add(e.Data);
+                            PrintToUi(e.Data);
+                        }
+                    };
+                    publishCmd.ErrorDataReceived += (s, e) =>
+                    {
+                        if (!string.IsNullOrEmpty(e.Data))
+                        {
+                            _output[dirName].Add(e.Data);
+                            PrintToUi(e.Data);
+                        }
+                    };
+                    publishCmd.StartInfo = start;
+                    publishCmd.Exited += (_, e) =>
+                    {
+                        string msg = $"{DateTime.Now.ToShortTimeString()}: Git operation Ended for command: {command}";
+                        _output[dirName].Add(msg);
+                        PrintToUi(msg);
+                    };
+                    publishCmd.EnableRaisingEvents = true;
+                    publishCmd.Start();
+                    publishCmd.BeginOutputReadLine();
+                    publishCmd.BeginErrorReadLine();
+                    publishCmd.WaitForExit();
 
-                 }
-                 catch (Exception e)
-                 {
-                     string msg = $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
-                     _output[dirName].Add(msg);
-                     PrintToUi(msg);
-                 }
-             });
+                }
+                catch (Exception e)
+                {
+                    string msg =
+                        $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command: {command}: {e.Message}";
+                    _output[dirName].Add(msg);
+                    PrintToUi(msg);
+                }
+            });
 
         }
 
@@ -504,6 +524,7 @@ namespace GitHubNotifier
                 {
                     richTextBox1.Text = "";
                 }
+
                 tvRepositories.Nodes.Clear();
                 _output.Clear();
                 bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
@@ -518,17 +539,21 @@ namespace GitHubNotifier
                     var node = new TreeNode(dirName, 0, 0) { Tag = dir };
                     nodes.Add(node);
                 }
+
                 tvRepositories.Nodes.AddRange(nodes.ToArray());
                 for (var index = 0; index < dirs.Length; index++)
                 {
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}: executing git.exe clean -d -fx on repository: " + dir);
+                    PrintToUi(
+                        $"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}: executing git.exe clean -d -fx on repository: " +
+                        dir);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("clean -d -fx", dir, dirName);
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
-                    PrintToUi($"{DateTime.Now.ToShortTimeString()}: Done git.exe clean -d -fx on repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+                    PrintToUi(
+                        $"{DateTime.Now.ToShortTimeString()}: Done git.exe clean -d -fx on repository: {dir}{Environment.NewLine}{Environment.NewLine}");
                 }
             }
         }
@@ -566,6 +591,30 @@ namespace GitHubNotifier
             if (tvRepositories.SelectedNode?.Tag is string path)
             {
                 await PullRepo(path, tvRepositories.Nodes.IndexOf(tvRepositories.SelectedNode));
+            }
+        }
+
+        private void btnCleanObjAndBinFolder_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                var BinDirs = Directory.GetDirectories(txtRepositoryRoot.Text, "bin", SearchOption.AllDirectories);
+                var ObjDirs = Directory.GetDirectories(txtRepositoryRoot.Text, "obj", SearchOption.AllDirectories);
+                var dirs = BinDirs.ToList();
+                dirs.AddRange(ObjDirs);
+                foreach (var dir in dirs)
+                {
+                    try
+                    {
+                        Directory.Delete(dir, true);
+                        PrintToUi($"deleted: {dir}");
+
+                    }
+                    catch (Exception exception)
+                    {
+                       PrintToUi($"Error delete {dir}:{exception.Message}");
+                    }
+                }
             }
         }
     }
