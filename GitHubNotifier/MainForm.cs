@@ -334,6 +334,55 @@ namespace GitHubNotifier
 
             return inside;
         }
+        private string GetBranchName(string directory)
+        {
+            string name = "";
+            try
+            {
+                ProcessStartInfo start = new ProcessStartInfo
+                {
+                    FileName = "git.exe",
+                    Arguments = "branch --show-current",
+                    WorkingDirectory = Path.Combine(directory),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                };
+                var checkCmd = new Process();
+
+                checkCmd.ErrorDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        PrintToUi(e.Data);
+                    }
+                };
+                checkCmd.StartInfo = start;
+                checkCmd.OutputDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        name = e.Data;
+                    }
+                };
+
+                checkCmd.EnableRaisingEvents = true;
+                checkCmd.Start();
+                checkCmd.BeginOutputReadLine();
+                checkCmd.BeginErrorReadLine();
+                checkCmd.WaitForExit();
+            }
+            catch (Exception e)
+            {
+                string msg =
+                    $"{DateTime.Now.ToShortTimeString()}:######## ERROR: Git operation Ended for command rev-parse --is-inside-work-tree";
+                PrintToUi(msg);
+            }
+
+            return name;
+        }
 
         private async void btnPull_Click(object sender, EventArgs e)
         {
@@ -354,8 +403,8 @@ namespace GitHubNotifier
                 List<TreeNode> nodes = new List<TreeNode>();
                 foreach (var dir in dirs)
                 {
-                    var dirName = Path.GetFileName(dir);
-                    var node = new TreeNode(dirName, 0, 0) { Tag = dir };
+                    GitNode gn = new GitNode(dir, GetBranchName(dir));
+                    var node = new TreeNode(gn.DisplayName, 0, 0) { Tag = gn };
                     nodes.Add(node);
                 }
 

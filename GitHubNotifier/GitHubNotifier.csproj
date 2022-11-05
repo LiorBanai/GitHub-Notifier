@@ -16,7 +16,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>1.5.4</Version>
+		<Version>1.6.0</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
