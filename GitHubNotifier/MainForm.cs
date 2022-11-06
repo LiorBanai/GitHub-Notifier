@@ -262,8 +262,9 @@ namespace GitHubNotifier
                 List<TreeNode> nodes = new List<TreeNode>();
                 foreach (var dir in dirs)
                 {
-                    var dirName = Path.GetFileName(dir);
-                    TreeNode node = new TreeNode(dirName, 0, 0) { Tag = dir };
+
+                    GitNode gn = new GitNode(dir, GetBranchName(dir));
+                    var node = new TreeNode(gn.DisplayName, 0, 0) { Tag = gn };
                     nodes.Add(node);
                 }
 
@@ -537,7 +538,7 @@ namespace GitHubNotifier
 
         private void tvRepositories_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (_output.TryGetValue(e.Node.Text, out var items))
+            if (e.Node?.Tag is GitNode gt && _output.TryGetValue(gt.DirectoryName, out var items))
             {
                 richTextBox1.Text = string.Join(Environment.NewLine, items);
             }
@@ -546,9 +547,9 @@ namespace GitHubNotifier
 
         private void tsmiOpenFolder_Click(object sender, EventArgs e)
         {
-            if (tvRepositories.SelectedNode?.Tag is string path)
+            if (tvRepositories.SelectedNode?.Tag is GitNode gt)
             {
-                OpenFolder(path);
+                OpenFolder(gt.LocalFolder);
             }
         }
 

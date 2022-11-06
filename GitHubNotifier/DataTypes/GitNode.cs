@@ -12,7 +12,7 @@ namespace GitHubNotifier.DataTypes
         public string LocalFolder { get; set; }
         public string BranchName { get; set; }
         public string DisplayName => $"{Path.GetFileName(LocalFolder)} ({BranchName})";
-
+        public string DirectoryName => Path.GetFileName(LocalFolder);
         public GitNode(string localFolder, string branchName)
         {
             LocalFolder = localFolder;
