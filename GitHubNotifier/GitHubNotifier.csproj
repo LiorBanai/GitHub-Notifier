@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net7.0-windows;net6.0-windows;net5.0-windows;netcoreapp3.1;net48;net472;net471</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows;net6.0-windows;net48;net472;net471</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -16,7 +16,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>1.6.0</Version>
+		<Version>1.7.0</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
