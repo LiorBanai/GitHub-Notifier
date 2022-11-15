@@ -45,6 +45,7 @@
 	<ItemGroup>
 		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.6.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="LibGit2Sharp" Version="0.26.2" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

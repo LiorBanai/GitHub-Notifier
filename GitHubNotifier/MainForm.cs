@@ -9,9 +9,11 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LibGit2Sharp;
 
 namespace GitHubNotifier
 {
@@ -638,9 +640,9 @@ namespace GitHubNotifier
 
         private async void tsmiPullFolder_Click(object sender, EventArgs e)
         {
-            if (tvRepositories.SelectedNode?.Tag is string path)
+            if (tvRepositories.SelectedNode?.Tag is GitNode gt)
             {
-                await PullRepo(path, tvRepositories.Nodes.IndexOf(tvRepositories.SelectedNode));
+                await PullRepo(gt.LocalFolder, tvRepositories.Nodes.IndexOf(tvRepositories.SelectedNode));
             }
         }
 
@@ -662,10 +664,36 @@ namespace GitHubNotifier
                     }
                     catch (Exception exception)
                     {
-                       PrintToUi($"Error delete {dir}:{exception.Message}");
+                        PrintToUi($"Error delete {dir}:{exception.Message}");
                     }
                 }
             }
+        }
+
+        private void tsmiFetchRepoHistory_Click(object sender, EventArgs e)
+        {
+            if (tvRepositories.SelectedNode?.Tag is GitNode gt)
+            {
+                FetchRepoHistory(gt.LocalFolder);
+            }
+        }
+
+        private void FetchRepoHistory(string repoPath)
+        {
+            using (var repo = new Repository(repoPath))
+            {
+                var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
+                IEnumerable<Commit> commits;
+                commits = repo.Commits.Take(10);
+                StringBuilder sb = new StringBuilder($"Repo: {repoPath}"+Environment.NewLine);
+                foreach (Commit c in commits)
+                {
+                    string msg = $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)} (Committer: {c.Committer.Name} {c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})";
+                    sb.AppendLine(msg.Replace("\n", ""));
+                }
+                PrintToUi(sb.ToString());
+            }
+
         }
     }
 }

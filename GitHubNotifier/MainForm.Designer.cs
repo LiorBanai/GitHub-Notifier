@@ -45,6 +45,7 @@
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
             this.tpGitOperations = new System.Windows.Forms.TabPage();
+            this.btnCleanObjAndBinFolder = new System.Windows.Forms.Button();
             this.btnListFolders = new System.Windows.Forms.Button();
             this.btnCleanUntrack = new System.Windows.Forms.Button();
             this.chkbClearLog = new System.Windows.Forms.CheckBox();
@@ -78,7 +79,7 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.btnCleanObjAndBinFolder = new System.Windows.Forms.Button();
+            this.tsmiFetchRepoHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -275,6 +276,18 @@
             this.tpGitOperations.Text = "Git Operations";
             this.tpGitOperations.UseVisualStyleBackColor = true;
             // 
+            // btnCleanObjAndBinFolder
+            // 
+            this.btnCleanObjAndBinFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCleanObjAndBinFolder.Location = new System.Drawing.Point(1274, 43);
+            this.btnCleanObjAndBinFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCleanObjAndBinFolder.Name = "btnCleanObjAndBinFolder";
+            this.btnCleanObjAndBinFolder.Size = new System.Drawing.Size(204, 35);
+            this.btnCleanObjAndBinFolder.TabIndex = 24;
+            this.btnCleanObjAndBinFolder.Text = "clean obj and bin folders";
+            this.btnCleanObjAndBinFolder.UseVisualStyleBackColor = true;
+            this.btnCleanObjAndBinFolder.Click += new System.EventHandler(this.btnCleanObjAndBinFolder_Click);
+            // 
             // btnListFolders
             // 
             this.btnListFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -351,21 +364,22 @@
             this.contextMenuStripRepository.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripRepository.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiOpenFolder,
+            this.tsmiFetchRepoHistory,
             this.tsmiPullFolder});
             this.contextMenuStripRepository.Name = "contextMenuStripRepository";
-            this.contextMenuStripRepository.Size = new System.Drawing.Size(236, 52);
+            this.contextMenuStripRepository.Size = new System.Drawing.Size(240, 104);
             // 
             // tsmiOpenFolder
             // 
             this.tsmiOpenFolder.Name = "tsmiOpenFolder";
-            this.tsmiOpenFolder.Size = new System.Drawing.Size(235, 24);
+            this.tsmiOpenFolder.Size = new System.Drawing.Size(239, 24);
             this.tsmiOpenFolder.Text = "Open Repository Folder";
             this.tsmiOpenFolder.Click += new System.EventHandler(this.tsmiOpenFolder_Click);
             // 
             // tsmiPullFolder
             // 
             this.tsmiPullFolder.Name = "tsmiPullFolder";
-            this.tsmiPullFolder.Size = new System.Drawing.Size(235, 24);
+            this.tsmiPullFolder.Size = new System.Drawing.Size(239, 24);
             this.tsmiPullFolder.Text = "Pull Repository";
             this.tsmiPullFolder.Click += new System.EventHandler(this.tsmiPullFolder_Click);
             // 
@@ -584,17 +598,12 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // btnCleanObjAndBinFolder
+            // tsmiFetchRepoHistory
             // 
-            this.btnCleanObjAndBinFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanObjAndBinFolder.Location = new System.Drawing.Point(1274, 43);
-            this.btnCleanObjAndBinFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCleanObjAndBinFolder.Name = "btnCleanObjAndBinFolder";
-            this.btnCleanObjAndBinFolder.Size = new System.Drawing.Size(204, 35);
-            this.btnCleanObjAndBinFolder.TabIndex = 24;
-            this.btnCleanObjAndBinFolder.Text = "clean obj and bin folders";
-            this.btnCleanObjAndBinFolder.UseVisualStyleBackColor = true;
-            this.btnCleanObjAndBinFolder.Click += new System.EventHandler(this.btnCleanObjAndBinFolder_Click);
+            this.tsmiFetchRepoHistory.Name = "tsmiFetchRepoHistory";
+            this.tsmiFetchRepoHistory.Size = new System.Drawing.Size(239, 24);
+            this.tsmiFetchRepoHistory.Text = "Fetch Repository History";
+            this.tsmiFetchRepoHistory.Click += new System.EventHandler(this.tsmiFetchRepoHistory_Click);
             // 
             // MainForm
             // 
@@ -691,6 +700,7 @@
         private System.Windows.Forms.Button btnListFolders;
         private System.Windows.Forms.ToolStripMenuItem tsmiPullFolder;
         private System.Windows.Forms.Button btnCleanObjAndBinFolder;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFetchRepoHistory;
     }
 }
 
