@@ -53,6 +53,7 @@
             this.tvRepositories = new System.Windows.Forms.TreeView();
             this.contextMenuStripRepository = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFetchRepoHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPullFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -61,6 +62,12 @@
             this.btnRepositoryBrowse = new System.Windows.Forms.Button();
             this.txtRepositoryRoot = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.usefulForksCenterPanel = new System.Windows.Forms.Panel();
+            this.usefulForksTopPanel = new System.Windows.Forms.Panel();
+            this.pnlUsefulForkRoot = new System.Windows.Forms.Panel();
+            this.btnUsefullForks = new System.Windows.Forms.Button();
+            this.txtbUsefullForks = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExitForm = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +86,6 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
-            this.tsmiFetchRepoHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -94,6 +100,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.contextMenuStripRepository.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.usefulForksTopPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -116,6 +124,7 @@
             this.tabControl1.Controls.Add(this.tpRepo);
             this.tabControl1.Controls.Add(this.tpNotifications);
             this.tabControl1.Controls.Add(this.tpGitOperations);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -367,7 +376,7 @@
             this.tsmiFetchRepoHistory,
             this.tsmiPullFolder});
             this.contextMenuStripRepository.Name = "contextMenuStripRepository";
-            this.contextMenuStripRepository.Size = new System.Drawing.Size(240, 104);
+            this.contextMenuStripRepository.Size = new System.Drawing.Size(240, 76);
             // 
             // tsmiOpenFolder
             // 
@@ -375,6 +384,13 @@
             this.tsmiOpenFolder.Size = new System.Drawing.Size(239, 24);
             this.tsmiOpenFolder.Text = "Open Repository Folder";
             this.tsmiOpenFolder.Click += new System.EventHandler(this.tsmiOpenFolder_Click);
+            // 
+            // tsmiFetchRepoHistory
+            // 
+            this.tsmiFetchRepoHistory.Name = "tsmiFetchRepoHistory";
+            this.tsmiFetchRepoHistory.Size = new System.Drawing.Size(239, 24);
+            this.tsmiFetchRepoHistory.Text = "Fetch Repository History";
+            this.tsmiFetchRepoHistory.Click += new System.EventHandler(this.tsmiFetchRepoHistory_Click);
             // 
             // tsmiPullFolder
             // 
@@ -457,6 +473,66 @@
             this.label1.Size = new System.Drawing.Size(212, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "Folder of Repository (or many)";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.usefulForksCenterPanel);
+            this.tabPage1.Controls.Add(this.usefulForksTopPanel);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1487, 667);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Usefull Forks";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // usefulForksCenterPanel
+            // 
+            this.usefulForksCenterPanel.AutoScroll = true;
+            this.usefulForksCenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.usefulForksCenterPanel.Location = new System.Drawing.Point(3, 120);
+            this.usefulForksCenterPanel.Name = "usefulForksCenterPanel";
+            this.usefulForksCenterPanel.Size = new System.Drawing.Size(1481, 544);
+            this.usefulForksCenterPanel.TabIndex = 3;
+            // 
+            // usefulForksTopPanel
+            // 
+            this.usefulForksTopPanel.Controls.Add(this.pnlUsefulForkRoot);
+            this.usefulForksTopPanel.Controls.Add(this.btnUsefullForks);
+            this.usefulForksTopPanel.Controls.Add(this.txtbUsefullForks);
+            this.usefulForksTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.usefulForksTopPanel.Location = new System.Drawing.Point(3, 3);
+            this.usefulForksTopPanel.Name = "usefulForksTopPanel";
+            this.usefulForksTopPanel.Size = new System.Drawing.Size(1481, 117);
+            this.usefulForksTopPanel.TabIndex = 2;
+            // 
+            // pnlUsefulForkRoot
+            // 
+            this.pnlUsefulForkRoot.Location = new System.Drawing.Point(6, 55);
+            this.pnlUsefulForkRoot.Name = "pnlUsefulForkRoot";
+            this.pnlUsefulForkRoot.Size = new System.Drawing.Size(1463, 55);
+            this.pnlUsefulForkRoot.TabIndex = 2;
+            // 
+            // btnUsefullForks
+            // 
+            this.btnUsefullForks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUsefullForks.Location = new System.Drawing.Point(1367, 3);
+            this.btnUsefullForks.Name = "btnUsefullForks";
+            this.btnUsefullForks.Size = new System.Drawing.Size(102, 28);
+            this.btnUsefullForks.TabIndex = 1;
+            this.btnUsefullForks.Text = "Get Forks";
+            this.btnUsefullForks.UseVisualStyleBackColor = true;
+            this.btnUsefullForks.Click += new System.EventHandler(this.btnUsefullForks_Click);
+            // 
+            // txtbUsefullForks
+            // 
+            this.txtbUsefullForks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbUsefullForks.Location = new System.Drawing.Point(19, 3);
+            this.txtbUsefullForks.Name = "txtbUsefullForks";
+            this.txtbUsefullForks.Size = new System.Drawing.Size(1342, 27);
+            this.txtbUsefullForks.TabIndex = 0;
+            this.txtbUsefullForks.Text = "Analogy-LogViewer/Analogy.LogViewer";
             // 
             // menuStrip1
             // 
@@ -598,13 +674,6 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
-            // tsmiFetchRepoHistory
-            // 
-            this.tsmiFetchRepoHistory.Name = "tsmiFetchRepoHistory";
-            this.tsmiFetchRepoHistory.Size = new System.Drawing.Size(239, 24);
-            this.tsmiFetchRepoHistory.Text = "Fetch Repository History";
-            this.tsmiFetchRepoHistory.Click += new System.EventHandler(this.tsmiFetchRepoHistory_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -639,6 +708,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.contextMenuStripRepository.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.usefulForksTopPanel.ResumeLayout(false);
+            this.usefulForksTopPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStripNotifyBar.ResumeLayout(false);
@@ -701,6 +773,12 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPullFolder;
         private System.Windows.Forms.Button btnCleanObjAndBinFolder;
         private System.Windows.Forms.ToolStripMenuItem tsmiFetchRepoHistory;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btnUsefullForks;
+        private System.Windows.Forms.TextBox txtbUsefullForks;
+        private System.Windows.Forms.Panel usefulForksCenterPanel;
+        private System.Windows.Forms.Panel usefulForksTopPanel;
+        private System.Windows.Forms.Panel pnlUsefulForkRoot;
     }
 }
 

@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibGit2Sharp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GitHubNotifier
 {
@@ -685,7 +686,7 @@ namespace GitHubNotifier
                 var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
                 IEnumerable<Commit> commits;
                 commits = repo.Commits.Take(10);
-                StringBuilder sb = new StringBuilder($"Repo: {repoPath}"+Environment.NewLine);
+                StringBuilder sb = new StringBuilder($"Repo: {repoPath}" + Environment.NewLine);
                 foreach (Commit c in commits)
                 {
                     string msg = $"{(c.Parents.Any() ? $"{c.Message} Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}" : c.Message)} (Committer: {c.Committer.Name} {c.Committer.Email}). Author: {c.Author.Name} ({c.Author.Email})";
@@ -695,5 +696,66 @@ namespace GitHubNotifier
             }
 
         }
+
+        private async void btnUsefullForks_Click(object sender, EventArgs e)
+        {
+            pnlUsefulForkRoot.Controls.Clear();
+            usefulForksCenterPanel.Controls.Clear();
+            
+
+            var rootFork = new RepositorySettings(txtbUsefullForks.Text, txtbUsefullForks.Text, 0);
+            var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(rootFork.RepoApiUrl,
+                UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
+            ForkedRepository root = new ForkedRepository(repoInfo,repoInfo.PushTime);
+            pnlUsefulForkRoot.Controls.Add(root);
+            List<GithubRepo> repos = new List<GithubRepo>();
+            if (repoInfo.Forks > 0)
+            {
+                await GetForks(repoInfo, repos);
+            }
+
+            var results = repos.OrderByDescending(r => r.Stargazers).ThenByDescending(r => r.PushTime).ToList();
+            results.Reverse();
+            foreach (GithubRepo repo in results)
+            {
+
+                ForkedRepository ar1 = new ForkedRepository(repo,repoInfo.PushTime);
+                usefulForksCenterPanel.Controls.Add(ar1);
+                ar1.Dock = DockStyle.Top;
+
+            }
+
+
+        }
+
+        private async Task GetForks(GithubRepo repo, List<GithubRepo> repos)
+        {
+
+            List<GithubRepo> forks = new List<GithubRepo>();
+            int page = 1;
+            bool hasMore = true;
+            while (hasMore)
+            {
+                var forksData = await GitHubUtils.GetAsync<GithubRepo[]>(repo.ForksUrl + "?per_page=100&page=" + page,
+                    UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
+                foreach (var fork in forksData.result)
+                {
+                    forks.Add(fork);
+                }
+
+                hasMore = forksData.result.Length == 100;
+                page++;
+            }
+            repos.AddRange(forks);
+            foreach (var fork in forks)
+            {
+                if (fork.Forks > 0)
+                {
+                    await GetForks(fork, repos);
+                }
+            }
+        }
+
     }
 }
+
