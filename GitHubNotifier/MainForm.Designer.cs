@@ -62,7 +62,7 @@
             this.btnRepositoryBrowse = new System.Windows.Forms.Button();
             this.txtRepositoryRoot = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpUsefulForks = new System.Windows.Forms.TabPage();
             this.usefulForksCenterPanel = new System.Windows.Forms.Panel();
             this.usefulForksTopPanel = new System.Windows.Forms.Panel();
             this.pnlUsefulForkRoot = new System.Windows.Forms.Panel();
@@ -100,7 +100,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.contextMenuStripRepository.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpUsefulForks.SuspendLayout();
             this.usefulForksTopPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
@@ -123,8 +123,8 @@
             // 
             this.tabControl1.Controls.Add(this.tpRepo);
             this.tabControl1.Controls.Add(this.tpNotifications);
+            this.tabControl1.Controls.Add(this.tpUsefulForks);
             this.tabControl1.Controls.Add(this.tpGitOperations);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -474,17 +474,17 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Folder of Repository (or many)";
             // 
-            // tabPage1
+            // tpUsefulForks
             // 
-            this.tabPage1.Controls.Add(this.usefulForksCenterPanel);
-            this.tabPage1.Controls.Add(this.usefulForksTopPanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1487, 667);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Usefull Forks";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpUsefulForks.Controls.Add(this.usefulForksCenterPanel);
+            this.tpUsefulForks.Controls.Add(this.usefulForksTopPanel);
+            this.tpUsefulForks.Location = new System.Drawing.Point(4, 29);
+            this.tpUsefulForks.Name = "tpUsefulForks";
+            this.tpUsefulForks.Padding = new System.Windows.Forms.Padding(3);
+            this.tpUsefulForks.Size = new System.Drawing.Size(1487, 667);
+            this.tpUsefulForks.TabIndex = 4;
+            this.tpUsefulForks.Text = "Useful Forks";
+            this.tpUsefulForks.UseVisualStyleBackColor = true;
             // 
             // usefulForksCenterPanel
             // 
@@ -708,7 +708,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.contextMenuStripRepository.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tpUsefulForks.ResumeLayout(false);
             this.usefulForksTopPanel.ResumeLayout(false);
             this.usefulForksTopPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -773,7 +773,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPullFolder;
         private System.Windows.Forms.Button btnCleanObjAndBinFolder;
         private System.Windows.Forms.ToolStripMenuItem tsmiFetchRepoHistory;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpUsefulForks;
         private System.Windows.Forms.Button btnUsefullForks;
         private System.Windows.Forms.TextBox txtbUsefullForks;
         private System.Windows.Forms.Panel usefulForksCenterPanel;

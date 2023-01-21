@@ -738,12 +738,17 @@ namespace GitHubNotifier
             {
                 var forksData = await GitHubUtils.GetAsync<GithubRepo[]>(repo.ForksUrl + "?per_page=100&page=" + page,
                     UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
-                foreach (var fork in forksData.result)
+                if (forksData.result != null)
                 {
-                    forks.Add(fork);
-                }
 
-                hasMore = forksData.result.Length == 100;
+
+                    foreach (var fork in forksData.result)
+                    {
+                        forks.Add(fork);
+                    }
+                }
+                hasMore = forksData.result is { Length: 100 };
+
                 page++;
             }
             repos.AddRange(forks);
