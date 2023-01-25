@@ -761,6 +761,53 @@ namespace GitHubNotifier
             }
         }
 
+        private async void btnPruneRemotes_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                if (chkbClearLog.Checked)
+                {
+                    richTextBox1.Text = "";
+                }
+
+                tvRepositories.Nodes.Clear();
+                _output.Clear();
+                bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
+                var dirs = !currentFolderIsGit
+                    ? Directory.GetDirectories(txtRepositoryRoot.Text)
+                    : new[] { txtRepositoryRoot.Text };
+
+                List<TreeNode> nodes = new List<TreeNode>();
+                foreach (var dir in dirs)
+                {
+                    GitNode gn = new GitNode(dir, GetBranchName(dir));
+                    var node = new TreeNode(gn.DisplayName, 0, 0) { Tag = gn };
+                    nodes.Add(node);
+                }
+
+                tvRepositories.Nodes.AddRange(nodes.ToArray());
+                for (var index = 0; index < dirs.Length; index++)
+                {
+                    string dir = dirs[index];
+                    await PruneRepo(dir, index);
+                }
+            }
+
+        }
+        private async Task PruneRepo(string dir, int index)
+        {
+            var dirName = Path.GetFileName(dir);
+            _output[dirName] = new List<string>();
+            PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pruning repository: " + dir);
+            tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 1;
+            await ExecuteGitCommand("remote prune origin", dir, dirName);
+            tvRepositories.Nodes[index].ImageIndex = _output[dirName][0].Contains("Already up to date")
+                ? tvRepositories.Nodes[index].SelectedImageIndex = 2
+                : tvRepositories.Nodes[index].SelectedImageIndex = 4;
+            PrintToUi(
+                $"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+
+        }
     }
 }
 

@@ -44,6 +44,12 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnCheckNotifications = new System.Windows.Forms.ToolStripButton();
             this.tsBtnClear = new System.Windows.Forms.ToolStripButton();
+            this.tpUsefulForks = new System.Windows.Forms.TabPage();
+            this.usefulForksCenterPanel = new System.Windows.Forms.Panel();
+            this.usefulForksTopPanel = new System.Windows.Forms.Panel();
+            this.pnlUsefulForkRoot = new System.Windows.Forms.Panel();
+            this.btnUsefullForks = new System.Windows.Forms.Button();
+            this.txtbUsefullForks = new System.Windows.Forms.TextBox();
             this.tpGitOperations = new System.Windows.Forms.TabPage();
             this.btnCleanObjAndBinFolder = new System.Windows.Forms.Button();
             this.btnListFolders = new System.Windows.Forms.Button();
@@ -62,12 +68,6 @@
             this.btnRepositoryBrowse = new System.Windows.Forms.Button();
             this.txtRepositoryRoot = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tpUsefulForks = new System.Windows.Forms.TabPage();
-            this.usefulForksCenterPanel = new System.Windows.Forms.Panel();
-            this.usefulForksTopPanel = new System.Windows.Forms.Panel();
-            this.pnlUsefulForkRoot = new System.Windows.Forms.Panel();
-            this.btnUsefullForks = new System.Windows.Forms.Button();
-            this.txtbUsefullForks = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExitForm = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +86,7 @@
             this.tsslError = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerNotifications = new System.Windows.Forms.Timer(this.components);
             this.timerAPIRateCheck = new System.Windows.Forms.Timer(this.components);
+            this.btnPruneRemotes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpRepo.SuspendLayout();
@@ -94,14 +95,14 @@
             this.toolStrip2.SuspendLayout();
             this.tpNotifications.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tpUsefulForks.SuspendLayout();
+            this.usefulForksTopPanel.SuspendLayout();
             this.tpGitOperations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.contextMenuStripRepository.SuspendLayout();
-            this.tpUsefulForks.SuspendLayout();
-            this.usefulForksTopPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripNotifyBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -264,8 +265,69 @@
             this.tsBtnClear.Text = "Clear";
             this.tsBtnClear.Click += new System.EventHandler(this.tsBtnClear_Click);
             // 
+            // tpUsefulForks
+            // 
+            this.tpUsefulForks.Controls.Add(this.usefulForksCenterPanel);
+            this.tpUsefulForks.Controls.Add(this.usefulForksTopPanel);
+            this.tpUsefulForks.Location = new System.Drawing.Point(4, 29);
+            this.tpUsefulForks.Name = "tpUsefulForks";
+            this.tpUsefulForks.Padding = new System.Windows.Forms.Padding(3);
+            this.tpUsefulForks.Size = new System.Drawing.Size(1487, 667);
+            this.tpUsefulForks.TabIndex = 4;
+            this.tpUsefulForks.Text = "Useful Forks";
+            this.tpUsefulForks.UseVisualStyleBackColor = true;
+            // 
+            // usefulForksCenterPanel
+            // 
+            this.usefulForksCenterPanel.AutoScroll = true;
+            this.usefulForksCenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.usefulForksCenterPanel.Location = new System.Drawing.Point(3, 120);
+            this.usefulForksCenterPanel.Name = "usefulForksCenterPanel";
+            this.usefulForksCenterPanel.Size = new System.Drawing.Size(1481, 544);
+            this.usefulForksCenterPanel.TabIndex = 3;
+            // 
+            // usefulForksTopPanel
+            // 
+            this.usefulForksTopPanel.Controls.Add(this.pnlUsefulForkRoot);
+            this.usefulForksTopPanel.Controls.Add(this.btnUsefullForks);
+            this.usefulForksTopPanel.Controls.Add(this.txtbUsefullForks);
+            this.usefulForksTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.usefulForksTopPanel.Location = new System.Drawing.Point(3, 3);
+            this.usefulForksTopPanel.Name = "usefulForksTopPanel";
+            this.usefulForksTopPanel.Size = new System.Drawing.Size(1481, 117);
+            this.usefulForksTopPanel.TabIndex = 2;
+            // 
+            // pnlUsefulForkRoot
+            // 
+            this.pnlUsefulForkRoot.Location = new System.Drawing.Point(6, 55);
+            this.pnlUsefulForkRoot.Name = "pnlUsefulForkRoot";
+            this.pnlUsefulForkRoot.Size = new System.Drawing.Size(1463, 55);
+            this.pnlUsefulForkRoot.TabIndex = 2;
+            // 
+            // btnUsefullForks
+            // 
+            this.btnUsefullForks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUsefullForks.Location = new System.Drawing.Point(1367, 3);
+            this.btnUsefullForks.Name = "btnUsefullForks";
+            this.btnUsefullForks.Size = new System.Drawing.Size(102, 28);
+            this.btnUsefullForks.TabIndex = 1;
+            this.btnUsefullForks.Text = "Get Forks";
+            this.btnUsefullForks.UseVisualStyleBackColor = true;
+            this.btnUsefullForks.Click += new System.EventHandler(this.btnUsefullForks_Click);
+            // 
+            // txtbUsefullForks
+            // 
+            this.txtbUsefullForks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbUsefullForks.Location = new System.Drawing.Point(19, 3);
+            this.txtbUsefullForks.Name = "txtbUsefullForks";
+            this.txtbUsefullForks.Size = new System.Drawing.Size(1342, 27);
+            this.txtbUsefullForks.TabIndex = 0;
+            this.txtbUsefullForks.Text = "Analogy-LogViewer/Analogy.LogViewer";
+            // 
             // tpGitOperations
             // 
+            this.tpGitOperations.Controls.Add(this.btnPruneRemotes);
             this.tpGitOperations.Controls.Add(this.btnCleanObjAndBinFolder);
             this.tpGitOperations.Controls.Add(this.btnListFolders);
             this.tpGitOperations.Controls.Add(this.btnCleanUntrack);
@@ -288,7 +350,7 @@
             // btnCleanObjAndBinFolder
             // 
             this.btnCleanObjAndBinFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanObjAndBinFolder.Location = new System.Drawing.Point(1274, 43);
+            this.btnCleanObjAndBinFolder.Location = new System.Drawing.Point(1080, 47);
             this.btnCleanObjAndBinFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCleanObjAndBinFolder.Name = "btnCleanObjAndBinFolder";
             this.btnCleanObjAndBinFolder.Size = new System.Drawing.Size(204, 35);
@@ -300,7 +362,7 @@
             // btnListFolders
             // 
             this.btnListFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnListFolders.Location = new System.Drawing.Point(1160, 7);
+            this.btnListFolders.Location = new System.Drawing.Point(959, 47);
             this.btnListFolders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnListFolders.Name = "btnListFolders";
             this.btnListFolders.Size = new System.Drawing.Size(113, 35);
@@ -312,7 +374,7 @@
             // btnCleanUntrack
             // 
             this.btnCleanUntrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanUntrack.Location = new System.Drawing.Point(1274, 7);
+            this.btnCleanUntrack.Location = new System.Drawing.Point(1080, 6);
             this.btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCleanUntrack.Name = "btnCleanUntrack";
             this.btnCleanUntrack.Size = new System.Drawing.Size(204, 35);
@@ -326,7 +388,7 @@
             this.chkbClearLog.AutoSize = true;
             this.chkbClearLog.Checked = true;
             this.chkbClearLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbClearLog.Location = new System.Drawing.Point(8, 49);
+            this.chkbClearLog.Location = new System.Drawing.Point(8, 53);
             this.chkbClearLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkbClearLog.Name = "chkbClearLog";
             this.chkbClearLog.Size = new System.Drawing.Size(234, 24);
@@ -445,10 +507,10 @@
             // btnRepositoryBrowse
             // 
             this.btnRepositoryBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRepositoryBrowse.Location = new System.Drawing.Point(1083, 7);
+            this.btnRepositoryBrowse.Location = new System.Drawing.Point(959, 6);
             this.btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRepositoryBrowse.Name = "btnRepositoryBrowse";
-            this.btnRepositoryBrowse.Size = new System.Drawing.Size(69, 35);
+            this.btnRepositoryBrowse.Size = new System.Drawing.Size(113, 35);
             this.btnRepositoryBrowse.TabIndex = 15;
             this.btnRepositoryBrowse.Text = "Browse";
             this.btnRepositoryBrowse.UseVisualStyleBackColor = true;
@@ -461,7 +523,7 @@
             this.txtRepositoryRoot.Location = new System.Drawing.Point(384, 10);
             this.txtRepositoryRoot.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRepositoryRoot.Name = "txtRepositoryRoot";
-            this.txtRepositoryRoot.Size = new System.Drawing.Size(692, 27);
+            this.txtRepositoryRoot.Size = new System.Drawing.Size(568, 27);
             this.txtRepositoryRoot.TabIndex = 13;
             this.txtRepositoryRoot.TextChanged += new System.EventHandler(this.txtRepositoryRoot_TextChanged);
             // 
@@ -473,66 +535,6 @@
             this.label1.Size = new System.Drawing.Size(212, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "Folder of Repository (or many)";
-            // 
-            // tpUsefulForks
-            // 
-            this.tpUsefulForks.Controls.Add(this.usefulForksCenterPanel);
-            this.tpUsefulForks.Controls.Add(this.usefulForksTopPanel);
-            this.tpUsefulForks.Location = new System.Drawing.Point(4, 29);
-            this.tpUsefulForks.Name = "tpUsefulForks";
-            this.tpUsefulForks.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUsefulForks.Size = new System.Drawing.Size(1487, 667);
-            this.tpUsefulForks.TabIndex = 4;
-            this.tpUsefulForks.Text = "Useful Forks";
-            this.tpUsefulForks.UseVisualStyleBackColor = true;
-            // 
-            // usefulForksCenterPanel
-            // 
-            this.usefulForksCenterPanel.AutoScroll = true;
-            this.usefulForksCenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.usefulForksCenterPanel.Location = new System.Drawing.Point(3, 120);
-            this.usefulForksCenterPanel.Name = "usefulForksCenterPanel";
-            this.usefulForksCenterPanel.Size = new System.Drawing.Size(1481, 544);
-            this.usefulForksCenterPanel.TabIndex = 3;
-            // 
-            // usefulForksTopPanel
-            // 
-            this.usefulForksTopPanel.Controls.Add(this.pnlUsefulForkRoot);
-            this.usefulForksTopPanel.Controls.Add(this.btnUsefullForks);
-            this.usefulForksTopPanel.Controls.Add(this.txtbUsefullForks);
-            this.usefulForksTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.usefulForksTopPanel.Location = new System.Drawing.Point(3, 3);
-            this.usefulForksTopPanel.Name = "usefulForksTopPanel";
-            this.usefulForksTopPanel.Size = new System.Drawing.Size(1481, 117);
-            this.usefulForksTopPanel.TabIndex = 2;
-            // 
-            // pnlUsefulForkRoot
-            // 
-            this.pnlUsefulForkRoot.Location = new System.Drawing.Point(6, 55);
-            this.pnlUsefulForkRoot.Name = "pnlUsefulForkRoot";
-            this.pnlUsefulForkRoot.Size = new System.Drawing.Size(1463, 55);
-            this.pnlUsefulForkRoot.TabIndex = 2;
-            // 
-            // btnUsefullForks
-            // 
-            this.btnUsefullForks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUsefullForks.Location = new System.Drawing.Point(1367, 3);
-            this.btnUsefullForks.Name = "btnUsefullForks";
-            this.btnUsefullForks.Size = new System.Drawing.Size(102, 28);
-            this.btnUsefullForks.TabIndex = 1;
-            this.btnUsefullForks.Text = "Get Forks";
-            this.btnUsefullForks.UseVisualStyleBackColor = true;
-            this.btnUsefullForks.Click += new System.EventHandler(this.btnUsefullForks_Click);
-            // 
-            // txtbUsefullForks
-            // 
-            this.txtbUsefullForks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbUsefullForks.Location = new System.Drawing.Point(19, 3);
-            this.txtbUsefullForks.Name = "txtbUsefullForks";
-            this.txtbUsefullForks.Size = new System.Drawing.Size(1342, 27);
-            this.txtbUsefullForks.TabIndex = 0;
-            this.txtbUsefullForks.Text = "Analogy-LogViewer/Analogy.LogViewer";
             // 
             // menuStrip1
             // 
@@ -674,6 +676,18 @@
             this.timerAPIRateCheck.Interval = 900000;
             this.timerAPIRateCheck.Tick += new System.EventHandler(this.timerAPIRateCheck_Tick);
             // 
+            // btnPruneRemotes
+            // 
+            this.btnPruneRemotes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPruneRemotes.Location = new System.Drawing.Point(1292, 6);
+            this.btnPruneRemotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPruneRemotes.Name = "btnPruneRemotes";
+            this.btnPruneRemotes.Size = new System.Drawing.Size(188, 35);
+            this.btnPruneRemotes.TabIndex = 25;
+            this.btnPruneRemotes.Text = "Prune Stalled Remotes";
+            this.btnPruneRemotes.UseVisualStyleBackColor = true;
+            this.btnPruneRemotes.Click += new System.EventHandler(this.btnPruneRemotes_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -701,6 +715,9 @@
             this.tpNotifications.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tpUsefulForks.ResumeLayout(false);
+            this.usefulForksTopPanel.ResumeLayout(false);
+            this.usefulForksTopPanel.PerformLayout();
             this.tpGitOperations.ResumeLayout(false);
             this.tpGitOperations.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -708,9 +725,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.contextMenuStripRepository.ResumeLayout(false);
-            this.tpUsefulForks.ResumeLayout(false);
-            this.usefulForksTopPanel.ResumeLayout(false);
-            this.usefulForksTopPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStripNotifyBar.ResumeLayout(false);
@@ -779,6 +793,7 @@
         private System.Windows.Forms.Panel usefulForksCenterPanel;
         private System.Windows.Forms.Panel usefulForksTopPanel;
         private System.Windows.Forms.Panel pnlUsefulForkRoot;
+        private System.Windows.Forms.Button btnPruneRemotes;
     }
 }
 
