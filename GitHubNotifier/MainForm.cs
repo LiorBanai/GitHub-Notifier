@@ -805,7 +805,7 @@ namespace GitHubNotifier
                 ? tvRepositories.Nodes[index].SelectedImageIndex = 2
                 : tvRepositories.Nodes[index].SelectedImageIndex = 4;
             PrintToUi(
-                $"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+                $"{DateTime.Now.ToShortTimeString()}: End Prune repository: {dir}{Environment.NewLine}{Environment.NewLine}");
 
         }
     }
