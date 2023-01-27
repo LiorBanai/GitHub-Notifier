@@ -801,9 +801,9 @@ namespace GitHubNotifier
             PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pruning repository: " + dir);
             tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 1;
             await ExecuteGitCommand("remote prune origin", dir, dirName);
-            tvRepositories.Nodes[index].ImageIndex = _output[dirName][0].Contains("Already up to date")
-                ? tvRepositories.Nodes[index].SelectedImageIndex = 2
-                : tvRepositories.Nodes[index].SelectedImageIndex = 4;
+            tvRepositories.Nodes[index].ImageIndex = _output[dirName][0].Contains("* [pruned] ")
+                ? tvRepositories.Nodes[index].SelectedImageIndex = 4
+                : tvRepositories.Nodes[index].SelectedImageIndex = 2;
             PrintToUi(
                 $"{DateTime.Now.ToShortTimeString()}: End Prune repository: {dir}{Environment.NewLine}{Environment.NewLine}");
 
