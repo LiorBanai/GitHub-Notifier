@@ -714,7 +714,7 @@ namespace GitHubNotifier
 
             ForkedRepository root = new ForkedRepository(rootRepoInfo, commits.result);
             pnlUsefulForkRoot.Controls.Add(root);
-
+            root.Dock = DockStyle.Fill;
             List<GithubRepo> repos = new List<GithubRepo>();
             if (rootRepoInfo.Forks > 0)
             {
