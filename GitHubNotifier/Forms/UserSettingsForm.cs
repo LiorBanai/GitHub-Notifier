@@ -28,6 +28,7 @@ namespace GitHubNotifier.Forms
             chkbStartMinimized.Checked = UserSettingsManager.Instance.StartMinimized;
             chkbShowNotificationsOnlyOnce.Checked = UserSettingsManager.Instance.ShowNotificationsOnlyOnce;
             chkbDoNotShowDecrementPopups.Checked = UserSettingsManager.Instance.DoNotShowDecrementPopups;
+            txtbLocalToken.Text = UserSettingsManager.Instance.LocalGitHubToken;
         }
 
         private void btnAddRepo_Click(object sender, System.EventArgs e)
@@ -196,6 +197,12 @@ namespace GitHubNotifier.Forms
                 var data = JsonConvert.SerializeObject(UserSettingsManager.Instance.Repositories);
                 File.WriteAllText(saveFileDialog1.FileName, data);
             }
+        }
+
+        private void btnLocalToken_Click(object sender, EventArgs e)
+        {
+            UserSettingsManager.Instance.LocalGitHubToken = txtbLocalToken.Text;
+            UserSettingsManager.Instance.GitHubToken = txtbLocalToken.Text;
         }
     }
 

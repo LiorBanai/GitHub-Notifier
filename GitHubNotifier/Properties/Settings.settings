@@ -29,5 +29,8 @@
     <Setting Name="RepositoryRoot" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\git</Value>
     </Setting>
+    <Setting Name="LocalGithubToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

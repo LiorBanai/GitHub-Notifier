@@ -19,7 +19,10 @@ namespace GitHubNotifier.Managers
         public List<GitHubUserNotification> LastUnReadUserNotifications { get; set; }
         public int NotificationsIntervalCheck { get; set; }
         public bool ShowNotificationsOnlyOnce { get; set; }
-        public string GitHubToken { get; } = Environment.GetEnvironmentVariable("GitHubNotifier_Token");
+        public string RegistryGitHubToken { get; } = Environment.GetEnvironmentVariable("GitHubNotifier_Token");
+
+        public string LocalGitHubToken { get; set; }
+        public string GitHubToken { get; set; }
         public bool StartMinimized { get; set; }
         public bool DoNotShowDecrementPopups { get; set; }
         public string RepositoryRoot { get; set; }
@@ -47,6 +50,9 @@ namespace GitHubNotifier.Managers
             DoNotShowDecrementPopups = Settings.Default.DoNotShowDecrementPopups;
             Repositories = ParseSettings<List<RepositorySettings>>(Settings.Default.Repositories);
             RepositoryRoot = Settings.Default.RepositoryRoot;
+            LocalGitHubToken = Settings.Default.LocalGithubToken;
+
+            GitHubToken = string.IsNullOrEmpty(LocalGitHubToken) ? RegistryGitHubToken : LocalGitHubToken;
 
             if (Repositories == null || !Repositories.Any())
             {
@@ -63,7 +69,7 @@ namespace GitHubNotifier.Managers
         {
             Repositories.Add(new RepositorySettings(displayName, id, updateInterval));
             Save();
-            RepositoriesChanged?.Invoke(this,EventArgs.Empty);
+            RepositoriesChanged?.Invoke(this, EventArgs.Empty);
 
         }
 
@@ -83,10 +89,11 @@ namespace GitHubNotifier.Managers
             Settings.Default.StartMinimized = StartMinimized;
             Settings.Default.ShowNotificationsOnlyOnce = ShowNotificationsOnlyOnce;
             Settings.Default.DoNotShowDecrementPopups = DoNotShowDecrementPopups;
-            Settings.Default.RepositoryRoot= RepositoryRoot;
+            Settings.Default.RepositoryRoot = RepositoryRoot;
+            Settings.Default.LocalGithubToken = LocalGitHubToken;
             Settings.Default.Save();
         }
-        private T ParseSettings<T>(string data) where T : new()
+        private T? ParseSettings<T>(string data) where T : new()
         {
             try
             {
@@ -96,7 +103,6 @@ namespace GitHubNotifier.Managers
             }
             catch (Exception e)
             {
-                //LogManager.Instance.LogError("Error during parsing: " + e, nameof(UserSettingsManager));
                 return new T();
             }
 

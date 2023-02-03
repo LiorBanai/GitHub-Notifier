@@ -53,6 +53,9 @@
             this.chkbClones = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnLocalToken = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtbLocalToken = new System.Windows.Forms.TextBox();
             this.chkbDoNotShowDecrementPopups = new System.Windows.Forms.CheckBox();
             this.chkbStartMinimized = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -358,6 +361,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnLocalToken);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.txtbLocalToken);
             this.tabPage1.Controls.Add(this.chkbDoNotShowDecrementPopups);
             this.tabPage1.Controls.Add(this.chkbStartMinimized);
             this.tabPage1.Controls.Add(this.label5);
@@ -370,10 +376,36 @@
             this.tabPage1.Text = "Application";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnLocalToken
+            // 
+            this.btnLocalToken.Location = new System.Drawing.Point(825, 54);
+            this.btnLocalToken.Name = "btnLocalToken";
+            this.btnLocalToken.Size = new System.Drawing.Size(119, 38);
+            this.btnLocalToken.TabIndex = 17;
+            this.btnLocalToken.Text = "Set";
+            this.btnLocalToken.UseVisualStyleBackColor = true;
+            this.btnLocalToken.Click += new System.EventHandler(this.btnLocalToken_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(138, 20);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Local Github Token:";
+            // 
+            // txtbLocalToken
+            // 
+            this.txtbLocalToken.Location = new System.Drawing.Point(198, 60);
+            this.txtbLocalToken.Name = "txtbLocalToken";
+            this.txtbLocalToken.Size = new System.Drawing.Size(604, 27);
+            this.txtbLocalToken.TabIndex = 15;
+            // 
             // chkbDoNotShowDecrementPopups
             // 
             this.chkbDoNotShowDecrementPopups.AutoSize = true;
-            this.chkbDoNotShowDecrementPopups.Location = new System.Drawing.Point(9, 72);
+            this.chkbDoNotShowDecrementPopups.Location = new System.Drawing.Point(9, 133);
             this.chkbDoNotShowDecrementPopups.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkbDoNotShowDecrementPopups.Name = "chkbDoNotShowDecrementPopups";
             this.chkbDoNotShowDecrementPopups.Size = new System.Drawing.Size(339, 24);
@@ -385,7 +417,7 @@
             // chkbStartMinimized
             // 
             this.chkbStartMinimized.AutoSize = true;
-            this.chkbStartMinimized.Location = new System.Drawing.Point(9, 41);
+            this.chkbStartMinimized.Location = new System.Drawing.Point(9, 102);
             this.chkbStartMinimized.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkbStartMinimized.Name = "chkbStartMinimized";
             this.chkbStartMinimized.Size = new System.Drawing.Size(240, 24);
@@ -400,10 +432,11 @@
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(4, 5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1223, 62);
+            this.label5.Size = new System.Drawing.Size(1223, 43);
             this.label5.TabIndex = 3;
             this.label5.Text = "GitHub limits number of API call to 60 per hour. Add Environment Variable with ke" +
-    "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour";
+    "y \"GitHubNotifier_Token\" with valid token to get 5000 calls per hour or add the " +
+    "token to the local setting:";
             // 
             // tabPage2
             // 
@@ -539,6 +572,9 @@
         private System.Windows.Forms.CheckBox chkbDoNotShowDecrementPopups;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtbLocalToken;
+        private System.Windows.Forms.Button btnLocalToken;
     }
 }
 
