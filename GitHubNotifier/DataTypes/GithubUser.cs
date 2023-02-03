@@ -7,17 +7,13 @@ namespace GitHubNotifier.DataTypes
     [JsonObject]
     public class GithubUser
     {
-        [JsonProperty("login")]
-        public string Login { get; set; }
+        [JsonProperty("login")] public string Login { get; set; }
 
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("id")] public string Id { get; set; }
 
-        [JsonProperty("avatar_url")]
-        public string avatarUrl { get; set; }
+        [JsonProperty("avatar_url")] public string avatarUrl { get; set; }
 
-        [JsonProperty("html_url")]
-        public string HtmlUrl { get; set; }
+        [JsonProperty("html_url")] public string HtmlUrl { get; set; }
         public string node_id { get; set; }
         public string gravatar_id { get; set; }
         public string url { get; set; }
@@ -32,5 +28,6 @@ namespace GitHubNotifier.DataTypes
         public string received_events_url { get; set; }
         public string type { get; set; }
         public bool site_admin { get; set; }
+
     }
 }

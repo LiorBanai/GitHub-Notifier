@@ -313,7 +313,7 @@
             this.btnUsefullForks.TabIndex = 1;
             this.btnUsefullForks.Text = "Get Forks";
             this.btnUsefullForks.UseVisualStyleBackColor = true;
-            this.btnUsefullForks.Click += new System.EventHandler(this.btnUsefullForks_Click);
+            this.btnUsefullForks.Click += new System.EventHandler(this.btnUsefulForks_Click);
             // 
             // txtbUsefullForks
             // 

@@ -31,6 +31,7 @@
             this.lnkLabel = new System.Windows.Forms.LinkLabel();
             this.lblLikes = new System.Windows.Forms.Label();
             this.lblUpdated = new System.Windows.Forms.Label();
+            this.lblLatestCommit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lnkLabel
@@ -69,15 +70,28 @@
             this.lblUpdated.Text = "Updated:";
             this.lblUpdated.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblLatestCommit
+            // 
+            this.lblLatestCommit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblLatestCommit.Image = global::GitHubNotifier.Properties.Resources.Suggestion_32x32;
+            this.lblLatestCommit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLatestCommit.Location = new System.Drawing.Point(868, 0);
+            this.lblLatestCommit.Name = "lblLatestCommit";
+            this.lblLatestCommit.Size = new System.Drawing.Size(427, 39);
+            this.lblLatestCommit.TabIndex = 7;
+            this.lblLatestCommit.Text = "Newest Commit:";
+            this.lblLatestCommit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ForkedRepository
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblLatestCommit);
             this.Controls.Add(this.lblUpdated);
             this.Controls.Add(this.lblLikes);
             this.Controls.Add(this.lnkLabel);
             this.Name = "ForkedRepository";
-            this.Size = new System.Drawing.Size(1015, 39);
+            this.Size = new System.Drawing.Size(1200, 39);
             this.Load += new System.EventHandler(this.ForkedRepository_Load);
             this.ResumeLayout(false);
 
@@ -88,5 +102,6 @@
         private System.Windows.Forms.LinkLabel lnkLabel;
         private System.Windows.Forms.Label lblLikes;
         private System.Windows.Forms.Label lblUpdated;
+        private System.Windows.Forms.Label lblLatestCommit;
     }
 }

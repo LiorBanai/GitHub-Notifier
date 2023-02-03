@@ -15,17 +15,34 @@ namespace GitHubNotifier.UserControls
     public partial class ForkedRepository : UserControl
     {
         private GithubRepo Repo { get; }
+        private GithubCommit[] Commits { get; }
         private DateTime RootPushTime { get; }
+        private DateTime RootLatestCommit { get; }
+        private DateTime NewestCommit { get; }
 
         public ForkedRepository()
         {
             InitializeComponent();
         }
 
-        public ForkedRepository(GithubRepo repo, DateTime rootPushTime) : this()
+        public ForkedRepository(GithubRepo repo, GithubCommit[] commits) : this()
+        {
+            Repo = repo;
+            RootPushTime = repo.PushTime;
+            Commits = commits;
+            NewestCommit = commits.Max(c => c.commit.author.date);
+            RootLatestCommit = NewestCommit;
+
+        }
+
+
+        public ForkedRepository(GithubRepo repo, GithubCommit[] commits, DateTime rootPushTime, DateTime rootLatestCommit) : this()
         {
             Repo = repo;
             RootPushTime = rootPushTime;
+            RootLatestCommit = rootLatestCommit;
+            Commits = commits;
+            NewestCommit = commits.Max(c => c.commit.author.date);
         }
 
         private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -51,9 +68,10 @@ namespace GitHubNotifier.UserControls
             lnkLabel.Text = Repo.FullName;
             lblLikes.Text = "Stars: " + Repo.Stargazers;
             lblUpdated.Text = "Push Time: " + Repo.PushTime;
-            if (RootPushTime < Repo.PushTime)
+            lblLatestCommit.Text = $"Newest Commit:{NewestCommit}. Ahead: ({Commits.Count(c => c.commit.author.date > RootLatestCommit)})";
+            if (RootLatestCommit < NewestCommit)
             {
-                lblUpdated.ForeColor = Color.Green;
+                lblLatestCommit.ForeColor = Color.Green;
             }
         }
     }

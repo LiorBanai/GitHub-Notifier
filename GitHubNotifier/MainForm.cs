@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibGit2Sharp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Commit = LibGit2Sharp.Commit;
 
 namespace GitHubNotifier
 {
@@ -697,29 +698,37 @@ namespace GitHubNotifier
 
         }
 
-        private async void btnUsefullForks_Click(object sender, EventArgs e)
+        private async void btnUsefulForks_Click(object sender, EventArgs e)
         {
             pnlUsefulForkRoot.Controls.Clear();
             usefulForksCenterPanel.Controls.Clear();
             
 
             var rootFork = new RepositorySettings(txtbUsefullForks.Text, txtbUsefullForks.Text, 0);
-            var (newData, repoInfo) = await GitHubUtils.GetAsync<GithubRepo>(rootFork.RepoApiUrl,
+            var (newData, rootRepoInfo) = await GitHubUtils.GetAsync<GithubRepo>(rootFork.RepoApiUrl,
                 UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
-            ForkedRepository root = new ForkedRepository(repoInfo,repoInfo.PushTime);
-            pnlUsefulForkRoot.Controls.Add(root);
-            List<GithubRepo> repos = new List<GithubRepo>();
-            if (repoInfo.Forks > 0)
-            {
-                await GetForks(repoInfo, repos);
-            }
 
+            var commits = await GitHubUtils.GetAsync<GithubCommit[]>(rootRepoInfo.ApiCommitsUrl,
+                UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
+           var rootNewestCommit = commits.result.Max(c => c.commit.author.date);
+
+            ForkedRepository root = new ForkedRepository(rootRepoInfo, commits.result);
+            pnlUsefulForkRoot.Controls.Add(root);
+
+            List<GithubRepo> repos = new List<GithubRepo>();
+            if (rootRepoInfo.Forks > 0)
+            {
+                await GetForks(rootRepoInfo, repos);
+            }
+            
             var results = repos.OrderByDescending(r => r.Stargazers).ThenByDescending(r => r.PushTime).ToList();
             results.Reverse();
             foreach (GithubRepo repo in results)
             {
+                var repoCommits = await GitHubUtils.GetAsync<GithubCommit[]>(repo.ApiCommitsUrl,
+                    UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
 
-                ForkedRepository ar1 = new ForkedRepository(repo,repoInfo.PushTime);
+                ForkedRepository ar1 = new ForkedRepository(repo, repoCommits.result,rootRepoInfo.PushTime, rootNewestCommit);
                 usefulForksCenterPanel.Controls.Add(ar1);
                 ar1.Dock = DockStyle.Top;
 
