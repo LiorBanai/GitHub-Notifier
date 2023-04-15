@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net7.0-windows;net6.0-windows;net48;net472;net471</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows;net48</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
