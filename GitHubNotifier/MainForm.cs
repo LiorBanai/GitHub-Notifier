@@ -702,7 +702,7 @@ namespace GitHubNotifier
         {
             pnlUsefulForkRoot.Controls.Clear();
             usefulForksCenterPanel.Controls.Clear();
-            
+
 
             var rootFork = new RepositorySettings(txtbUsefullForks.Text, txtbUsefullForks.Text, 0);
             var (newData, rootRepoInfo) = await GitHubUtils.GetAsync<GithubRepo>(rootFork.RepoApiUrl,
@@ -710,7 +710,7 @@ namespace GitHubNotifier
 
             var commits = await GitHubUtils.GetAsync<GithubCommit[]>(rootRepoInfo.ApiCommitsUrl,
                 UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
-           var rootNewestCommit = commits.result.Max(c => c.commit.author.date);
+            var rootNewestCommit = commits.result.Max(c => c.commit.author.date);
 
             ForkedRepository root = new ForkedRepository(rootRepoInfo, commits.result);
             pnlUsefulForkRoot.Controls.Add(root);
@@ -720,7 +720,7 @@ namespace GitHubNotifier
             {
                 await GetForks(rootRepoInfo, repos);
             }
-            
+
             var results = repos.OrderByDescending(r => r.Stargazers).ThenByDescending(r => r.PushTime).ToList();
             results.Reverse();
             foreach (GithubRepo repo in results)
@@ -728,7 +728,7 @@ namespace GitHubNotifier
                 var repoCommits = await GitHubUtils.GetAsync<GithubCommit[]>(repo.ApiCommitsUrl,
                     UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
 
-                ForkedRepository ar1 = new ForkedRepository(repo, repoCommits.result,rootRepoInfo.PushTime, rootNewestCommit);
+                ForkedRepository ar1 = new ForkedRepository(repo, repoCommits.result, rootRepoInfo.PushTime, rootNewestCommit);
                 usefulForksCenterPanel.Controls.Add(ar1);
                 ar1.Dock = DockStyle.Top;
 
@@ -810,13 +810,64 @@ namespace GitHubNotifier
             PrintToUi($"{DateTime.Now.ToShortTimeString()}: Pruning repository: " + dir);
             tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 1;
             await ExecuteGitCommand("remote prune origin", dir, dirName);
-            tvRepositories.Nodes[index].ImageIndex = _output[dirName][0].Contains("* [pruned] ")
+            tvRepositories.Nodes[index].ImageIndex = _output[dirName].Any(line => line.Contains("* [pruned] "))
                 ? tvRepositories.Nodes[index].SelectedImageIndex = 4
                 : tvRepositories.Nodes[index].SelectedImageIndex = 2;
             PrintToUi(
                 $"{DateTime.Now.ToShortTimeString()}: End Prune repository: {dir}{Environment.NewLine}{Environment.NewLine}");
 
         }
+
+        private async void btnRemoveDeletedTags_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
+            {
+                if (chkbClearLog.Checked)
+                {
+                    richTextBox1.Text = "";
+                }
+
+                tvRepositories.Nodes.Clear();
+                _output.Clear();
+                bool currentFolderIsGit = CheckIfCurrentFolderIsGet(txtRepositoryRoot.Text);
+                var dirs = !currentFolderIsGit
+                    ? Directory.GetDirectories(txtRepositoryRoot.Text)
+                    : new[] { txtRepositoryRoot.Text };
+
+                List<TreeNode> nodes = new List<TreeNode>();
+                foreach (var dir in dirs)
+                {
+                    GitNode gn = new GitNode(dir, GetBranchName(dir));
+                    var node = new TreeNode(gn.DisplayName, 0, 0) { Tag = gn };
+                    nodes.Add(node);
+                }
+
+                tvRepositories.Nodes.AddRange(nodes.ToArray());
+                for (var index = 0; index < dirs.Length; index++)
+                {
+                    string dir = dirs[index];
+                    await DeleteLocalTag(dir, index);
+                }
+            }
+        }
+
+        private async Task DeleteLocalTag(string dir, int index)
+        {
+            var dirName = Path.GetFileName(dir);
+            _output[dirName] = new List<string>();
+            PrintToUi($"{DateTime.Now.ToShortTimeString()}: Delete Local tags (if needed) for repository: " + dir);
+            tvRepositories.Nodes[index].ImageIndex = tvRepositories.Nodes[index].SelectedImageIndex = 1;
+            await ExecuteGitCommand("fetch --tags --force", dir, dirName);
+            await ExecuteGitCommand("fetch --prune --prune-tags", dir, dirName);
+            tvRepositories.Nodes[index].ImageIndex = _output[dirName].Any(line => line.Contains("[deleted]"))
+                ? tvRepositories.Nodes[index].SelectedImageIndex = 4
+                : tvRepositories.Nodes[index].SelectedImageIndex = 2;
+            PrintToUi(
+                $"{DateTime.Now.ToShortTimeString()}: End Prune repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+
+        }
+
     }
 }
+
 
