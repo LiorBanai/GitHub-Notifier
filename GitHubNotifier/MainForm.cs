@@ -25,7 +25,7 @@ namespace GitHubNotifier
         List<RepositoryEntry> repos = new List<RepositoryEntry>();
         private UserSettingsManager Settings => UserSettingsManager.Instance;
         private bool preventExit = true;
-
+        private CancellationTokenSource? cts;
         public MainForm()
         {
             InitializeComponent();
@@ -254,6 +254,11 @@ namespace GitHubNotifier
 
         private async void btnFetch_Click(object sender, EventArgs e)
         {
+            if (cts is not null)
+            {
+                cts.Cancel();
+            }
+            cts = new CancellationTokenSource();
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
                 tvRepositories.Nodes.Clear();
@@ -278,16 +283,20 @@ namespace GitHubNotifier
                     string dir = dirs[index];
                     var dirName = Path.GetFileName(dir);
                     _output[dirName] = new List<string>();
-                    PrintToUi(
-                        $"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}:Fetching repository: " +
-                        dir);
+                    PrintToUi($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now.ToShortTimeString()}:Fetching repository: " +
+                              dir);
                     nodes[index].SelectedImageIndex = 1;
                     await ExecuteGitCommand("fetch", dir, dirName);
                     nodes[index].SelectedImageIndex = 2;
-                    PrintToUi(
-                        $"{DateTime.Now.ToShortTimeString()}:End Fetching repository: {dir}:{Environment.NewLine}{Environment.NewLine}");
+                    PrintToUi($"{DateTime.Now.ToShortTimeString()}:End Fetching repository: {dir}:{Environment.NewLine}{Environment.NewLine}");
+                    if (cts.Token.IsCancellationRequested)
+                    {
+                        break;
+                    }
                 }
             }
+            cts.Dispose();
+            cts = null;
         }
 
         private bool CheckIfCurrentFolderIsGet(string directory)
@@ -391,6 +400,11 @@ namespace GitHubNotifier
 
         private async void btnPull_Click(object sender, EventArgs e)
         {
+            if (cts is not null)
+            {
+                cts.Cancel();
+            }
+            cts = new CancellationTokenSource();
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
                 if (chkbClearLog.Checked)
@@ -418,8 +432,14 @@ namespace GitHubNotifier
                 {
                     string dir = dirs[index];
                     await PullRepo(dir, index);
+                    if (cts.Token.IsCancellationRequested)
+                    {
+                        break;
+                    }
                 }
             }
+            cts.Dispose();
+            cts = null;
         }
 
         private async Task PullRepo(string dir, int index)
@@ -572,6 +592,11 @@ namespace GitHubNotifier
 
         private async void btnCleanUntrack_Click(object sender, EventArgs e)
         {
+            if (cts is not null)
+            {
+                cts.Cancel();
+            }
+            cts = new CancellationTokenSource();
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
                 if (chkbClearLog.Checked)
@@ -608,8 +633,14 @@ namespace GitHubNotifier
                     nodes[index].ImageIndex = nodes[index].SelectedImageIndex = 2;
                     PrintToUi(
                         $"{DateTime.Now.ToShortTimeString()}: Done git.exe clean -d -fx on repository: {dir}{Environment.NewLine}{Environment.NewLine}");
+                    if (cts.Token.IsCancellationRequested)
+                    {
+                        break;
+                    }
                 }
             }
+            cts.Dispose();
+            cts = null;
         }
 
         private void btnListFolders_Click(object sender, EventArgs e)
@@ -772,6 +803,11 @@ namespace GitHubNotifier
 
         private async void btnPruneRemotes_Click(object sender, EventArgs e)
         {
+            if (cts is not null)
+            {
+                cts.Cancel();
+            }
+            cts = new CancellationTokenSource();
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
                 if (chkbClearLog.Checked)
@@ -799,9 +835,14 @@ namespace GitHubNotifier
                 {
                     string dir = dirs[index];
                     await PruneRepo(dir, index);
+                    if (cts.Token.IsCancellationRequested)
+                    {
+                        break;
+                    }
                 }
             }
-
+            cts.Dispose();
+            cts = null;
         }
         private async Task PruneRepo(string dir, int index)
         {
@@ -820,6 +861,11 @@ namespace GitHubNotifier
 
         private async void btnRemoveDeletedTags_Click(object sender, EventArgs e)
         {
+            if (cts is not null)
+            {
+                cts.Cancel();
+            }
+            cts = new CancellationTokenSource();
             if (!string.IsNullOrEmpty(txtRepositoryRoot.Text) && Directory.Exists(txtRepositoryRoot.Text))
             {
                 if (chkbClearLog.Checked)
@@ -847,8 +893,14 @@ namespace GitHubNotifier
                 {
                     string dir = dirs[index];
                     await DeleteLocalTag(dir, index);
+                    if (cts.Token.IsCancellationRequested)
+                    {
+                        break;
+                    }
                 }
             }
+            cts.Dispose();
+            cts = null;
         }
 
         private async Task DeleteLocalTag(string dir, int index)
@@ -867,6 +919,14 @@ namespace GitHubNotifier
 
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (cts is not null)
+            {
+                cts.Cancel();
+            }
+            
+        }
     }
 }
 

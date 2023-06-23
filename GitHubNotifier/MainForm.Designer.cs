@@ -51,10 +51,9 @@
             btnUsefullForks = new System.Windows.Forms.Button();
             txtbUsefullForks = new System.Windows.Forms.TextBox();
             tpGitOperations = new System.Windows.Forms.TabPage();
+            btnCancel = new System.Windows.Forms.Button();
             btnRemoveDeletedTags = new System.Windows.Forms.Button();
             btnPruneRemotes = new System.Windows.Forms.Button();
-            btnCleanObjAndBinFolder = new System.Windows.Forms.Button();
-            btnListFolders = new System.Windows.Forms.Button();
             btnCleanUntrack = new System.Windows.Forms.Button();
             chkbClearLog = new System.Windows.Forms.CheckBox();
             splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -322,10 +321,9 @@
             // 
             // tpGitOperations
             // 
+            tpGitOperations.Controls.Add(btnCancel);
             tpGitOperations.Controls.Add(btnRemoveDeletedTags);
             tpGitOperations.Controls.Add(btnPruneRemotes);
-            tpGitOperations.Controls.Add(btnCleanObjAndBinFolder);
-            tpGitOperations.Controls.Add(btnListFolders);
             tpGitOperations.Controls.Add(btnCleanUntrack);
             tpGitOperations.Controls.Add(chkbClearLog);
             tpGitOperations.Controls.Add(splitContainer1);
@@ -343,10 +341,22 @@
             tpGitOperations.Text = "Git Operations";
             tpGitOperations.UseVisualStyleBackColor = true;
             // 
+            // btnCancel
+            // 
+            btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnCancel.Location = new System.Drawing.Point(1383, 7);
+            btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(95, 35);
+            btnCancel.TabIndex = 27;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // btnRemoveDeletedTags
             // 
             btnRemoveDeletedTags.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnRemoveDeletedTags.Location = new System.Drawing.Point(1290, 47);
+            btnRemoveDeletedTags.Location = new System.Drawing.Point(1160, 47);
             btnRemoveDeletedTags.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnRemoveDeletedTags.Name = "btnRemoveDeletedTags";
             btnRemoveDeletedTags.Size = new System.Drawing.Size(188, 35);
@@ -358,7 +368,7 @@
             // btnPruneRemotes
             // 
             btnPruneRemotes.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnPruneRemotes.Location = new System.Drawing.Point(1292, 6);
+            btnPruneRemotes.Location = new System.Drawing.Point(1160, 7);
             btnPruneRemotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnPruneRemotes.Name = "btnPruneRemotes";
             btnPruneRemotes.Size = new System.Drawing.Size(188, 35);
@@ -367,37 +377,13 @@
             btnPruneRemotes.UseVisualStyleBackColor = true;
             btnPruneRemotes.Click += btnPruneRemotes_Click;
             // 
-            // btnCleanObjAndBinFolder
-            // 
-            btnCleanObjAndBinFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnCleanObjAndBinFolder.Location = new System.Drawing.Point(1080, 47);
-            btnCleanObjAndBinFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            btnCleanObjAndBinFolder.Name = "btnCleanObjAndBinFolder";
-            btnCleanObjAndBinFolder.Size = new System.Drawing.Size(204, 35);
-            btnCleanObjAndBinFolder.TabIndex = 24;
-            btnCleanObjAndBinFolder.Text = "clean obj and bin folders";
-            btnCleanObjAndBinFolder.UseVisualStyleBackColor = true;
-            btnCleanObjAndBinFolder.Click += btnCleanObjAndBinFolder_Click;
-            // 
-            // btnListFolders
-            // 
-            btnListFolders.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnListFolders.Location = new System.Drawing.Point(959, 47);
-            btnListFolders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            btnListFolders.Name = "btnListFolders";
-            btnListFolders.Size = new System.Drawing.Size(113, 35);
-            btnListFolders.TabIndex = 23;
-            btnListFolders.Text = "List Folders";
-            btnListFolders.UseVisualStyleBackColor = true;
-            btnListFolders.Click += btnListFolders_Click;
-            // 
             // btnCleanUntrack
             // 
             btnCleanUntrack.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnCleanUntrack.Location = new System.Drawing.Point(1080, 6);
+            btnCleanUntrack.Location = new System.Drawing.Point(923, 47);
             btnCleanUntrack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnCleanUntrack.Name = "btnCleanUntrack";
-            btnCleanUntrack.Size = new System.Drawing.Size(204, 35);
+            btnCleanUntrack.Size = new System.Drawing.Size(229, 35);
             btnCleanUntrack.TabIndex = 22;
             btnCleanUntrack.Text = "Clean Untracked items";
             btnCleanUntrack.UseVisualStyleBackColor = true;
@@ -499,7 +485,8 @@
             // 
             // btnPull
             // 
-            btnPull.Location = new System.Drawing.Point(81, 5);
+            btnPull.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnPull.Location = new System.Drawing.Point(1083, 7);
             btnPull.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnPull.Name = "btnPull";
             btnPull.Size = new System.Drawing.Size(69, 35);
@@ -510,7 +497,8 @@
             // 
             // btnFetch
             // 
-            btnFetch.Location = new System.Drawing.Point(7, 5);
+            btnFetch.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnFetch.Location = new System.Drawing.Point(1009, 7);
             btnFetch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnFetch.Name = "btnFetch";
             btnFetch.Size = new System.Drawing.Size(69, 35);
@@ -522,10 +510,10 @@
             // btnRepositoryBrowse
             // 
             btnRepositoryBrowse.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnRepositoryBrowse.Location = new System.Drawing.Point(959, 6);
+            btnRepositoryBrowse.Location = new System.Drawing.Point(923, 7);
             btnRepositoryBrowse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             btnRepositoryBrowse.Name = "btnRepositoryBrowse";
-            btnRepositoryBrowse.Size = new System.Drawing.Size(113, 35);
+            btnRepositoryBrowse.Size = new System.Drawing.Size(81, 35);
             btnRepositoryBrowse.TabIndex = 15;
             btnRepositoryBrowse.Text = "Browse";
             btnRepositoryBrowse.UseVisualStyleBackColor = true;
@@ -534,17 +522,17 @@
             // txtRepositoryRoot
             // 
             txtRepositoryRoot.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            txtRepositoryRoot.Location = new System.Drawing.Point(384, 10);
+            txtRepositoryRoot.Location = new System.Drawing.Point(235, 11);
             txtRepositoryRoot.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtRepositoryRoot.Name = "txtRepositoryRoot";
-            txtRepositoryRoot.Size = new System.Drawing.Size(568, 27);
+            txtRepositoryRoot.Size = new System.Drawing.Size(681, 27);
             txtRepositoryRoot.TabIndex = 13;
             txtRepositoryRoot.TextChanged += txtRepositoryRoot_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(157, 12);
+            label1.Location = new System.Drawing.Point(8, 13);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(212, 20);
             label1.TabIndex = 14;
@@ -772,9 +760,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripRepository;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenFolder;
         private System.Windows.Forms.Button btnCleanUntrack;
-        private System.Windows.Forms.Button btnListFolders;
         private System.Windows.Forms.ToolStripMenuItem tsmiPullFolder;
-        private System.Windows.Forms.Button btnCleanObjAndBinFolder;
         private System.Windows.Forms.ToolStripMenuItem tsmiFetchRepoHistory;
         private System.Windows.Forms.TabPage tpUsefulForks;
         private System.Windows.Forms.Button btnUsefullForks;
@@ -784,6 +770,7 @@
         private System.Windows.Forms.Panel pnlUsefulForkRoot;
         private System.Windows.Forms.Button btnPruneRemotes;
         private System.Windows.Forms.Button btnRemoveDeletedTags;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
