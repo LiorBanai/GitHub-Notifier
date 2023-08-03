@@ -45,7 +45,7 @@
 		<PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.6.0" />
+		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.7.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="LibGit2Sharp" Version="0.27.2" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
