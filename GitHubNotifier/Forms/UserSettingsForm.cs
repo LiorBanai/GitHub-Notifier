@@ -1,10 +1,10 @@
-﻿using System;
+﻿using GitHubNotifier.DataTypes;
+using GitHubNotifier.Managers;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using GitHubNotifier.DataTypes;
-using GitHubNotifier.Managers;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace GitHubNotifier.Forms
 {
@@ -65,7 +65,6 @@ namespace GitHubNotifier.Forms
             {
                 UserSettingsManager.Instance.RemoveRepository(repo);
                 RefreshList();
-
             }
         }
 
@@ -180,7 +179,6 @@ namespace GitHubNotifier.Forms
                     MessageBox.Show($"Error: {exception.Message}", "Error importing Json", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-
             }
         }
 
@@ -189,7 +187,6 @@ namespace GitHubNotifier.Forms
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "json file|*.json";
             saveFileDialog1.Title = "Export repositories";
-            ;
 
             // If the file name is not an empty string open it for saving.
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -205,5 +202,4 @@ namespace GitHubNotifier.Forms
             UserSettingsManager.Instance.GitHubToken = txtbLocalToken.Text;
         }
     }
-
 }

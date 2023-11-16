@@ -50,7 +50,6 @@ namespace GitHubNotifier.DataTypes
         public string signature { get; set; }
         public string payload { get; set; }
     }
-    
 
     public class Parent
     {
@@ -58,5 +57,4 @@ namespace GitHubNotifier.DataTypes
         public string url { get; set; }
         public string html_url { get; set; }
     }
-
 }

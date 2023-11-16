@@ -1,27 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net7.0-windows;net48</TargetFrameworks>
-		<UseWindowsForms>true</UseWindowsForms>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<TargetFrameworks>net8.0-windows;net7.0-windows;net48</TargetFrameworks>
 		<Authors>Lior Banai</Authors>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageProjectUrl>https://github.com/LiorBanai/GitHub-Notifier</PackageProjectUrl>
-		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/LiorBanai/GitHub-Notifier</RepositoryUrl>
 		<PackageIcon>icon.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>1.7.0</Version>
+		<Version>2.0.0</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
-		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
-		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\icon.png">
@@ -42,20 +32,12 @@
 	  <Content Include="GitHubNotifier.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.7.0" />
+		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.8.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="LibGit2Sharp" Version="0.27.2" />
-		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<PackageReference Include="LibGit2Sharp" Version="0.28.0" />
 	</ItemGroup>
 
 	<ItemGroup>

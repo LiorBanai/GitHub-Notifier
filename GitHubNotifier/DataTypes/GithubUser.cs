@@ -28,6 +28,5 @@ namespace GitHubNotifier.DataTypes
         public string received_events_url { get; set; }
         public string type { get; set; }
         public bool site_admin { get; set; }
-
     }
 }

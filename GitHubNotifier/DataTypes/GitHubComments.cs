@@ -17,7 +17,6 @@ namespace GitHubNotifier.DataTypes
         public object performed_via_github_app { get; set; }
     }
 
-
     public class GitHubComments
     {
         private GitHubComment[] Comments { get; set; }

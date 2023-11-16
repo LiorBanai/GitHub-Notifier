@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GitHubNotifier.DataTypes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GitHubNotifier.DataTypes;
 
 namespace GitHubNotifier.UserControls
 {
@@ -32,9 +32,7 @@ namespace GitHubNotifier.UserControls
             Commits = commits;
             NewestCommit = commits.Max(c => c.commit.author.date);
             RootLatestCommit = NewestCommit;
-
         }
-
 
         public ForkedRepository(GithubRepo repo, GithubCommit[] commits, DateTime rootPushTime, DateTime rootLatestCommit) : this()
         {
@@ -59,7 +57,6 @@ namespace GitHubNotifier.UserControls
             catch (Exception)
             {
                 //ignore 
-
             }
         }
 

@@ -25,7 +25,6 @@ namespace GitHubNotifier.DataTypes
         public object label { get; set; }
        
         public string state { get; set; }
- 
 
         public override string ToString() => $"Asset Name: {Name}, URL: {URL}, Size: {Size}, Downloads: {Downloads}, Created: {Created}";
     }

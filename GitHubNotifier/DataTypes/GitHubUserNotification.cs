@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace GitHubNotifier.DataTypes
 {
@@ -23,7 +23,6 @@ namespace GitHubNotifier.DataTypes
         [JsonProperty("url")] public string URL { get; set; }
         [JsonProperty("type")] public string Type { get; set; }
         [JsonProperty("latest_comment_url")] public string LatestCommentUrl { get; set; }
-
     }
 
     [Serializable]

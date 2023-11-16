@@ -13,12 +13,10 @@ namespace GitHubNotifier.Utils
         public static async Task<GitHubRateLimit> GetRateLimit(string token)
         {
             var data = await GetAsync<GitHubRateLimit>("https://api.github.com/rate_limit", token, DateTime.Now);
-            return data.result;
-
-
+            return data.Result;
         }
 
-        public static async Task<(bool newData, T result)> GetAsync<T>(string uri, string token, DateTime lastModified)
+        public static async Task<(bool NewData, T Result)> GetAsync<T>(string uri, string token, DateTime lastModified)
         {
             try
             {
@@ -71,8 +69,5 @@ namespace GitHubNotifier.Utils
                 return (false, default);
             }
         }
-
-
-
     }
 }

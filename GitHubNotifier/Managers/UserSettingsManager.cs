@@ -58,11 +58,10 @@ namespace GitHubNotifier.Managers
             {
                 Repositories = new List<RepositorySettings>
                 {
-                    new RepositorySettings("Analogy Log Viewer","Analogy-LogViewer/Analogy.LogViewer",15),
-                    new RepositorySettings("Analogy Serilog", "Analogy-LogViewer/Analogy.LogViewer.Serilog",15)
+                    new RepositorySettings("Analogy Log Viewer", "Analogy-LogViewer/Analogy.LogViewer", 15),
+                    new RepositorySettings("Analogy Serilog", "Analogy-LogViewer/Analogy.LogViewer.Serilog", 15),
                 };
             }
-
         }
 
         internal void AddNewRepository(string displayName, string id, int updateInterval)
@@ -70,7 +69,6 @@ namespace GitHubNotifier.Managers
             Repositories.Add(new RepositorySettings(displayName, id, updateInterval));
             Save();
             RepositoriesChanged?.Invoke(this, EventArgs.Empty);
-
         }
 
         internal void RemoveRepository(RepositorySettings repo)
@@ -105,10 +103,6 @@ namespace GitHubNotifier.Managers
             {
                 return new T();
             }
-
-
         }
-
-
     }
 }

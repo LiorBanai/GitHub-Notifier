@@ -3,6 +3,7 @@ using GitHubNotifier.Forms;
 using GitHubNotifier.Managers;
 using GitHubNotifier.UserControls;
 using GitHubNotifier.Utils;
+using LibGit2Sharp;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -13,7 +14,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LibGit2Sharp;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Commit = LibGit2Sharp.Commit;
 
@@ -22,7 +22,7 @@ namespace GitHubNotifier
     public partial class MainForm : Form
     {
         private Dictionary<string, List<string>> _output = new Dictionary<string, List<string>>(0);
-        List<RepositoryEntry> repos = new List<RepositoryEntry>();
+        private List<RepositoryEntry> repos = new List<RepositoryEntry>();
         private UserSettingsManager Settings => UserSettingsManager.Instance;
         private bool preventExit = true;
         private CancellationTokenSource? cts;
@@ -73,15 +73,12 @@ namespace GitHubNotifier
             {
                 AddRepo(repo, repo.Active ? tpActive : tpNonActive);
             }
-
-
         }
 
         private async Task CheckAPILimits()
         {
             try
             {
-
                 var result = await GitHubUtils.GetRateLimit(Settings.GitHubToken);
                 tsslblAPILimit.Text = "API Limits:" + result?.Rate;
             }
@@ -95,7 +92,6 @@ namespace GitHubNotifier
         {
             if (preventExit && e.CloseReason == CloseReason.UserClosing)
             {
-
                 e.Cancel = true;
                 Hide();
                 var popupNotifier = new NotificationWindow.PopupNotifier
@@ -105,7 +101,7 @@ namespace GitHubNotifier
                     IsRightToLeft = false,
                     Image = Properties.Resources.Feature_32x32,
                     IgnoreWhenFullScreen = true,
-                    AutoContentHeight = true
+                    AutoContentHeight = true,
                 };
                 popupNotifier.Popup();
             }
@@ -115,7 +111,6 @@ namespace GitHubNotifier
         {
             UserSettingsManager.Instance.Save();
         }
-
 
         private void AddRepo(RepositorySettings repo, TabPage page)
         {
@@ -179,7 +174,6 @@ namespace GitHubNotifier
                 }
             }
 
-
             if (Settings.LastUnReadUserNotifications.Any())
             {
                 lstNotifications.Items.Clear();
@@ -189,10 +183,7 @@ namespace GitHubNotifier
 
             tsslblNotifications.Text =
                 $"Notification: {Settings.LastUnReadUserNotifications.Count}. Last Update: {Settings.LastReadUserNotification}";
-
         }
-
-
 
         private void tsmiExitForm_Click(object sender, EventArgs e)
         {
@@ -271,7 +262,6 @@ namespace GitHubNotifier
                 List<TreeNode> nodes = new List<TreeNode>();
                 foreach (var dir in dirs)
                 {
-
                     GitNode gn = new GitNode(dir, GetBranchName(dir));
                     var node = new TreeNode(gn.DisplayName, 0, 0) { Tag = gn };
                     nodes.Add(node);
@@ -454,7 +444,6 @@ namespace GitHubNotifier
                 : tvRepositories.Nodes[index].SelectedImageIndex = 4;
             PrintToUi(
                 $"{DateTime.Now.ToShortTimeString()}: End pulling repository: {dir}{Environment.NewLine}{Environment.NewLine}");
-
         }
 
         private Task ExecuteGitCommand(string command, string repoPath, string dirName)
@@ -503,7 +492,6 @@ namespace GitHubNotifier
                     publishCmd.BeginOutputReadLine();
                     publishCmd.BeginErrorReadLine();
                     publishCmd.WaitForExit();
-
                 }
                 catch (Exception e)
                 {
@@ -513,7 +501,6 @@ namespace GitHubNotifier
                     PrintToUi(msg);
                 }
             });
-
         }
 
         private void PrintToUi(string data)
@@ -566,7 +553,6 @@ namespace GitHubNotifier
             {
                 richTextBox1.Text = string.Join(Environment.NewLine, items);
             }
-
         }
 
         private void tsmiOpenFolder_Click(object sender, EventArgs e)
@@ -693,7 +679,6 @@ namespace GitHubNotifier
                     {
                         Directory.Delete(dir, true);
                         PrintToUi($"deleted: {dir}");
-
                     }
                     catch (Exception exception)
                     {
@@ -726,7 +711,6 @@ namespace GitHubNotifier
                 }
                 PrintToUi(sb.ToString());
             }
-
         }
 
         private async void btnUsefulForks_Click(object sender, EventArgs e)
@@ -734,16 +718,15 @@ namespace GitHubNotifier
             pnlUsefulForkRoot.Controls.Clear();
             usefulForksCenterPanel.Controls.Clear();
 
-
             var rootFork = new RepositorySettings(txtbUsefullForks.Text, txtbUsefullForks.Text, 0);
             var (newData, rootRepoInfo) = await GitHubUtils.GetAsync<GithubRepo>(rootFork.RepoApiUrl,
                 UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
 
             var commits = await GitHubUtils.GetAsync<GithubCommit[]>(rootRepoInfo.ApiCommitsUrl,
                 UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
-            var rootNewestCommit = commits.result.Max(c => c.commit.author.date);
+            var rootNewestCommit = commits.Result.Max(c => c.commit.author.date);
 
-            ForkedRepository root = new ForkedRepository(rootRepoInfo, commits.result);
+            ForkedRepository root = new ForkedRepository(rootRepoInfo, commits.Result);
             pnlUsefulForkRoot.Controls.Add(root);
             root.Dock = DockStyle.Fill;
             List<GithubRepo> repos = new List<GithubRepo>();
@@ -759,18 +742,14 @@ namespace GitHubNotifier
                 var repoCommits = await GitHubUtils.GetAsync<GithubCommit[]>(repo.ApiCommitsUrl,
                     UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
 
-                ForkedRepository ar1 = new ForkedRepository(repo, repoCommits.result, rootRepoInfo.PushTime, rootNewestCommit);
+                ForkedRepository ar1 = new ForkedRepository(repo, repoCommits.Result, rootRepoInfo.PushTime, rootNewestCommit);
                 usefulForksCenterPanel.Controls.Add(ar1);
                 ar1.Dock = DockStyle.Top;
-
             }
-
-
         }
 
         private async Task GetForks(GithubRepo repo, List<GithubRepo> repos)
         {
-
             List<GithubRepo> forks = new List<GithubRepo>();
             int page = 1;
             bool hasMore = true;
@@ -778,16 +757,14 @@ namespace GitHubNotifier
             {
                 var forksData = await GitHubUtils.GetAsync<GithubRepo[]>(repo.ForksUrl + "?per_page=100&page=" + page,
                     UserSettingsManager.Instance.GitHubToken, DateTime.MinValue);
-                if (forksData.result != null)
+                if (forksData.Result != null)
                 {
-
-
-                    foreach (var fork in forksData.result)
+                    foreach (var fork in forksData.Result)
                     {
                         forks.Add(fork);
                     }
                 }
-                hasMore = forksData.result is { Length: 100 };
+                hasMore = forksData.Result is { Length: 100 };
 
                 page++;
             }
@@ -856,7 +833,6 @@ namespace GitHubNotifier
                 : tvRepositories.Nodes[index].SelectedImageIndex = 2;
             PrintToUi(
                 $"{DateTime.Now.ToShortTimeString()}: End Prune repository: {dir}{Environment.NewLine}{Environment.NewLine}");
-
         }
 
         private async void btnRemoveDeletedTags_Click(object sender, EventArgs e)
@@ -916,7 +892,6 @@ namespace GitHubNotifier
                 : tvRepositories.Nodes[index].SelectedImageIndex = 2;
             PrintToUi(
                 $"{DateTime.Now.ToShortTimeString()}: End Prune repository: {dir}{Environment.NewLine}{Environment.NewLine}");
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -925,9 +900,6 @@ namespace GitHubNotifier
             {
                 cts.Cancel();
             }
-            
         }
     }
 }
-
-

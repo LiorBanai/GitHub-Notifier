@@ -35,5 +35,4 @@ namespace GitHubNotifier.DataTypes
         public int count { get; set; }
         public int uniques { get; set; }
     }
-
 }

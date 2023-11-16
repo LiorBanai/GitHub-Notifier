@@ -5,7 +5,15 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubNotifier", "GitHubNotifier\GitHubNotifier.csproj", "{3B8F38C3-6AD5-4151-AF97-95C258F23E3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubNotifier.UnitTests", "GitHubNotifier.UnitTests\GitHubNotifier.UnitTests.csproj", "{C944BF04-6793-43CE-A6D6-AEB42CF9B270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubNotifier.UnitTests", "GitHubNotifier.UnitTests\GitHubNotifier.UnitTests.csproj", "{C944BF04-6793-43CE-A6D6-AEB42CF9B270}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4F20E97-BDD8-40C4-8217-699D9DAC98B1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		.github\workflows\dotnet-core-desktop.yml = .github\workflows\dotnet-core-desktop.yml
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

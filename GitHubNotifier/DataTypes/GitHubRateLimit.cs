@@ -9,7 +9,5 @@ namespace GitHubNotifier.DataTypes
     {
         [JsonProperty("resources")] public GitHubResources Resources { get; set; }
         [JsonProperty("rate")] public RateLimit Rate { get; set; }
-
-
     }
 }

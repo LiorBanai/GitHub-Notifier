@@ -42,7 +42,6 @@ namespace GitHubNotifier.DataTypes
             ShowOpenIssues = true;
             ShowViews = true;
             ShowClones = true;
-
         }
         public RepositorySettings(string displayName, string repoName, int updateMinutes) : this()
         {

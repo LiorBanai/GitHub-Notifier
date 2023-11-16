@@ -44,7 +44,6 @@ namespace GitHubNotifier.DataTypes
         public GitHubPullRequest pull_request { get; set; }
     }
 
-
     public class GitHubPullRequest
     {
         public string url { get; set; }
@@ -63,5 +62,4 @@ namespace GitHubNotifier.DataTypes
         public bool _default { get; set; }
         public string description { get; set; }
     }
-
 }

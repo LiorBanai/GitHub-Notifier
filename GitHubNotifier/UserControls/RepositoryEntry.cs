@@ -49,7 +49,6 @@ namespace GitHubNotifier.UserControls
         public bool Active() => Repo.Active;
         public async Task Check(bool forceCheck)
         {
-
             lblViews.Visible = Repo.ShowViews;
             lblDownloads.Visible = Repo.ShowDownloads;
             lblLikes.Visible = Repo.ShowLikes;
@@ -81,7 +80,6 @@ namespace GitHubNotifier.UserControls
             }
 
             Repo.LastChecked = DateTime.Now;
-
         }
 
         private async Task CheckTrafficViews(bool forceCheck)
@@ -102,7 +100,7 @@ namespace GitHubNotifier.UserControls
                 {
                     Caption = Repo.DisplayName,
                     Text = $"Views: {views.Total} ({(change > 0 ? "+" : string.Empty)}{change})",
-                    Image = Properties.Resources.Show_32x32
+                    Image = Properties.Resources.Show_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
@@ -116,7 +114,6 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.IgnoreWhenFullScreen = true;
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.AutoContentHeight = true;
-
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
                     {
@@ -151,7 +148,7 @@ namespace GitHubNotifier.UserControls
                 {
                     Caption = Repo.DisplayName,
                     Text = $"Clones: {clones.Total} ({(change > 0 ? "+" : string.Empty)}{change})",
-                    Image = Properties.Resources.NewDataSource_32x32
+                    Image = Properties.Resources.NewDataSource_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
@@ -165,7 +162,6 @@ namespace GitHubNotifier.UserControls
                         popupNotifier.IgnoreWhenFullScreen = true;
                         popupNotifier.ContentFont = new Font(popupNotifier.ContentFont.FontFamily, 14.0f);
                         popupNotifier.AutoContentHeight = true;
-
                     }
                     if (change > 0 || !UserSettingsManager.Instance.DoNotShowDecrementPopups)
                     {
@@ -202,7 +198,7 @@ namespace GitHubNotifier.UserControls
                 {
                     Caption = Repo.DisplayName,
                     Text = $"Downloads: {downloads} ({(change > 0 ? "+" : string.Empty)}{change})",
-                    Image = Properties.Resources.Download_32x32
+                    Image = Properties.Resources.Download_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier
                 {
@@ -211,7 +207,7 @@ namespace GitHubNotifier.UserControls
                     IsRightToLeft = false,
                     Image = msg.Image,
                     AutoContentHeight = true,
-                    IgnoreWhenFullScreen = true
+                    IgnoreWhenFullScreen = true,
                 })
                 {
                     popupNotifier.TitleFont = new Font(popupNotifier.TitleFont.FontFamily, 16.0f);
@@ -227,7 +223,6 @@ namespace GitHubNotifier.UserControls
             {
                 lblDownloads.BackColor = SystemColors.Control;
             }
-
 
             lblDownloads.Text = "Downloads: " + downloads;
             Repo.LastTotalDownloads = downloads;
@@ -255,7 +250,7 @@ namespace GitHubNotifier.UserControls
                 {
                     Caption = Repo.DisplayName,
                     Text = $"Stars: {repoInfo.Stargazers} ({(change > 0 ? "+" : string.Empty)}{change})",
-                    Image = Properties.Resources.Feature_32x32
+                    Image = Properties.Resources.Feature_32x32,
                 };
                 using (var popupNotifier = new NotificationWindow.PopupNotifier())
                 {
@@ -292,9 +287,10 @@ namespace GitHubNotifier.UserControls
                 {
                     var issues = await GitHubUtils.GetAsync<GitHubIssue[]>(Repo.RepoApiIssuesUrl,
                         UserSettingsManager.Instance.GitHubToken, lastCheck);
-                    if (issues.newData)
+                    if (issues.NewData)
                     {
-                        relevantIssues = issues.result.Take(change).ToList();
+                        relevantIssues = issues.Result.Take(change).ToList();
+
                         //foreach (var issue in relevantIssues)
                         //{
                         //    if (issue.comments > 0)
@@ -320,7 +316,6 @@ namespace GitHubNotifier.UserControls
                 };
                 foreach (var issue in relevantIssues)
                 {
-
                     using (var popupNotifier = new NotificationWindow.PopupNotifier())
                     {
                         {
@@ -367,11 +362,9 @@ namespace GitHubNotifier.UserControls
             timerUpdate.Stop();
             timerUpdate.Start();
             lblNext.Text = "Next check: " + DateTime.Now.AddMilliseconds(timerUpdate.Interval);
-
         }
         private void lnkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
             OpenLink(Repo.RepoUrl);
         }
 
@@ -392,9 +385,7 @@ namespace GitHubNotifier.UserControls
             catch (Exception)
             {
                 //ignore 
-
             }
         }
-
     }
 }
