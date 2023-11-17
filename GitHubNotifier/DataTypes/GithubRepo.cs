@@ -8,7 +8,7 @@ namespace GitHubNotifier.DataTypes
     [JsonObject]
     public class GithubRepo
     {
-        [JsonProperty("id")] public int Id { get; set; }
+        [JsonProperty("id")] public long Id { get; set; }
         [JsonProperty("node_id")] public string NodeId { get; set; }
         [JsonProperty("name")] public string Name { get; set; }
         [JsonProperty("full_name")] public string FullName { get; set; }

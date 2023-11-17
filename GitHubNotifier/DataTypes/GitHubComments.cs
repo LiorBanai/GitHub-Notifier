@@ -7,7 +7,7 @@ namespace GitHubNotifier.DataTypes
         public string url { get; set; }
         public string html_url { get; set; }
         public string issue_url { get; set; }
-        public int id { get; set; }
+        public long id { get; set; }
         public string node_id { get; set; }
         public GithubUser user { get; set; }
         public DateTime created_at { get; set; }

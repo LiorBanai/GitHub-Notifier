@@ -9,7 +9,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<Copyright>Lior Banai</Copyright>
 		<PackageId>LiorBanai.GitHubNotifier</PackageId>
-		<Version>2.0.0</Version>
+		<Version>2.1.0</Version>
 		<Product>LiorBanai.GitHubNotifier</Product>
 		<ApplicationIcon>GitHubNotifier.ico</ApplicationIcon>
 	</PropertyGroup>

@@ -7,7 +7,7 @@ namespace GitHubNotifier.DataTypes
     [JsonObject]
     public class GitHubNotificationRepository
     {
-        [JsonProperty("id")] public int Id { get; set; }
+        [JsonProperty("id")] public long Id { get; set; }
         [JsonProperty("name")] public string Name { get; set; }
         [JsonProperty("full_name")] public string FullName { get; set; }
         [JsonProperty("html_url")] public string RepositoryHtmlUrl { get; set; }
@@ -29,7 +29,7 @@ namespace GitHubNotifier.DataTypes
     [JsonObject]
     public class GitHubUserNotification
     {
-        [JsonProperty("id")] public int Id { get; set; }
+        [JsonProperty("id")] public long Id { get; set; }
         [JsonProperty("unread")] public bool Unread { get; set; }
         [JsonProperty("updated_at")] public DateTime Updated { get; set; }
         [JsonProperty("subject")] public GitHubNotificationSubject Subject { get; set; }

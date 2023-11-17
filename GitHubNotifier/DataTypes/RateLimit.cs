@@ -7,9 +7,9 @@ namespace GitHubNotifier.DataTypes
     [JsonObject]
     public class RateLimit
     {
-        [JsonProperty("limit")] public int Limit { get; set; }
-        [JsonProperty("remaining")] public int Remaining { get; set; }
-        [JsonProperty("reset")] public int Reset { get; set; }
+        [JsonProperty("limit")] public long Limit { get; set; }
+        [JsonProperty("remaining")] public long Remaining { get; set; }
+        [JsonProperty("reset")] public long Reset { get; set; }
         public DateTime ResetTime => DateTimeOffset.FromUnixTimeSeconds(Reset).ToLocalTime().DateTime;
 
         public override string ToString()
