@@ -37,7 +37,7 @@
 	<ItemGroup>
 		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.8.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="LibGit2Sharp" Version="0.28.0" />
+		<PackageReference Include="LibGit2Sharp" Version="0.29.0" />
 	</ItemGroup>
 
 	<ItemGroup>
