@@ -58,31 +58,3 @@ jobs:
       with:
         name:  artifactory_${{ matrix.configuration }}
         path: ./GitHubNotifier/bin/${{ matrix.configuration }}
-  push-nuget:
-    name: 'Push NuGet Packages'
-    needs: build
-    if: ${{ github.event_name == 'push'}} 
-    runs-on: windows-latest
-    steps:
-      - name: 'Download Artifact'
-        uses: actions/download-artifact@v4.1.8
-        with:
-          name: artifactory_Release
-      - name: 'Dotnet NuGet Push'
-        run: |
-          Get-ChildItem .\artifactory -Filter *.nupkg |
-          Where-Object { !$_.Name.Contains('preview') } |
-          ForEach-Object { dotnet nuget push $_ --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key ${{secrets.NUGET_API_KEY}} }
-        shell: pwsh
-                
-      - name: Setup NuGet.exe for use with actions
-        uses: NuGet/setup-nuget@v1.0.5
-
-      - name: Add private GitHub registry to NuGet
-        run: nuget sources add -name "GPR" -Source https://nuget.pkg.github.com/LiorBanai/index.json -Username LiorBanai -Password ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: 'Dotnet NuGet Push to github registry'     
-        run: |
-          Get-ChildItem ./ -Filter *.nupkg |
-          Where-Object { !$_.Name.Contains('preview') } |
-          ForEach-Object { nuget push $_  -Source "GPR" -SkipDuplicate } 
