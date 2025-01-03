@@ -32,7 +32,7 @@
 	  <Content Include="GitHubNotifier.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="9.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.8.0" />
