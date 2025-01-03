@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<Authors>Lior Banai</Authors>
 		<PackageProjectUrl>https://github.com/LiorBanai/GitHub-Notifier</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/LiorBanai/GitHub-Notifier</RepositoryUrl>
@@ -32,12 +32,12 @@
 	  <Content Include="GitHubNotifier.ico" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="9.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.8.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="LibGit2Sharp" Version="0.30.0" />
+		<PackageReference Include="LibGit2Sharp" Version="0.31.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -84,6 +84,10 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Bcl.HashCode" Version="6.0.0" />
 	</ItemGroup>
 
 </Project>
