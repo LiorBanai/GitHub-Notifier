@@ -29,9 +29,9 @@ jobs:
 
     # Install the .NET Core workload
     - name: Install .NET Core
-      uses: actions/setup-dotnet@v3.2.0
+      uses: actions/setup-dotnet@v4.1.0
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
@@ -54,9 +54,9 @@ jobs:
 
     # Publish Artifacts 
     - name: 'Publish Artifacts'   
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v4.4.0
       with:
-        name: 'artifactory'
+        name:  artifactory_${{ matrix.configuration }}
         path: ./GitHubNotifier/bin/${{ matrix.configuration }}
   push-nuget:
     name: 'Push NuGet Packages'
@@ -65,9 +65,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: 'Download Artifact'
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.8
         with:
-          name: 'artifactory'
+          name: artifactory_Release
       - name: 'Dotnet NuGet Push'
         run: |
           Get-ChildItem .\artifactory -Filter *.nupkg |
