@@ -1,11 +1,13 @@
 version: 2
 updates:
-- package-ecosystem: nuget
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: System.Resources.Extensions
-    versions:
-    - ">= 4.7.a, < 4.8"
+  - package-ecosystem: nuget
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
