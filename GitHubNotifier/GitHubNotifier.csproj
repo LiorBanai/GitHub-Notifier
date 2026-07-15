@@ -35,7 +35,7 @@
 		<PackageReference Include="LiorBanai.NotificationWindow" Version="1.8.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="LibGit2Sharp" Version="0.31.0" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.301" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -86,7 +86,7 @@
 
 	<ItemGroup>
 	  <PackageReference Update="Microsoft.Bcl.HashCode" Version="6.0.0" />
-	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.300" />
+	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.301" />
 	</ItemGroup>
 
 </Project>
