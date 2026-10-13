@@ -49,7 +49,7 @@ jobs:
 
     # Publish Artifacts 
     - name: 'Publish Artifacts'   
-      uses: actions/upload-artifact@v7.0.1
+      uses: actions/upload-artifact@v7.0.2
       with:
         name:  artifactory_${{ matrix.configuration }}
         path: ./GitHubNotifier/bin/${{ matrix.configuration }}
